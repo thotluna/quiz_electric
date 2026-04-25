@@ -1,0 +1,37 @@
+[
+  {
+    "id": "ITC-BT-01",
+    "itc": "ITC-BT 01",
+    "preguntas": [
+      {
+        "id": "q1",
+        "pregunta": "Pregunta 1 (Simple, 3 opciones, la 1 es correcta)",
+        "opciones": [
+          { "id": 1, "respuesta": "Opción 1", "es_correcta": true, "explicacion": "Explicación 1" },
+          { "id": 2, "respuesta": "Opción 2", "es_correcta": false, "explicacion": "Mal 2" },
+          { "id": 3, "respuesta": "Opción 3", "es_correcta": false, "explicacion": "Mal 3" }
+        ],
+        "tipo": "simple"
+      },
+      {
+        "id": "q2",
+        "pregunta": "Pregunta 2 (Múltiple, 10 y 11 son correctas)",
+        "opciones": [
+          { "id": 10, "respuesta": "Opción 10", "es_correcta": true, "explicacion": "Bien 10" },
+          { "id": 11, "respuesta": "Opción 11", "es_correcta": true, "explicacion": "Bien 11" },
+          { "id": 12, "respuesta": "Opción 12", "es_correcta": false, "explicacion": "Mal 12" },
+          { "id": 13, "respuesta": "Opción 13", "es_correcta": false, "explicacion": "Mal 13" }
+        ],
+        "tipo": "multiple"
+      },
+      { "id": "q3", "pregunta": "P3", "tipo": "simple", "opciones": [{ "id": 31, "respuesta": "O1", "es_correcta": true, "explicacion": "E" }, { "id": 32, "respuesta": "O2", "es_correcta": false, "explicacion": "E" }] },
+      { "id": "q4", "pregunta": "P4", "tipo": "simple", "opciones": [{ "id": 41, "respuesta": "O1", "es_correcta": true, "explicacion": "E" }, { "id": 42, "respuesta": "O2", "es_correcta": false, "explicacion": "E" }] },
+      { "id": "q5", "pregunta": "P5", "tipo": "simple", "opciones": [{ "id": 51, "respuesta": "O1", "es_correcta": true, "explicacion": "E" }, { "id": 52, "respuesta": "O2", "es_correcta": false, "explicacion": "E" }] },
+      { "id": "q6", "pregunta": "P6", "tipo": "simple", "opciones": [{ "id": 61, "respuesta": "O1", "es_correcta": true, "explicacion": "E" }, { "id": 62, "respuesta": "O2", "es_correcta": false, "explicacion": "E" }] },
+      { "id": "q7", "pregunta": "P7", "tipo": "simple", "opciones": [{ "id": 71, "respuesta": "O1", "es_correcta": true, "explicacion": "E" }, { "id": 72, "respuesta": "O2", "es_correcta": false, "explicacion": "E" }] },
+      { "id": "q8", "pregunta": "P8", "tipo": "simple", "opciones": [{ "id": 81, "respuesta": "O1", "es_correcta": true, "explicacion": "E" }, { "id": 82, "respuesta": "O2", "es_correcta": false, "explicacion": "E" }] },
+      { "id": "q9", "pregunta": "P9", "tipo": "simple", "opciones": [{ "id": 91, "respuesta": "O1", "es_correcta": true, "explicacion": "E" }, { "id": 92, "respuesta": "O2", "es_correcta": false, "explicacion": "E" }] },
+      { "id": "q10", "pregunta": "P10", "tipo": "simple", "opciones": [{ "id": 1001, "respuesta": "O1", "es_correcta": true, "explicacion": "E" }, { "id": 1002, "respuesta": "O2", "es_correcta": false, "explicacion": "E" }] }
+    ]
+  }
+]
