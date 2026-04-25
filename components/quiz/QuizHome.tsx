@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { QuizManager } from './QuizManager'
 import { QuizResults } from './QuizResults'
 import { StatsDashboard } from './StatsDashboard'
@@ -32,11 +32,16 @@ export const QuizHome = ({ topics, user }: QuizHomeProps) => {
   const resetQuiz = useQuizStore((s) => s.resetQuiz)
   const startQuizAction = useQuizStore((s) => s.startQuiz)
 
-  const [showStats, setShowStats] = useState(false)
+  const [showStats, setShowStats] = useState<boolean>(false)
   const [stats, setStats] = useState<UserStats | null>(null)
-  const [loadingStats, setLoadingStats] = useState(false)
+  const [loadingStats, setLoadingStats] = useState<boolean>(false)
+  const [hasMounted, setHasMounted] = useState<boolean>(false)
 
-  const isStarted = config !== null
+  useEffect(() => {
+    setHasMounted(true)
+  }, [])
+
+  const isStarted: boolean = config !== null
 
   const handleShowStats = async () => {
     setLoadingStats(true)
