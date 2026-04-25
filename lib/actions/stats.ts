@@ -237,34 +237,6 @@ async function upsertUserStats(supabase: SupabaseClient, userId: string, answer:
   }
 }
 
-/**
- * Obtiene las estadísticas de un conjunto de preguntas para el usuario actual.
- */
-export async function getUserStatsForQuestions(questionIds: string[]) {
-  const supabase = await createClient();
-  const { data: { user: supabaseUser } } = await supabase.auth.getUser();
-  const cookieStore = await cookies();
-  
-  let user = supabaseUser;
-  if (!user && process.env.NODE_ENV === 'development' && cookieStore.get('test_session')) {
-    user = { id: 'test-user-123', email: 'test@example.com' } as never;
-  }
-
-  if (!user) return [];
-
-  const { data, error } = await supabase
-    .from('user_question_stats')
-    .select('question_id, times_answered, times_correct')
-    .eq('user_id', user.id)
-    .in('question_id', questionIds);
-
-  if (error) {
-    console.error('Error fetching user stats:', error);
-    return [];
-  }
-
-  return data || [];
-}
 
 async function saveQuizSession(
   supabase: SupabaseClient,
@@ -280,6 +252,6 @@ async function saveQuizSession(
     score: score,
     total_questions: totalQuestions,
     time_elapsed: timeElapsed,
-    itc_filter: config.topicId || 'all'
+    itc_filter: config.topicIds?.[0] || 'all'
   });
 }

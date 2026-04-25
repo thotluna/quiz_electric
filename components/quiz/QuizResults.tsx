@@ -187,10 +187,10 @@ export const QuizResults = ({ userAnswers, timeElapsed, totalQuestions, score, i
                       className="bg-surface-card rounded-2xl p-6 border border-foreground/5 shadow-lg space-y-4 hover:border-accent-primary/20 transition-colors"
                     >
                     <div className="flex justify-between items-start gap-4">
-                      <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-foreground/5 flex items-center justify-center text-xs font-bold text-foreground/40">
+                      <span className="shrink-0 w-8 h-8 rounded-lg bg-foreground/5 flex items-center justify-center text-xs font-bold text-foreground/40">
                         {index + 1}
                       </span>
-                      <p className="text-foreground font-bold leading-tight flex-grow">
+                      <p className="text-foreground font-bold leading-tight grow">
                         {answer.question.pregunta}
                       </p>
                     </div>

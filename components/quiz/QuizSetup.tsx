@@ -128,7 +128,7 @@ export const QuizSetup = ({ topics, onStart }: QuizSetupProps) => {
                       ? selectedTopics.includes(availableTopic.id)
                         ? 'border-primary bg-primary text-white shadow-md shadow-primary/20' 
                         : 'border-border bg-card text-foreground/70 hover:border-primary/50 hover:text-primary hover:bg-primary/5'
-                      : 'border-border/50 bg-foreground/[0.03] text-foreground/20 cursor-not-allowed'}
+                      : 'border-border/50 bg-foreground/3 text-foreground/20 cursor-not-allowed'}
                   `}
                   title={isAvailable ? `Estudiar ${itcName}` : 'Próximamente'}
                 >

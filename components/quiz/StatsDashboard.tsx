@@ -16,7 +16,7 @@ export const StatsDashboard = ({ stats, onClose }: StatsDashboardProps) => {
         {/* Header */}
         <div className="flex justify-between items-end">
           <div className="space-y-1">
-            <h1 className="text-4xl font-black tracking-tighter uppercase italic text-transparent bg-clip-text bg-gradient-to-r from-accent-primary to-blue-400">
+            <h1 className="text-4xl font-black tracking-tighter uppercase italic text-transparent bg-clip-text bg-linear-to-r from-accent-primary to-blue-400">
               Mi Progreso
             </h1>
             <p className="text-foreground/40 font-bold text-xs uppercase tracking-widest">

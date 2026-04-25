@@ -75,7 +75,7 @@ export const QuizHome = ({ topics, user }: QuizHomeProps) => {
 
         {/* Center Area: Logo */}
         <div className="flex flex-col items-center text-center">
-          <h1 className="text-xl md:text-2xl font-black tracking-tighter uppercase italic text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400 drop-shadow-[0_0_10px_var(--neon-color)] leading-none">
+          <h1 className="text-xl md:text-2xl font-black tracking-tighter uppercase italic text-transparent bg-clip-text bg-linear-to-r from-primary to-cyan-400 drop-shadow-[0_0_10px_var(--neon-color)] leading-none">
             Quiz Electric
           </h1>
           <p className="hidden md:block text-[8px] font-bold text-foreground/30 uppercase tracking-[0.2em] mt-0.5">
