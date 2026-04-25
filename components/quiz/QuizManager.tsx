@@ -5,53 +5,75 @@ import { useQuizStore } from "@/lib/store/quiz-store";
 import { Quiz } from "./Quiz";
 import { QuizSetup } from "./QuizSetup";
 import { ResumeModal } from "./ResumeModal";
-import { QuizConfig } from "@/types";
+import { QuizConfig, Question } from "@/types";
 
 interface QuizManagerProps {
   topics: { id: string; itc: string }[];
   userId: string;
 }
 
+interface PersistedState {
+  config: QuizConfig | null;
+  questions: Question[];
+  isFinished: boolean;
+}
+
+const STORAGE_KEY = "quiz-electric-session";
+
+const readPersistedSession = (): PersistedState | null => {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { state?: PersistedState };
+    if (!parsed.state?.config) return null;
+    return parsed.state;
+  } catch {
+    return null;
+  }
+};
+
 export const QuizManager = ({ topics, userId }: QuizManagerProps) => {
-  const [showResumeModal, setShowResumeModal] = useState(false);
-  const [isHydrated, setIsHydrated] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+  const [hasSavedSession, setHasSavedSession] = useState(false);
+  const [resumeResolved, setResumeResolved] = useState(false);
   
   const config = useQuizStore((s) => s.config);
   const startQuiz = useQuizStore((s) => s.startQuiz);
   const resumeQuiz = useQuizStore((s) => s.resumeQuiz);
   const discardSavedQuiz = useQuizStore((s) => s.discardSavedQuiz);
-  const hasActiveSession = useQuizStore((s) => s.hasActiveSession);
   const isLoading = useQuizStore((s) => s.isLoading);
   const setUserId = useQuizStore((s) => s.setUserId);
 
   useEffect(() => {
-    // Rehidratar el store al montar
-    useQuizStore.persist.rehydrate();
-    setIsHydrated(true);
     setUserId(userId);
+
+    const persisted = readPersistedSession();
+    const hasSession = persisted !== null 
+      && !persisted.isFinished 
+      && persisted.questions.length > 0;
+    
+    setHasSavedSession(hasSession);
+    setIsReady(true);
   }, [userId, setUserId]);
 
-  useEffect(() => {
-    if (isHydrated && hasActiveSession()) {
-      setShowResumeModal(true);
-    }
-  }, [isHydrated, hasActiveSession]);
+  const showResumeModal = isReady && !resumeResolved && hasSavedSession;
 
-  const handleStart = (quizConfig: QuizConfig) => {
+  const handleStart = (quizConfig: QuizConfig): void => {
     startQuiz(quizConfig);
   };
 
-  const handleResume = () => {
+  const handleResume = (): void => {
     resumeQuiz();
-    setShowResumeModal(false);
+    setResumeResolved(true);
   };
 
-  const handleDiscard = () => {
+  const handleDiscard = (): void => {
     discardSavedQuiz();
-    setShowResumeModal(false);
+    setResumeResolved(true);
   };
 
-  if (!isHydrated) {
+  if (!isReady) {
     return (
       <div className="flex flex-col items-center justify-center p-20 space-y-4">
         <div className="w-12 h-12 border-4 border-foreground/10 border-t-accent-primary rounded-full animate-spin" />

@@ -275,6 +275,7 @@ export const useQuizStore = create<QuizStore>()(
         set({
           questions: reorderedQuestions,
           userAnswers: newUserAnswers,
+          currentIndex: get().currentIndex + 1,
           selectedOptionIds: [],
           isShowingResult: false,
           isAutoAdvancing: false,
@@ -303,6 +304,7 @@ export const useQuizStore = create<QuizStore>()(
 
         set({
           questions: remainingQuestions,
+          currentIndex: get().initialQuestions.length - remainingQuestions.length,
           selectedOptionIds: [],
           isShowingResult: false,
           isAutoAdvancing: false,
@@ -353,7 +355,6 @@ export const useQuizStore = create<QuizStore>()(
     }),
     {
       name: STORAGE_KEY,
-      skipHydration: true,
       partialize: (state) => ({
         userId: state.userId,
         config: state.config,
