@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { QuizManager } from './QuizManager'
 import { QuizResults } from './QuizResults'
 import { StatsDashboard } from './StatsDashboard'
@@ -29,11 +29,16 @@ export const QuizHome = ({ topics, user }: QuizHomeProps) => {
   const isTimeOut = useQuizStore((s) => s.isTimeOut)
   const resetQuiz = useQuizStore((s) => s.resetQuiz)
 
-  const [showStats, setShowStats] = useState(false)
+  const [showStats, setShowStats] = useState<boolean>(false)
   const [stats, setStats] = useState<UserStats | null>(null)
-  const [loadingStats, setLoadingStats] = useState(false)
+  const [loadingStats, setLoadingStats] = useState<boolean>(false)
+  const [hasMounted, setHasMounted] = useState<boolean>(false)
 
-  const isStarted = config !== null
+  useEffect(() => {
+    setHasMounted(true)
+  }, [])
+
+  const isStarted: boolean = config !== null
 
   const handleShowStats = async () => {
     setLoadingStats(true)
@@ -66,7 +71,7 @@ export const QuizHome = ({ topics, user }: QuizHomeProps) => {
           </div>
 
           <div className="flex items-center gap-4">
-            {!isStarted && (
+            {hasMounted && !isStarted && (
               <button
                 onClick={handleShowStats}
                 disabled={loadingStats}
@@ -80,7 +85,11 @@ export const QuizHome = ({ topics, user }: QuizHomeProps) => {
         </header>
 
         <main className="relative">
-          {isFinished ? (
+          {!hasMounted ? (
+            <div className="flex flex-col items-center justify-center p-20">
+              <div className="w-12 h-12 border-4 border-foreground/10 border-t-accent-primary rounded-full animate-spin" />
+            </div>
+          ) : isFinished ? (
             <QuizResults
               userAnswers={userAnswers}
               timeElapsed={timeElapsed}
