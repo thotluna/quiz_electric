@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { QuizSetup } from './QuizSetup'
 import { Quiz } from './Quiz'
 import { QuizResults } from './QuizResults'
@@ -8,26 +8,46 @@ import { StatsDashboard } from './StatsDashboard'
 import UserMenu from '@/components/auth/UserMenu'
 import { useQuizStore } from '@/lib/store/quiz-store'
 import { User } from '@supabase/supabase-js'
-import { UserGlobalStats, TopicStat } from '@/lib/queries/user-stats'
-import { getUserStatsAction } from '@/lib/actions/user-stats'
+import { getUserStats, UserStats } from '@/lib/actions/stats'
+
+interface Topic {
+  id: string
+  itc: string
+}
 
 interface QuizHomeProps {
-  topics: string[]
+  topics: Topic[]
   user: User
 }
 
 export const QuizHome = ({ topics, user }: QuizHomeProps) => {
-  const { isStarted, isComplete } = useQuizStore()
+  const config = useQuizStore((s) => s.config)
+  const isFinished = useQuizStore((s) => s.isFinished)
+  const userAnswers = useQuizStore((s) => s.userAnswers)
+  const score = useQuizStore((s) => s.score)
+  const timeElapsed = useQuizStore((s) => s.timeElapsed)
+  const initialQuestions = useQuizStore((s) => s.initialQuestions)
+  const isTimeOut = useQuizStore((s) => s.isTimeOut)
+  const resetQuiz = useQuizStore((s) => s.resetQuiz)
+  const startQuiz = useQuizStore((s) => s.startQuiz)
+
   const [showStats, setShowStats] = useState(false)
-  const [stats, setStats] = useState<{ global: UserGlobalStats; topics: TopicStat[] } | null>(null)
+  const [stats, setStats] = useState<UserStats | null>(null)
   const [loadingStats, setLoadingStats] = useState(false)
+
+  const isStarted = config !== null
 
   const handleShowStats = async () => {
     setLoadingStats(true)
-    const data = await getUserStatsAction()
-    setStats(data)
-    setShowStats(true)
-    setLoadingStats(false)
+    try {
+      const data = await getUserStats()
+      setStats(data)
+      setShowStats(true)
+    } catch (error) {
+      console.error('Error fetching stats:', error)
+    } finally {
+      setLoadingStats(false)
+    }
   }
 
   if (showStats && stats) {
@@ -63,9 +83,19 @@ export const QuizHome = ({ topics, user }: QuizHomeProps) => {
 
         <main className="relative">
           {!isStarted ? (
-            <QuizSetup topics={topics} />
-          ) : isComplete ? (
-            <QuizResults />
+            <QuizSetup 
+              topics={topics} 
+              onStart={startQuiz}
+            />
+          ) : isFinished ? (
+            <QuizResults 
+              userAnswers={userAnswers}
+              timeElapsed={timeElapsed}
+              totalQuestions={initialQuestions.length}
+              score={score}
+              isTimeOut={isTimeOut}
+              onReset={resetQuiz}
+            />
           ) : (
             <Quiz />
           )}
