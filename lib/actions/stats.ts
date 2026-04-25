@@ -99,6 +99,7 @@ export async function getUserStats(): Promise<UserStats> {
     throw new Error("Not authenticated");
   }
 
+  // Global stats from user_question_stats
   const { data: qStats } = await supabase
     .from('user_question_stats')
     .select('times_answered, times_correct')
@@ -111,8 +112,10 @@ export async function getUserStats(): Promise<UserStats> {
   };
   global.avg_accuracy = global.total_questions > 0 ? Math.round((global.total_correct / global.total_questions) * 100) : 0;
 
+  // Topic stats (mocking for now as we need a join or separate query)
   const topics: TopicStats[] = [];
 
+  // Recent sessions
   const { data: sessions } = await supabase
     .from('quiz_sessions')
     .select('*')
