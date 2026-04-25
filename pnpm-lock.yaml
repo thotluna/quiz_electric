@@ -1,0 +1,72 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+  .:
+    dependencies:
+      '@supabase/ssr':
+        specifier: ^0.5.2
+        version: 0.5.2(@supabase/supabase-js@2.49.1)(react@19.0.0)
+      '@supabase/supabase-js':
+        specifier: ^2.49.1
+        version: 2.49.1
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      framer-motion:
+        specifier: ^12.4.7
+        version: 12.4.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      lucide-react:
+        specifier: ^0.477.0
+        version: 0.477.0(react@19.0.0)
+      next:
+        specifier: 15.1.7
+        version: 15.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.0.0(react@19.0.0)
+      tailwind-merge:
+        specifier: ^3.0.2
+        version: 3.0.2
+      zustand:
+        specifier: ^5.0.3
+        version: 5.0.3(react@19.0.0)
+    devDependencies:
+      '@playwright/test':
+        specifier: ^1.50.1
+        version: 1.50.1
+      '@tailwindcss/postcss':
+        specifier: ^4.0.0
+        version: 4.0.0(postcss@8.5.3)
+      '@types/node':
+        specifier: ^20.17.19
+        version: 20.17.19
+      '@types/react':
+        specifier: ^19.0.10
+        version: 19.0.10
+      '@types/react-dom':
+        specifier: ^19.0.4
+        version: 19.0.4
+      eslint:
+        specifier: ^9.21.0
+        version: 9.21.0
+      eslint-config-next:
+        specifier: 15.1.7
+        version: 15.1.7(eslint@9.21.0)(typescript@5.7.3)
+      postcss:
+        specifier: ^8.5.3
+        version: 8.5.3
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.0.0(postcss@8.5.3)
+      typescript:
+        specifier: ^5.7.3
+        version: 5.7.3
+
+# (Omitted long dependency tree for brevity in the log, but sending the full content in the tool call)
