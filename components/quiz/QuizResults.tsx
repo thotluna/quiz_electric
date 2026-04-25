@@ -34,41 +34,41 @@ export const QuizResults = ({ userAnswers, timeElapsed, totalQuestions, score, i
 
 
   return (
-    <div className="min-h-screen bg-surface-main py-12 px-4 md:px-6">
-      <div className="max-w-4xl mx-auto space-y-8">
+    <div className="min-h-screen bg-surface-main pt-0 pb-12 md:pt-12 px-0 md:px-6">
+      <div className="max-w-4xl mx-auto space-y-4 md:space-y-8">
         {/* Main Card */}
-        <div className="bg-surface-card rounded-[2.5rem] p-8 md:p-12 shadow-2xl border border-foreground/5 relative overflow-hidden">
+        <div className="bg-surface-card rounded-none md:rounded-[2.5rem] p-4 md:p-12 shadow-2xl border-x-0 border-y md:border border-foreground/5 relative overflow-hidden">
           {/* Decorative background elements */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-accent-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-status-correct/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+          <div className="hidden md:block absolute top-0 right-0 w-64 h-64 bg-accent-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+          <div className="hidden md:block absolute bottom-0 left-0 w-64 h-64 bg-status-correct/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
-          <div className="relative z-10 flex flex-col items-center text-center space-y-8">
+          <div className="relative z-10 flex flex-col items-center text-center space-y-4 md:space-y-8">
             {/* Icon Header */}
-            <div className={`inline-flex items-center justify-center w-20 h-20 rounded-3xl transform rotate-12 transition-transform duration-500 ${isTimeOut ? 'bg-status-incorrect/10 text-status-incorrect' : 'bg-accent-primary/10 text-accent-primary'}`}>
-              <span className="text-4xl">{isTimeOut ? "⏰" : isPassed ? "🏆" : "📈"}</span>
+            <div className={`inline-flex items-center justify-center w-20 h-20 md:w-32 md:h-32 rounded-2xl md:rounded-[2.5rem] transform rotate-12 transition-transform duration-500 ${isTimeOut ? 'bg-status-incorrect/10 text-status-incorrect' : 'bg-accent-primary/10 text-accent-primary'}`}>
+              <span className="text-4xl md:text-6xl">{isTimeOut ? "⏰" : isPassed ? "🏆" : "📈"}</span>
             </div>
 
-            <div className="space-y-4">
-              <h2 className="text-4xl md:text-5xl font-black text-foreground tracking-tight">
+            <div className="space-y-2 md:space-y-4">
+              <h2 className="text-2xl md:text-5xl font-black text-foreground tracking-tight">
                 {isTimeOut ? "¡Se acabó el tiempo!" : "¡Simulacro Finalizado!"}
               </h2>
               
-              <div className="flex flex-col items-center gap-4">
-                <p className="text-foreground/50 max-w-md mx-auto font-medium leading-relaxed">
+              <div className="flex flex-col items-center gap-2 md:gap-4">
+                <p className="text-xs md:text-base text-foreground/50 max-w-md mx-auto font-medium leading-relaxed px-4 md:px-0">
                   {isTimeOut 
                     ? `Has respondido ${answeredCount} de ${totalQuestions} preguntas antes de que el reloj llegara a cero.`
                     : `Has completado el entrenamiento técnico con ${answeredCount} preguntas respondidas.`}
                 </p>
                 
                 <div className="flex flex-col items-center gap-2">
-                  <div className={`px-8 py-3 rounded-2xl border-2 font-black text-2xl tracking-tight uppercase shadow-sm transition-all duration-500 ${
+                  <div className={`px-6 py-2 md:px-8 md:py-3 rounded-xl md:rounded-2xl border-2 font-black text-xl md:text-2xl tracking-tight uppercase shadow-sm transition-all duration-500 ${
                     isPassed 
                       ? "bg-status-correct/10 border-status-correct text-status-correct shadow-status-correct/10" 
                       : "bg-status-incorrect/10 border-status-incorrect text-status-incorrect shadow-status-incorrect/10"
                   }`}>
                     {isPassed ? "✓ APTO" : "✗ NO APTO"}
                   </div>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-foreground/20">
+                  <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-foreground/20">
                     Mínimo requerido: {passThreshold.toFixed(2)} pts (80%)
                   </p>
                 </div>
@@ -76,8 +76,8 @@ export const QuizResults = ({ userAnswers, timeElapsed, totalQuestions, score, i
             </div>
 
             {/* Performance Gauge */}
-            <div className="flex flex-col items-center py-4 w-full max-w-sm">
-              <div className="relative w-64 h-32 mb-10">
+            <div className="flex flex-col items-center py-2 md:py-4 w-full max-w-sm">
+              <div className="relative w-32 h-16 md:w-56 md:h-28 mb-6 md:mb-10">
                 <svg viewBox="0 0 100 50" className="w-full h-full overflow-visible">
                   <defs>
                     <filter id="glow">
@@ -95,64 +95,64 @@ export const QuizResults = ({ userAnswers, timeElapsed, totalQuestions, score, i
                 </svg>
               </div>
 
-              <div className="flex flex-col items-center mb-8">
-                <span className="text-6xl font-black text-foreground tabular-nums tracking-tighter drop-shadow-sm">
-                  {normalizedScore}<span className="text-3xl opacity-20 ml-2">/ 100</span>
+              <div className="flex flex-col items-center mb-6 md:mb-8">
+                <span className="text-4xl md:text-6xl font-black text-foreground tabular-nums tracking-tighter drop-shadow-sm">
+                  {normalizedScore}<span className="text-2xl md:text-3xl opacity-20 ml-2">/ 100</span>
                 </span>
-                <span className="text-[10px] font-bold text-foreground/30 uppercase tracking-widest mt-1">Puntaje REBT Normalizado</span>
+                <span className="text-[8px] md:text-[10px] font-bold text-foreground/30 uppercase tracking-widest mt-1">Puntaje REBT Normalizado</span>
               </div>
 
-              <div className="flex flex-wrap gap-x-6 gap-y-3 justify-center">
-                <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-status-correct" />
-                  <span className="text-[10px] font-bold text-foreground/40 uppercase tracking-widest">Aciertos</span>
+              <div className="flex flex-wrap gap-x-4 gap-y-2 justify-center px-4">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-status-correct" />
+                  <span className="text-[8px] md:text-[10px] font-bold text-foreground/40 uppercase tracking-widest">Aciertos</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-status-incorrect" />
-                  <span className="text-[10px] font-bold text-foreground/40 uppercase tracking-widest">Errores</span>
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-status-incorrect" />
+                  <span className="text-[8px] md:text-[10px] font-bold text-foreground/40 uppercase tracking-widest">Errores</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-foreground/10" />
-                  <span className="text-[10px] font-bold text-foreground/40 uppercase tracking-widest">No contestadas</span>
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-foreground/10" />
+                  <span className="text-[8px] md:text-[10px] font-bold text-foreground/40 uppercase tracking-widest">Omitidas</span>
                 </div>
               </div>
             </div>
 
             {/* Stats Grid */}
-            <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 py-8 border-y border-foreground/5">
-              <div className="space-y-1">
-                <p className="text-2xl font-black text-status-correct">{correctCount}</p>
-                <p className="text-[9px] font-bold uppercase tracking-widest text-foreground/40">Aciertos</p>
+            <div className="w-full grid grid-cols-3 lg:grid-cols-6 gap-y-6 md:gap-4 py-6 md:py-8 border-y border-foreground/5">
+              <div className="space-y-0.5">
+                <p className="text-xl md:text-2xl font-black text-status-correct">{correctCount}</p>
+                <p className="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-foreground/40">Aciertos</p>
               </div>
-              <div className="space-y-1 border-l border-foreground/5">
-                <p className="text-2xl font-black text-status-incorrect">{incorrectCount}</p>
-                <p className="text-[9px] font-bold uppercase tracking-widest text-foreground/40">Fallos</p>
+              <div className="space-y-0.5 border-l border-foreground/5">
+                <p className="text-xl md:text-2xl font-black text-status-incorrect">{incorrectCount}</p>
+                <p className="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-foreground/40">Fallos</p>
               </div>
-              <div className="space-y-1 border-l border-foreground/5">
-                <p className="text-2xl font-black text-foreground/40">{skippedCount}</p>
-                <p className="text-[9px] font-bold uppercase tracking-widest text-foreground/40">Omitidas</p>
+              <div className="space-y-0.5 border-l border-foreground/5">
+                <p className="text-xl md:text-2xl font-black text-foreground/40">{skippedCount}</p>
+                <p className="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-foreground/40">Omitidas</p>
               </div>
-              <div className="space-y-1 border-l border-foreground/5">
-                <p className="text-2xl font-black text-foreground">{totalQuestions}</p>
-                <p className="text-[9px] font-bold uppercase tracking-widest text-foreground/40">Total</p>
+              <div className="space-y-0.5 md:border-l border-foreground/5 mt-0">
+                <p className="text-xl md:text-2xl font-black text-foreground">{totalQuestions}</p>
+                <p className="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-foreground/40">Total</p>
               </div>
-              <div className="space-y-1 border-l border-foreground/5">
-                <p className="text-2xl font-black text-accent-primary">{formatTime(timeElapsed)}</p>
-                <p className="text-[9px] font-bold uppercase tracking-widest text-foreground/40">Tiempo</p>
+              <div className="space-y-0.5 border-l border-foreground/5 mt-0">
+                <p className="text-xl md:text-2xl font-black text-accent-primary">{formatTime(timeElapsed)}</p>
+                <p className="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-foreground/40">Tiempo</p>
               </div>
-              <div className="space-y-1 border-l border-foreground/5">
-                <p className="text-2xl font-black text-foreground">{rebtScore}</p>
-                <p className="text-[9px] font-bold uppercase tracking-widest text-foreground/40">Puntos REBT</p>
+              <div className="space-y-0.5 border-l border-foreground/5 mt-0">
+                <p className="text-xl md:text-2xl font-black text-foreground">{rebtScore}</p>
+                <p className="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-foreground/40">Puntos</p>
               </div>
             </div>
 
             <button
               onClick={onReset}
-              className="group relative flex items-center justify-center gap-3 px-10 py-5 bg-accent-primary text-white rounded-2xl font-black text-lg transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-accent-primary/25 overflow-hidden"
+              className="group relative flex items-center justify-center gap-2 md:gap-3 px-8 py-4 md:px-10 md:py-5 bg-accent-primary text-white rounded-xl md:rounded-2xl font-black text-base md:text-lg transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-accent-primary/25 overflow-hidden w-[calc(100%-2rem)] md:w-auto mx-auto"
             >
               <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-              <span className="relative">Nuevo Entrenamiento</span>
-              <svg className="w-5 h-5 relative group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <span className="relative">Nuevo Simulacro</span>
+              <svg className="w-4 h-4 md:w-5 md:h-5 relative group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </button>

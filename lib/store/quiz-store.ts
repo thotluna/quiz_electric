@@ -80,9 +80,22 @@ export const useQuizStore = create<QuizStore>()(
         set({ isLoading: true });
 
         try {
-          const rawQuestions = quizConfig.topicId === 'all' || !quizConfig.topicId
-            ? await getAllQuestions() 
-            : await getQuestionsByTopic(quizConfig.topicId);
+          let rawQuestions: Question[] = [];
+          
+          if (!quizConfig.topicIds || quizConfig.topicIds.length === 0) {
+            rawQuestions = await getAllQuestions();
+          } else {
+            // Buscamos preguntas de todos los temas seleccionados en paralelo
+            const results = await Promise.all(
+              quizConfig.topicIds.map(id => getQuestionsByTopic(id))
+            );
+            
+            // Aplanamos el array y eliminamos posibles duplicados por ID
+            const flatQuestions = results.flat();
+            const uniqueQuestionsMap = new Map<string, Question>();
+            flatQuestions.forEach(q => uniqueQuestionsMap.set(q.id, q));
+            rawQuestions = Array.from(uniqueQuestionsMap.values());
+          }
 
           const questionIds = rawQuestions.map(q => q.id);
           const stats = await getUserStatsForQuestions(questionIds);
@@ -355,7 +368,7 @@ export const useQuizStore = create<QuizStore>()(
     }),
     {
       name: STORAGE_KEY,
-      partialize: (state) => ({
+      partialize: (state): any => ({
         userId: state.userId,
         config: state.config,
         questions: state.questions,

@@ -1,130 +1,152 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { QuizConfig, QuizMode } from "@/types";
+import React, { useState } from 'react'
+import { QuizConfig, QuizMode } from '@/types'
+import { Timer, FileText, Infinity, ChevronRight } from 'lucide-react'
 
 interface Topic {
-  id: string;
-  itc: string;
+  id: string
+  itc: string
 }
 
 interface QuizSetupProps {
-  topics: Topic[];
-  onStart: (config: QuizConfig) => void;
+  topics: Topic[]
+  onStart: (config: QuizConfig) => void
 }
 
 export const QuizSetup = ({ topics, onStart }: QuizSetupProps) => {
-  const [selectedMode, setSelectedMode] = useState<QuizMode>("standard");
-  const [selectedTopic, setSelectedTopic] = useState<string>("");
+  const [selectedMode, setSelectedMode] = useState<QuizMode>('standard')
+  const [selectedTopics, setSelectedTopics] = useState<string[]>([])
 
-  const modes: { id: QuizMode; title: string; desc: string; icon: string }[] = [
+  const modes: { id: QuizMode; title: string; desc: string; icon: React.ReactElement }[] = [
     { 
-      id: "timed", 
-      title: "10 A contrarreloj", 
-      desc: "10 preguntas rápidas con tiempo límite.", 
-      icon: "⏱️" 
+      id: 'timed', 
+      title: 'Contrarreloj', 
+      desc: '10 preguntas rápidas', 
+      icon: <Timer size={20} /> 
     },
     { 
-      id: "standard", 
-      title: "50 Preguntas", 
-      desc: "Simulacro completo estándar.", 
-      icon: "📝" 
+      id: 'standard', 
+      title: '50 Preguntas', 
+      desc: 'Simulacro completo', 
+      icon: <FileText size={20} /> 
     },
     { 
-      id: "infinite", 
-      title: "Infinito", 
-      desc: "Preguntas sin fin para repasar todo.", 
-      icon: "♾️" 
+      id: 'infinite', 
+      title: 'Infinito', 
+      desc: 'Repaso sin fin', 
+      icon: <Infinity size={20} /> 
     },
-  ];
+  ]
+
+  const toggleTopic = (id: string) => {
+    setSelectedTopics((prev) => {
+      if (prev.includes(id)) {
+        return prev.filter((t) => t !== id)
+      }
+      return [...prev, id]
+    })
+  }
 
   const handleStart = (): void => {
     onStart({
       mode: selectedMode,
-      questionCount: selectedMode === "timed" ? 10 : selectedMode === "standard" ? 50 : undefined,
-      topicId: selectedTopic || undefined,
-    });
-  };
+      questionCount: selectedMode === 'timed' ? 10 : selectedMode === 'standard' ? 50 : undefined,
+      topicIds: selectedTopics.length > 0 ? selectedTopics : undefined,
+    })
+  }
 
   return (
-    <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      <section className="space-y-4">
-        <h2 className="text-xl font-bold text-foreground/80 flex items-center gap-2">
-          <span className="w-8 h-8 rounded-lg bg-accent-primary/10 text-accent-primary flex items-center justify-center text-sm">01</span>
-          Selecciona el modo de prueba
+    <div className="flex flex-col gap-3 animate-in fade-in duration-500">
+      <section className="space-y-3">
+        <h2 className="text-[10px] font-black text-foreground/30 uppercase tracking-[0.2em] flex items-center gap-2">
+          <span className="w-4 h-4 rounded-full bg-primary text-white flex items-center justify-center text-[9px]">1</span>
+          Modo de examen
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-3">
           {modes.map((mode) => (
             <button
               key={mode.id}
-              id={`mode-${mode.id}`}
-              data-testid={`mode-${mode.id}`}
               onClick={() => setSelectedMode(mode.id)}
               className={`
-                text-left p-5 rounded-2xl border-2 transition-all duration-300 group
+                group relative p-3 rounded-xl border transition-all duration-300 text-left
                 ${selectedMode === mode.id 
-                  ? "border-accent-primary bg-accent-primary/5 shadow-lg scale-[1.02]" 
-                  : "border-foreground/5 bg-surface-card hover:border-accent-primary/30"}
+                  ? 'border-primary bg-primary/10 shadow-[0_0_20px_-5px_var(--neon-color)]' 
+                  : 'border-border bg-card hover:border-primary/30'}
               `}
             >
-              <div className="text-3xl mb-3 group-hover:scale-110 transition-transform">{mode.icon}</div>
-              <p className="font-bold text-foreground">{mode.title}</p>
-              <p className="text-xs text-foreground/50 mt-1">{mode.desc}</p>
+              {/* Highlight Overlay */}
+              <div className={`absolute inset-0 rounded-xl transition-opacity ${
+                selectedMode === mode.id ? 'bg-primary/5 opacity-100' : 'bg-foreground/5 opacity-0 group-hover:opacity-100'
+              }`} />
+              
+              <div className="relative z-10">
+                <div className={`mb-1.5 transition-colors ${selectedMode === mode.id ? 'text-primary' : 'text-foreground/20'}`}>
+                  <div className="w-4 h-4">{mode.icon}</div>
+                </div>
+                <p className="font-black text-xs text-foreground tracking-tight leading-none">{mode.title}</p>
+                <p className="text-[8px] font-bold text-foreground/40 uppercase mt-1 tracking-wide">{mode.desc}</p>
+              </div>
             </button>
           ))}
         </div>
       </section>
 
-      <section className="space-y-4">
-        <h2 className="text-xl font-bold text-foreground/80 flex items-center gap-2">
-          <span className="w-8 h-8 rounded-lg bg-accent-primary/10 text-accent-primary flex items-center justify-center text-sm">02</span>
-          Escoge el contenido
+      <section className="space-y-2">
+        <h2 className="text-[10px] font-black text-foreground/30 uppercase tracking-[0.2em] flex items-center gap-2">
+          <span className="w-4 h-4 rounded-full bg-primary text-white flex items-center justify-center text-[9px]">2</span>
+          Contenido a evaluar
         </h2>
-        <div className="bg-surface-card border border-foreground/5 rounded-2xl p-6 shadow-sm">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="bg-card/30 border border-border rounded-xl p-3">
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2">
             <button
-              id="topic-all"
-              data-testid="topic-all"
-              onClick={() => setSelectedTopic("")}
+              onClick={() => setSelectedTopics([])}
               className={`
-                py-3 px-4 rounded-xl text-xs font-bold border-2 transition-all
-                ${selectedTopic === "" 
-                  ? "border-accent-primary bg-accent-primary text-white" 
-                  : "border-foreground/5 bg-background text-foreground/60 hover:border-accent-primary/30"}
+                col-span-2 py-1.5 px-3 rounded-lg text-[9px] font-black uppercase tracking-wider border transition-all
+                ${selectedTopics.length === 0 
+                  ? 'border-primary bg-primary text-white shadow-lg shadow-primary/20' 
+                  : 'border-border bg-card text-foreground/50 hover:border-primary/30'}
               `}
             >
-              Todo el Reglamento
+              Todo el REBT
             </button>
-            {topics.map((topic) => (
-              <button
-                key={topic.id}
-                id={`topic-${topic.id}`}
-                data-testid={`topic-${topic.id}`}
-                onClick={() => setSelectedTopic(topic.id)}
-                className={`
-                  py-3 px-4 rounded-xl text-xs font-bold border-2 transition-all
-                  ${selectedTopic === topic.id 
-                    ? "border-accent-primary bg-accent-primary text-white" 
-                    : "border-foreground/5 bg-background text-foreground/60 hover:border-accent-primary/30"}
-                `}
-              >
-                {topic.itc}
-              </button>
-            ))}
+            
+            {Array.from({ length: 52 }, (_, i) => {
+              const itcNumber = (i + 1).toString().padStart(2, '0')
+              const itcName = `ITC-BT-${itcNumber}`
+              const availableTopic = topics.find(t => t.itc.toUpperCase() === itcName)
+              const isAvailable = !!availableTopic
+
+              return (
+                <button
+                  key={itcName}
+                  disabled={!isAvailable}
+                  onClick={() => isAvailable && toggleTopic(availableTopic.id)}
+                  className={`
+                    py-1.5 px-1 rounded-lg text-[9px] font-bold uppercase tracking-tight border transition-all whitespace-nowrap
+                    ${isAvailable 
+                      ? selectedTopics.includes(availableTopic.id)
+                        ? 'border-primary bg-primary text-white shadow-md shadow-primary/20' 
+                        : 'border-border bg-card text-foreground/70 hover:border-primary/50 hover:text-primary hover:bg-primary/5'
+                      : 'border-border/50 bg-foreground/[0.03] text-foreground/20 cursor-not-allowed'}
+                  `}
+                  title={isAvailable ? `Estudiar ${itcName}` : 'Próximamente'}
+                >
+                  ITC-BT {itcNumber}
+                </button>
+              )
+            })}
           </div>
         </div>
       </section>
 
-      <div className="pt-4">
-        <button
-          id="btn-start-quiz"
-          data-testid="btn-start-quiz"
-          onClick={handleStart}
-          className="w-full py-5 rounded-2xl bg-accent-primary text-white font-black text-lg shadow-xl shadow-accent-primary/20 hover:bg-accent-primary/90 transition-all active:scale-[0.98]"
-        >
-          Empezar Simulacro
-        </button>
-      </div>
+      <button
+        onClick={handleStart}
+        className="w-full py-3 mt-1 rounded-xl bg-primary hover:bg-primary/90 text-white font-black text-[10px] transition-all flex items-center justify-center gap-3 group shadow-lg shadow-primary/20 tracking-widest"
+      >
+        <span>EMPEZAR SIMULACRO PROFESIONAL</span>
+        <ChevronRight size={14} className="transition-transform group-hover:translate-x-1" />
+      </button>
     </div>
-  );
-};
+  )
+}

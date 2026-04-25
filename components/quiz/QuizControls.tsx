@@ -49,13 +49,13 @@ export const QuizControls = ({
         </div>
       )}
 
-      <div className="flex gap-2">
+      <div className="flex gap-4">
         {!isShowingResult && (
           <button
             id="btn-skip"
             data-testid="btn-skip"
             onClick={onSkip}
-            className="flex-1 py-3 px-6 rounded-xl font-bold bg-foreground/5 hover:bg-foreground/10 text-foreground/40 transition-all border border-foreground/5"
+            className="flex-1 py-3.5 px-4 rounded-xl font-black bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-500 dark:text-white/40 transition-all uppercase text-[10px] tracking-[0.2em] active:scale-95"
           >
             Saltar
           </button>
@@ -66,9 +66,9 @@ export const QuizControls = ({
             id="btn-finish"
             data-testid="btn-finish"
             onClick={onFinish}
-            className="flex-1 py-3 px-4 rounded-xl font-bold bg-status-incorrect/10 text-status-incorrect hover:bg-status-incorrect/20 transition-all border border-status-incorrect/20"
+            className="flex-1 py-3.5 px-4 rounded-xl font-black bg-red-600 text-white hover:bg-red-700 transition-all shadow-lg shadow-red-600/20 uppercase text-[10px] tracking-[0.2em]"
           >
-            Finalizar
+            Terminar
           </button>
         )}
         
@@ -78,31 +78,31 @@ export const QuizControls = ({
           onClick={onNext}
           disabled={!hasSelected && !isShowingResult}
           className={`
-            relative overflow-hidden flex-[2] py-3 px-6 rounded-xl font-bold transition-all duration-300 active:scale-[0.98]
+            relative overflow-hidden flex-1 py-3.5 px-4 rounded-xl font-black transition-all duration-300 active:scale-[0.95] uppercase text-[10px] tracking-[0.2em]
             ${
               !hasSelected && !isShowingResult
-                ? "bg-foreground/10 text-foreground/30 cursor-not-allowed"
+                ? "bg-slate-100 dark:bg-white/5 text-slate-300 dark:text-white/10 cursor-not-allowed"
                 : isShowingResult
-                  ? "bg-foreground text-background shadow-lg"
-                  : "bg-accent-primary text-white hover:bg-accent-primary/90 shadow-md hover:shadow-lg"
+                  ? "bg-slate-900 text-white shadow-xl shadow-slate-900/40 border border-slate-900"
+                  : "bg-blue-600 text-white hover:bg-blue-700 shadow-xl shadow-blue-600/30 border border-blue-600"
             }
           `}
         >
           {/* Animated Progress Bar for Auto-advance */}
           {isAutoAdvancing && (
             <div 
-              className="absolute bottom-0 left-0 h-1 bg-accent-primary/40 animate-shrink" 
+              className="absolute bottom-0 left-0 h-1 bg-white/40 animate-shrink" 
             />
           )}
           
           <span className="relative z-10">
             {!hasSelected && !isShowingResult
-              ? "Selecciona una opción" 
+              ? "Confirmar" 
               : !isShowingResult 
-                ? "Comprobar y Continuar" 
+                ? "Evaluar" 
                 : isAutoAdvancing 
-                  ? (isLastQuestion ? "Finalizando..." : "Siguiente Pregunta (3s)") 
-                  : (isLastQuestion ? "Finalizar Quiz" : "Siguiente Pregunta")}
+                  ? (isLastQuestion ? "Fin..." : "Próxima") 
+                  : (isLastQuestion ? "Finalizar" : "Siguiente")}
           </span>
         </button>
       </div>

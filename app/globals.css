@@ -3,55 +3,47 @@
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-primary: oklch(0.586 0.253 260.03);
-  --color-primary-foreground: oklch(0.985 0.002 247.83);
+  --color-primary: oklch(0.45 0.12 250);
+  --color-primary-foreground: oklch(0.98 0.01 250);
   --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
   --color-border: var(--border);
   
   --radius-xl: 0.75rem;
   --radius-2xl: 1rem;
+  --radius-3xl: 2rem;
+
+  --shadow-neon: 0 0 30px -10px var(--neon-color);
 }
 
 :root {
-  /* Default Light Mode Variables */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.69);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.69);
-  --border: oklch(0.922 0.011 264.53);
-
-  /* Apply Dark Mode if system preference is set */
-  @media (prefers-color-scheme: dark) {
-    --background: oklch(0.129 0.042 264.69);
-    --foreground: oklch(0.985 0.002 247.83);
-    --card: oklch(0.141 0.005 285.82);
-    --card-foreground: oklch(0.985 0.002 247.83);
-    --border: oklch(0.269 0.006 285.82);
-  }
+  --background: oklch(0.99 0.005 240);
+  --foreground: oklch(0.25 0.04 240);
+  --card: oklch(1 0 0 / 0.6);
+  --border: oklch(0.25 0.04 240 / 0.1);
+  --neon-color: oklch(0.55 0.18 250 / 0.25);
 }
 
-/* Maintain support for manual class override */
-.dark {
-  --background: oklch(0.129 0.042 264.69);
-  --foreground: oklch(0.985 0.002 247.83);
-  --card: oklch(0.141 0.005 285.82);
-  --card-foreground: oklch(0.985 0.002 247.83);
-  --border: oklch(0.269 0.006 285.82);
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: oklch(0.16 0.02 250); 
+    --foreground: oklch(0.95 0.01 250);
+    --card: oklch(0.18 0.02 250 / 0.4);
+    --border: oklch(0.25 0.03 250 / 0.5);
+    --neon-color: oklch(0.45 0.12 250 / 0.4);
+  }
 }
 
 @layer base {
-  * {
-    @apply border-border outline-none;
-  }
   body {
-    @apply bg-background text-foreground antialiased min-h-screen transition-colors duration-300;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-background text-foreground antialiased min-h-screen relative overflow-x-hidden transition-colors duration-300;
   }
 }
 
-@utility glass {
-  background-color: color-mix(in srgb, var(--background) 60%, transparent);
-  backdrop-filter: blur(12px);
-  border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent);
+@utility glow-primary {
+  box-shadow: 0 0 40px -10px var(--neon-color);
+}
+
+@utility glass-card {
+  @apply bg-card border border-border backdrop-blur-xl shadow-xl shadow-black/5 dark:shadow-none;
+  background-image: linear-gradient(to bottom right, oklch(1 0 0 / 0.1), transparent);
 }

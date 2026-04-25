@@ -15,6 +15,7 @@ interface QuizManagerProps {
 interface PersistedState {
   config: QuizConfig | null;
   questions: Question[];
+  userAnswers: any[]; // We can use any[] here or import UserAnswer, but any[] is safer for this local check
   isFinished: boolean;
 }
 
@@ -51,7 +52,8 @@ export const QuizManager = ({ topics, userId }: QuizManagerProps) => {
     const persisted = readPersistedSession();
     const hasSession = persisted !== null 
       && !persisted.isFinished 
-      && persisted.questions.length > 0;
+      && persisted.questions.length > 0
+      && persisted.userAnswers.length > 0; // Only resume if there's actual progress
     
     setHasSavedSession(hasSession);
     setIsReady(true);
