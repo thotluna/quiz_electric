@@ -12,6 +12,28 @@ interface QuizManagerProps {
   userId: string;
 }
 
+interface PersistedState {
+  config: QuizConfig | null;
+  questions: Question[];
+  userAnswers: any[]; // We can use any[] here or import UserAnswer, but any[] is safer for this local check
+  isFinished: boolean;
+}
+
+const STORAGE_KEY = "quiz-electric-session";
+
+const readPersistedSession = (): PersistedState | null => {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { state?: PersistedState };
+    if (!parsed.state?.config) return null;
+    return parsed.state;
+  } catch {
+    return null;
+  }
+};
+
 export const QuizManager = ({ topics, userId }: QuizManagerProps) => {
   const [resumeResolved, setResumeResolved] = useState<boolean>(false);
   const [shouldShowResume, setShouldShowResume] = useState<boolean>(false);
@@ -28,14 +50,17 @@ export const QuizManager = ({ topics, userId }: QuizManagerProps) => {
   useEffect(() => {
     setUserId(userId);
 
-    // Only check for existing session once on mount
-    if (!hasCheckedInitialSession.current) {
-      if (hasActiveSession()) {
-        setShouldShowResume(true);
-      }
-      hasCheckedInitialSession.current = true;
-    }
-  }, [userId, setUserId, hasActiveSession]);
+    const persisted = readPersistedSession();
+    const hasSession = persisted !== null 
+      && !persisted.isFinished 
+      && persisted.questions.length > 0
+      && persisted.userAnswers.length > 0; // Only resume if there's actual progress
+    
+    setHasSavedSession(hasSession);
+    setIsReady(true);
+  }, [userId, setUserId]);
+
+  const showResumeModal = isReady && !resumeResolved && hasSavedSession;
 
   const handleStart = (quizConfig: QuizConfig): void => {
     startQuiz(quizConfig);

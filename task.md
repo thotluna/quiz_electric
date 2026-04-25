@@ -29,11 +29,18 @@
 - [x] Refactorizar Server Action a batch (guardar al finalizar)
 - [x] Crear ResumeModal para retomar quiz incompleto
 - [x] Integrar userId en el flujo del store
-- [ ] Implementar perfil de usuario con dashboard de estadísticas
 - [x] Implementar tests E2E deterministas (Playwright) con mocks de DB y Supabase
+- [x] Quitar el error de hidratación.
+- [x] Crear una buena gama de colores para los temas dark y light (Premium OKLCH).
+- [x] Aplicar correctamente Tailwind 4.
+- [x] Soportar Dark Mode por defecto del navegador.
+- [x] Mostrar el avatar de Google en el menú de usuario.
+- [x] Implementar barra de navegación central e iconos premium.
+- [x] Añadir barra de progreso de nivel (Aspirante) al perfil.
+- [x] Corregir error de estadísticas y normalizar datos.
 - [x] Soportar preguntas de selección múltiple con lógica de puntuación proporcional (+1/-0.25)
 - [x] Migrar proyecto a repositorio de GitHub (`thotluna/quiz_electric`)
 
 ## Perfil y Estadísticas
-- [ ] Implementar perfil de usuario con dashboard de estadísticas detallado
-- [ ] Visualizar historial de simulacros realizados
+- [x] Implementar perfil de usuario con dashboard de estadísticas detallado
+- [x] Visualizar historial de simulacros realizados

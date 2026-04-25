@@ -8,6 +8,8 @@ import UserMenu from '@/components/auth/UserMenu'
 import { useQuizStore } from '@/lib/store/quiz-store'
 import { User } from '@supabase/supabase-js'
 import { getUserStats, UserStats } from '@/lib/actions/stats'
+import { QuizSetup } from './QuizSetup'
+import { QuizConfig } from '@/types'
 
 interface Topic {
   id: string
@@ -28,6 +30,7 @@ export const QuizHome = ({ topics, user }: QuizHomeProps) => {
   const initialQuestions = useQuizStore((s) => s.initialQuestions)
   const isTimeOut = useQuizStore((s) => s.isTimeOut)
   const resetQuiz = useQuizStore((s) => s.resetQuiz)
+  const startQuizAction = useQuizStore((s) => s.startQuiz)
 
   const [showStats, setShowStats] = useState<boolean>(false)
   const [stats, setStats] = useState<UserStats | null>(null)
@@ -58,38 +61,37 @@ export const QuizHome = ({ topics, user }: QuizHomeProps) => {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-8">
-      <div className="max-w-5xl mx-auto space-y-8">
-        <header className="flex justify-between items-center">
-          <div className="space-y-1">
-            <h1 className="text-4xl font-black tracking-tighter uppercase italic text-transparent bg-clip-text bg-gradient-to-r from-accent-primary to-blue-500">
-              Quiz Electric
-            </h1>
-            <p className="text-[10px] font-bold text-foreground/30 uppercase tracking-[0.2em]">
-              Preparación REBT · Nivel Profesional
-            </p>
-          </div>
+    <div className="min-h-screen flex flex-col text-foreground p-2 md:p-4 max-w-5xl mx-auto w-full">
+      <header className="grid grid-cols-3 md:flex md:justify-between items-center border-b border-border pb-4 relative">
+        {/* Left Area: Stats */}
+        <div className="flex justify-start">
+          <button
+            onClick={handleShowStats}
+            className="text-[9px] font-black text-foreground/40 hover:text-primary transition-colors uppercase tracking-widest px-2 py-1.5 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/10"
+          >
+            Estadísticas
+          </button>
+        </div>
 
-          <div className="flex items-center gap-4">
-            {hasMounted && !isStarted && (
-              <button
-                onClick={handleShowStats}
-                disabled={loadingStats}
-                className="px-5 py-2 rounded-xl bg-foreground/5 hover:bg-foreground/10 text-foreground/60 font-bold text-sm transition-all border border-foreground/5 disabled:opacity-50"
-              >
-                {loadingStats ? 'Cargando...' : 'Estadísticas'}
-              </button>
-            )}
-            <UserMenu user={user} />
-          </div>
-        </header>
+        {/* Center Area: Logo */}
+        <div className="flex flex-col items-center text-center">
+          <h1 className="text-xl md:text-2xl font-black tracking-tighter uppercase italic text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400 drop-shadow-[0_0_10px_var(--neon-color)] leading-none">
+            Quiz Electric
+          </h1>
+          <p className="hidden md:block text-[8px] font-bold text-foreground/30 uppercase tracking-[0.2em] mt-0.5">
+            REBT · Nivel Profesional
+          </p>
+        </div>
 
-        <main className="relative">
-          {!hasMounted ? (
-            <div className="flex flex-col items-center justify-center p-20">
-              <div className="w-12 h-12 border-4 border-foreground/10 border-t-accent-primary rounded-full animate-spin" />
-            </div>
-          ) : isFinished ? (
+        {/* Right Area: Profile */}
+        <div className="flex justify-end">
+          <UserMenu user={user} />
+        </div>
+      </header>
+
+      <main className="flex-1 flex flex-col items-center justify-center p-4 py-4 md:py-6 relative z-10 overflow-y-auto">
+        <div className="w-full max-w-5xl mx-auto">
+          {isFinished ? (
             <QuizResults
               userAnswers={userAnswers}
               timeElapsed={timeElapsed}
@@ -98,18 +100,22 @@ export const QuizHome = ({ topics, user }: QuizHomeProps) => {
               isTimeOut={isTimeOut}
               onReset={resetQuiz}
             />
+          ) : isStarted ? (
+            <QuizManager topics={topics} userId={user.id} />
           ) : (
-            <QuizManager
-              topics={topics}
-              userId={user.id}
+            <QuizSetup 
+              topics={topics} 
+              onStart={(config) => startQuizAction(config)} 
             />
           )}
-        </main>
+        </div>
+      </main>
 
-        <footer className="pt-12 text-center text-[10px] font-bold text-foreground/10 uppercase tracking-[0.3em]">
-          Powered by Thot Luna · 2025
-        </footer>
-      </div>
+      <footer className="py-4 border-t border-border">
+        <p className="text-[8px] font-bold text-center text-foreground/20 uppercase tracking-[0.3em]">
+          Powered by Thot Luna · 2026
+        </p>
+      </footer>
     </div>
   )
 }
