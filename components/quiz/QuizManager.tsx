@@ -5,7 +5,7 @@ import { useQuizStore } from "@/lib/store/quiz-store";
 import { Quiz } from "./Quiz";
 import { QuizSetup } from "./QuizSetup";
 import { ResumeModal } from "./ResumeModal";
-import { QuizConfig } from "@/types";
+import { QuizConfig, Question, UserAnswer } from "@/types";
 
 interface QuizManagerProps {
   topics: { id: string; itc: string }[];
@@ -15,7 +15,7 @@ interface QuizManagerProps {
 interface PersistedState {
   config: QuizConfig | null;
   questions: Question[];
-  userAnswers: any[]; // We can use any[] here or import UserAnswer, but any[] is safer for this local check
+  userAnswers: UserAnswer[];
   isFinished: boolean;
 }
 
@@ -37,6 +37,8 @@ const readPersistedSession = (): PersistedState | null => {
 export const QuizManager = ({ topics, userId }: QuizManagerProps) => {
   const [resumeResolved, setResumeResolved] = useState<boolean>(false);
   const [shouldShowResume, setShouldShowResume] = useState<boolean>(false);
+  const [hasSavedSession, setHasSavedSession] = useState<boolean>(false);
+  const [isReady, setIsReady] = useState<boolean>(false);
   const hasCheckedInitialSession = useRef<boolean>(false);
   
   const config = useQuizStore((s) => s.config);
@@ -57,6 +59,7 @@ export const QuizManager = ({ topics, userId }: QuizManagerProps) => {
       && persisted.userAnswers.length > 0; // Only resume if there's actual progress
     
     setHasSavedSession(hasSession);
+    setShouldShowResume(hasSession);
     setIsReady(true);
   }, [userId, setUserId]);
 

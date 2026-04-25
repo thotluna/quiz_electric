@@ -8,7 +8,7 @@ import nextTs from "eslint-config-next/typescript";
 import type { Linter } from "eslint";
 
 import jsonc from "eslint-plugin-jsonc";
-import jsoncParser from "jsonc-eslint-parser";
+import * as jsoncParser from "jsonc-eslint-parser";
 
 const fixConfig = (config: any): Linter.Config[] => {
   if (Array.isArray(config)) return config;
@@ -23,16 +23,16 @@ const eslintConfig = defineConfig([
   {
     files: ["**/*.json"],
     plugins: {
-      jsonc,
-      prettier,
+      jsonc: jsonc as any,
+      prettier: prettier as any,
     },
     languageOptions: {
-      parser: jsoncParser,
+      parser: jsoncParser as any,
     },
     rules: {
       "prettier/prettier": "error",
     },
-  },
+  } as any,
 
   globalIgnores([
     ".next/**",
