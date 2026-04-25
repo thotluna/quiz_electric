@@ -1,107 +1,1555 @@
 [
   {
-    "id": "ITC-BT-01",
-    "itc": "ITC-BT 01",
+    "id": "quiz-itc-bt-01",
+    "itc": "ITC-BT-01",
     "preguntas": [
       {
         "id": "ITC-BT-01-01",
-        "pregunta": "¿Qué se entiende por 'Acometida' según el REBT?",
+        "pregunta": "¿Qué es el 'Aislamiento de un cable' según la ITC-BT-01?",
         "tipo": "simple",
         "opciones": [
           {
             "id": 1,
-            "respuesta": "Parte de la instalación de la red de distribución que alimenta la caja o cajas generales de protección.",
-            "es_correcta": true,
-            "explicacion": "Definida en la ITC-BT-01 como la parte de la red de distribución que alimenta la CGP."
+            "respuesta": "Aislamiento de las partes activas frente a choques eléctricos.",
+            "es_correcta": false,
+            "explicacion": "Esta es la definición de 'Aislamiento principal'."
           },
           {
             "id": 2,
-            "respuesta": "Instalación que une la caja general de protección con la centralización de contadores.",
-            "es_correcta": false,
-            "explicacion": "Eso es la línea general de alimentación (LGA)."
+            "respuesta": "Conjunto de materiales aislantes que forman parte de un cable y cuya función específica es soportar la tensión.",
+            "es_correcta": true,
+            "explicacion": "Es la definición exacta recogida en la terminología de la ITC-BT-01 para el aislamiento de un cable."
           },
           {
             "id": 3,
-            "respuesta": "Conjunto de cables que van desde el contador hasta el cuadro general de la vivienda.",
+            "respuesta": "Parte del cable destinada a conducir la corriente.",
             "es_correcta": false,
-            "explicacion": "Eso es la derivación individual."
+            "explicacion": "Esta es la definición de 'Conductor'."
+          },
+          {
+            "id": 4,
+            "respuesta": "Conjunto de materiales ignífugos del cable.",
+            "es_correcta": false,
+            "explicacion": "El aislamiento no se define exclusivamente por su resistencia al fuego, sino por soportar tensión."
           }
         ]
       },
       {
         "id": "ITC-BT-01-02",
-        "pregunta": "¿Cómo se define un 'Circuito' en una instalación eléctrica?",
+        "pregunta": "En cuanto al 'Aislamiento de un cable', ¿cuál es su función específica?",
         "tipo": "simple",
         "opciones": [
           {
-            "id": 4,
-            "respuesta": "Conjunto de conductores y aparamenta protegidos por el mismo dispositivo de protección contra sobreintensidades.",
+            "id": 1,
+            "respuesta": "Soportar la corriente de defecto.",
+            "es_correcta": false,
+            "explicacion": "Esta es la función de los conductores de protección."
+          },
+          {
+            "id": 2,
+            "respuesta": "Soportar la tensión.",
             "es_correcta": true,
-            "explicacion": "Es la definición técnica exacta del REBT para un circuito independiente."
+            "explicacion": "La norma define específicamente que la función del aislamiento de un cable es soportar la tensión."
           },
           {
-            "id": 5,
-            "respuesta": "Cualquier tramo de cable con tensión.",
-            "es_correcta": false
+            "id": 3,
+            "respuesta": "Proteger contra sobreintensidades.",
+            "es_correcta": false,
+            "explicacion": "Esa es la función de los dispositivos de protección (fusibles, magnetotérmicos)."
           },
           {
-            "id": 6,
-            "respuesta": "La unión entre dos cajas de derivación.",
-            "es_correcta": false
+            "id": 4,
+            "respuesta": "Evitar la oxidación del conductor.",
+            "es_correcta": false,
+            "explicacion": "La función principal a nivel electrotécnico es eléctrica (soportar tensión), no química."
           }
         ]
       },
       {
         "id": "ITC-BT-01-03",
-        "pregunta": "¿Cuál es la definición de 'Puesta a Tierra'?",
+        "pregunta": "¿Cómo define la ITC-BT-01 el 'Aislamiento principal'?",
         "tipo": "simple",
         "opciones": [
           {
-            "id": 7,
-            "respuesta": "Unión eléctrica directa, sin fusibles ni protección alguna, de una parte del circuito eléctrico o de una parte conductora no perteneciente al mismo, a un electrodo o grupo de electrodos enterrados en el suelo.",
+            "id": 1,
+            "respuesta": "Aislamiento de las partes inofensivas del cable.",
+            "es_correcta": false,
+            "explicacion": "Se aplica a las partes activas, no inofensivas."
+          },
+          {
+            "id": 2,
+            "respuesta": "Aislamiento de las partes activas, cuyo deterioro podría provocar riesgo de choque eléctrico.",
             "es_correcta": true,
-            "explicacion": "Definición técnica para asegurar la descarga de corrientes de defecto a tierra."
+            "explicacion": "Esta es la definición textual de 'Aislamiento principal' en el reglamento."
           },
           {
-            "id": 8,
-            "respuesta": "Conexión del neutro al borne de tierra del edificio.",
-            "es_correcta": false
+            "id": 3,
+            "respuesta": "Conjunto de materiales que envuelven toda la canalización.",
+            "es_correcta": false,
+            "explicacion": "Eso hace referencia a la envolvente o canal protectora."
           },
           {
-            "id": 9,
-            "respuesta": "Instalación de una pica de cobre en el jardín.",
-            "es_correcta": false
+            "id": 4,
+            "respuesta": "Aislamiento que solo se encuentra en líneas de alta tensión.",
+            "es_correcta": false,
+            "explicacion": "El aislamiento principal existe en equipos y líneas de baja tensión también."
           }
         ]
       },
       {
         "id": "ITC-BT-01-04",
-        "pregunta": "Identifique los elementos que forman parte de una 'Instalación de Enlace':",
-        "tipo": "multiple",
+        "pregunta": "Si el deterioro de un aislamiento puede provocar riesgo de choque eléctrico, nos referimos a:",
+        "tipo": "simple",
         "opciones": [
           {
-            "id": 10,
-            "respuesta": "Caja General de Protección (CGP)",
-            "es_correcta": true,
-            "explicacion": "La CGP es el primer elemento de la instalación de enlace."
-          },
-          {
-            "id": 11,
-            "respuesta": "Línea General de Alimentación (LGA)",
-            "es_correcta": true,
-            "explicacion": "La LGA une la CGP con la centralización de contadores."
-          },
-          {
-            "id": 12,
-            "respuesta": "Derivación Individual (DI)",
-            "es_correcta": true,
-            "explicacion": "La DI une el contador con el cuadro general del usuario."
-          },
-          {
-            "id": 13,
-            "respuesta": "Red de distribución pública",
+            "id": 1,
+            "respuesta": "Aislamiento secundario.",
             "es_correcta": false,
-            "explicacion": "La red de distribución es propiedad de la compañía y es previa a la instalación de enlace."
+            "explicacion": "No existe esta denominación oficial en la ITC-BT-01."
+          },
+          {
+            "id": 2,
+            "respuesta": "Aislamiento funcional.",
+            "es_correcta": false,
+            "explicacion": "El aislamiento funcional garantiza el funcionamiento normal, no se centra solo en el riesgo de choque."
+          },
+          {
+            "id": 3,
+            "respuesta": "Aislamiento principal.",
+            "es_correcta": true,
+            "explicacion": "El aislamiento principal está diseñado para que su deterioro prevenga choques eléctricos."
+          },
+          {
+            "id": 4,
+            "respuesta": "Aislamiento suplementario.",
+            "es_correcta": false,
+            "explicacion": "El suplementario se añade al principal por si este falla."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-05",
+        "pregunta": "Según la ITC-BT-01, un cable de alimentación a un aparato que solo se pueda desconectar de él con ayuda de un útil es un:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Cable fijo.",
+            "es_correcta": false,
+            "explicacion": "Un cable fijo se refiere a la inmovilidad de la canalización."
+          },
+          {
+            "id": 2,
+            "respuesta": "Cable flexible fijado permanentemente.",
+            "es_correcta": true,
+            "explicacion": "Definición exacta de la ITC-BT-01 para cables unidos a aparatos que requieren herramientas para su desconexión."
+          },
+          {
+            "id": 3,
+            "respuesta": "Cable flexible.",
+            "es_correcta": false,
+            "explicacion": "El cable flexible general está diseñado para conexiones deformables, pero no implica fijación permanente."
+          },
+          {
+            "id": 4,
+            "respuesta": "Cable multiconductor rígido.",
+            "es_correcta": false,
+            "explicacion": "Si va a un aparato suele ser flexible, no rígido."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-06",
+        "pregunta": "¿Qué es un 'Cable multiconductor'?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Cable que incluye un solo conductor aislado.",
+            "es_correcta": false,
+            "explicacion": "Esa es la definición de cable unipolar."
+          },
+          {
+            "id": 2,
+            "respuesta": "Cable que incluye más de un conductor, algunos de los cuales puede no estar aislado.",
+            "es_correcta": true,
+            "explicacion": "Definición textual de la ITC-BT-01. Permite que algunos conductores (ej. neutro concéntrico) no tengan aislamiento propio dentro del conjunto."
+          },
+          {
+            "id": 3,
+            "respuesta": "Cable que siempre tiene todos sus conductores sin aislamiento.",
+            "es_correcta": false,
+            "explicacion": "Eso sería un conductor desnudo trenzado, no un cable multiconductor de baja tensión típico."
+          },
+          {
+            "id": 4,
+            "respuesta": "Un cable destinado exclusivamente a redes aéreas.",
+            "es_correcta": false,
+            "explicacion": "Se utilizan en multitud de instalaciones, no solo aéreas."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-07",
+        "pregunta": "Respecto al 'Cable multiconductor', ¿es obligatorio que todos sus conductores estén aislados?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Sí, siempre.",
+            "es_correcta": false,
+            "explicacion": "La norma no exige aislamiento en todos."
+          },
+          {
+            "id": 2,
+            "respuesta": "No, algunos pueden no estar aislados.",
+            "es_correcta": true,
+            "explicacion": "La ITC-BT-01 especifica textualmente: 'algunos de los cuales puede no estar aislado'."
+          },
+          {
+            "id": 3,
+            "respuesta": "Solo si se instalan bajo tubo.",
+            "es_correcta": false,
+            "explicacion": "El método de instalación no cambia la definición física del cable."
+          },
+          {
+            "id": 4,
+            "respuesta": "Solo si la tensión es inferior a 50V.",
+            "es_correcta": false,
+            "explicacion": "No hay condicionante de tensión para la definición general del término."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-08",
+        "pregunta": "Un cable que tiene un solo conductor aislado se denomina:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Cable unipolar.",
+            "es_correcta": true,
+            "explicacion": "Definición oficial del reglamento para un cable compuesto por un único conductor aislado."
+          },
+          {
+            "id": 2,
+            "respuesta": "Cable multiconductor.",
+            "es_correcta": false,
+            "explicacion": "Requiere más de un conductor."
+          },
+          {
+            "id": 3,
+            "respuesta": "Cable con neutro concéntrico.",
+            "es_correcta": false,
+            "explicacion": "Requiere un conductor central y uno exterior (concéntrico)."
+          },
+          {
+            "id": 4,
+            "respuesta": "Conductor desnudo.",
+            "es_correcta": false,
+            "explicacion": "El desnudo carece de aislamiento."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-09",
+        "pregunta": "¿Cuál de las siguientes afirmaciones sobre el 'Cable unipolar' es cierta?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Tiene múltiples conductores aislados.",
+            "es_correcta": false,
+            "explicacion": "Eso es un multiconductor."
+          },
+          {
+            "id": 2,
+            "respuesta": "No posee ningún conductor aislado.",
+            "es_correcta": false,
+            "explicacion": "Debe tener aislamiento para ser clasificado como cable en este contexto."
+          },
+          {
+            "id": 3,
+            "respuesta": "Tiene un solo conductor aislado.",
+            "es_correcta": true,
+            "explicacion": "Afirmación correcta según la ITC-BT-01."
+          },
+          {
+            "id": 4,
+            "respuesta": "Solo puede utilizarse en instalaciones provisionales.",
+            "es_correcta": false,
+            "explicacion": "Se utilizan ampliamente en instalaciones definitivas."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-10",
+        "pregunta": "¿A qué hace referencia el término 'Cable con neutro concéntrico'?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Cable con un conductor concéntrico destinado a utilizarse como conductor de fase.",
+            "es_correcta": false,
+            "explicacion": "El concéntrico se destina a neutro, no a fase."
+          },
+          {
+            "id": 2,
+            "respuesta": "Cable con un conductor concéntrico destinado a utilizarse como conductor de neutro.",
+            "es_correcta": true,
+            "explicacion": "Definición exacta de la ITC-BT-01."
+          },
+          {
+            "id": 3,
+            "respuesta": "Cable con varios conductores paralelos para el neutro.",
+            "es_correcta": false,
+            "explicacion": "Concéntrico significa dispuesto de forma coaxial, no paralela."
+          },
+          {
+            "id": 4,
+            "respuesta": "Un cable de telecomunicaciones coaxial.",
+            "es_correcta": false,
+            "explicacion": "Hablamos de baja tensión, no de señales de telecomunicación."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-11",
+        "pregunta": "El 'Canal' se define en la ITC-BT-01 como:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Recinto situado sobre el techo y cuyas dimensiones permiten circular.",
+            "es_correcta": false,
+            "explicacion": "Eso podría considerarse galería o pasillo registrable, no canal."
+          },
+          {
+            "id": 2,
+            "respuesta": "Recinto situado bajo el nivel del suelo o piso y cuyas dimensiones no permiten circular.",
+            "es_correcta": true,
+            "explicacion": "Definición literal de Canal en el REBT."
+          },
+          {
+            "id": 3,
+            "respuesta": "Vía de agua para enfriamiento de líneas.",
+            "es_correcta": false,
+            "explicacion": "No aplica a canalizaciones eléctricas."
+          },
+          {
+            "id": 4,
+            "respuesta": "Hueco en la pared para contadores.",
+            "es_correcta": false,
+            "explicacion": "Eso sería una hornacina o armario de centralización."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-12",
+        "pregunta": "En un 'Canal', según el REBT, ¿está permitido que circulen personas por él?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Sí, siempre que tengan equipo de protección.",
+            "es_correcta": false,
+            "explicacion": "La definición asume que físicamente no es posible."
+          },
+          {
+            "id": 2,
+            "respuesta": "No, sus dimensiones no permiten circular.",
+            "es_correcta": true,
+            "explicacion": "La norma define explícitamente el canal como un recinto cuyas dimensiones 'no permiten circular por él'."
+          },
+          {
+            "id": 3,
+            "respuesta": "Sí, si es un canal principal.",
+            "es_correcta": false,
+            "explicacion": "Si permitiera circular sería una 'galería visitable'."
+          },
+          {
+            "id": 4,
+            "respuesta": "El reglamento no especifica nada al respecto.",
+            "es_correcta": false,
+            "explicacion": "Sí lo especifica en la ITC-BT-01."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-13",
+        "pregunta": "¿Qué parte de un cable tiene la función específica de conducir corriente?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "El aislamiento.",
+            "es_correcta": false,
+            "explicacion": "El aislamiento soporta la tensión, no conduce."
+          },
+          {
+            "id": 2,
+            "respuesta": "El apantallamiento.",
+            "es_correcta": false,
+            "explicacion": "Protege contra interferencias electromagnéticas."
+          },
+          {
+            "id": 3,
+            "respuesta": "El conductor de un cable.",
+            "es_correcta": true,
+            "explicacion": "La función específica del conductor es conducir la corriente."
+          },
+          {
+            "id": 4,
+            "respuesta": "La cubierta exterior.",
+            "es_correcta": false,
+            "explicacion": "La cubierta proporciona protección mecánica y ambiental."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-14",
+        "pregunta": "¿Cuál de las siguientes funciones corresponde al 'Conductor de un cable'?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Soportar la tensión.",
+            "es_correcta": false,
+            "explicacion": "Función del aislamiento."
+          },
+          {
+            "id": 2,
+            "respuesta": "Aislar electromagnéticamente la línea.",
+            "es_correcta": false,
+            "explicacion": "Función del apantallamiento."
+          },
+          {
+            "id": 3,
+            "respuesta": "Conducir corriente.",
+            "es_correcta": true,
+            "explicacion": "Es el propósito físico de la parte conductora del cable."
+          },
+          {
+            "id": 4,
+            "respuesta": "Evitar la propagación del incendio.",
+            "es_correcta": false,
+            "explicacion": "Función de los compuestos de la cubierta exterior (libre de halógenos, etc.)."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-15",
+        "pregunta": "Un conjunto que incluye el conductor, su aislamiento y sus eventuales pantallas se denomina:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Conductor flexible.",
+            "es_correcta": false,
+            "explicacion": "Describe la rigidez, no la inclusión de aislamiento y pantallas."
+          },
+          {
+            "id": 2,
+            "respuesta": "Conductor desnudo.",
+            "es_correcta": false,
+            "explicacion": "No incluye aislamiento."
+          },
+          {
+            "id": 3,
+            "respuesta": "Conductor aislado.",
+            "es_correcta": true,
+            "explicacion": "La ITC-BT-01 lo define como el conjunto que incluye el conductor, su aislamiento y sus eventuales pantallas."
+          },
+          {
+            "id": 4,
+            "respuesta": "Conductor de protección.",
+            "es_correcta": false,
+            "explicacion": "Ese es el conductor destinado a puestas a tierra (CP o PE)."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-16",
+        "pregunta": "¿El 'Conductor aislado' incluye las eventuales pantallas del cable?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Sí, incluye el conductor, su aislamiento y sus eventuales pantallas.",
+            "es_correcta": true,
+            "explicacion": "La definición reglamentaria menciona explícitamente la inclusión de las eventuales pantallas."
+          },
+          {
+            "id": 2,
+            "respuesta": "No, excluye cualquier tipo de pantalla.",
+            "es_correcta": false,
+            "explicacion": "Sí las incluye."
+          },
+          {
+            "id": 3,
+            "respuesta": "Solo incluye el aislamiento principal.",
+            "es_correcta": false,
+            "explicacion": "Incluye conductor, aislamiento y pantallas."
+          },
+          {
+            "id": 4,
+            "respuesta": "Las pantallas se consideran parte de la canal protectora.",
+            "es_correcta": false,
+            "explicacion": "Las pantallas forman parte del conductor aislado en la terminología REBT."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-17",
+        "pregunta": "¿Qué función tiene el 'Conductor equipotencial'?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Conducir la corriente de fase a tierra.",
+            "es_correcta": false,
+            "explicacion": "Eso sería un cortocircuito a tierra."
+          },
+          {
+            "id": 2,
+            "respuesta": "Asegurar una conexión equipotencial, actuando como conductor de protección.",
+            "es_correcta": true,
+            "explicacion": "Definición exacta de Conductor Equipotencial según ITC-BT-01."
+          },
+          {
+            "id": 3,
+            "respuesta": "Reemplazar al conductor neutro en redes TT.",
+            "es_correcta": false,
+            "explicacion": "El conductor equipotencial no reemplaza al neutro."
+          },
+          {
+            "id": 4,
+            "respuesta": "Medir la resistencia del terreno.",
+            "es_correcta": false,
+            "explicacion": "Función de un telurómetro."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-18",
+        "pregunta": "Un conductor constituido por alambres suficientemente finos y reunidos de forma que puedan utilizarse como un cable flexible es un:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Conductor rígido.",
+            "es_correcta": false,
+            "explicacion": "El rígido suele estar formado por un solo hilo o hilos gruesos (Clase 1 o 2)."
+          },
+          {
+            "id": 2,
+            "respuesta": "Conductor equipotencial.",
+            "es_correcta": false,
+            "explicacion": "No describe su constitución física."
+          },
+          {
+            "id": 3,
+            "respuesta": "Conductor flexible.",
+            "es_correcta": true,
+            "explicacion": "Definición de Conductor Flexible según el REBT."
+          },
+          {
+            "id": 4,
+            "respuesta": "Cortacircuito.",
+            "es_correcta": false,
+            "explicacion": "Un cortacircuito es un elemento de protección (fusible)."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-19",
+        "pregunta": "El 'Conductor de protección (CP o PE)' es requerido en ciertas medidas de protección contra:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Cortocircuitos exclusivamente.",
+            "es_correcta": false,
+            "explicacion": "La protección contra cortocircuitos se hace con fusibles o magnetotérmicos."
+          },
+          {
+            "id": 2,
+            "respuesta": "Caídas de tensión.",
+            "es_correcta": false,
+            "explicacion": "Se soluciona aumentando la sección del conductor."
+          },
+          {
+            "id": 3,
+            "respuesta": "Choques eléctricos.",
+            "es_correcta": true,
+            "explicacion": "El conductor de protección conecta las masas a tierra para evitar choques eléctricos (contactos indirectos)."
+          },
+          {
+            "id": 4,
+            "respuesta": "Sobretensiones atmosféricas.",
+            "es_correcta": false,
+            "explicacion": "Se utilizan protectores contra sobretensiones (descargadores)."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-20",
+        "pregunta": "¿Qué aparato de interrupción no está accionado manualmente y tiene una sola posición de reposo que corresponde a la apertura de sus contactos?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Interruptor diferencial.",
+            "es_correcta": false,
+            "explicacion": "Se acciona manualmente o por defecto, y su reposo no siempre corresponde solo a la apertura inherente funcional."
+          },
+          {
+            "id": 2,
+            "respuesta": "Contactor.",
+            "es_correcta": true,
+            "explicacion": "El contactor se acciona electromagnéticamente y tiene una única posición de reposo."
+          },
+          {
+            "id": 3,
+            "respuesta": "Cortacircuito fusible.",
+            "es_correcta": false,
+            "explicacion": "Se funde y requiere reemplazo."
+          },
+          {
+            "id": 4,
+            "respuesta": "Seccionador.",
+            "es_correcta": false,
+            "explicacion": "Se acciona manualmente."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-21",
+        "pregunta": "El 'Contactor' está previsto corrientemente para:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Maniobras frecuentes con cargas y sobrecargas normales.",
+            "es_correcta": true,
+            "explicacion": "La ITC-BT-01 especifica que está previsto para maniobras frecuentes con cargas normales."
+          },
+          {
+            "id": 2,
+            "respuesta": "Aperturas manuales de emergencia.",
+            "es_correcta": false,
+            "explicacion": "No es de accionamiento manual directo."
+          },
+          {
+            "id": 3,
+            "respuesta": "Proteger contra cortocircuitos severos exclusivamente.",
+            "es_correcta": false,
+            "explicacion": "No tiene poder de corte para cortocircuitos (requiere protección asociada)."
+          },
+          {
+            "id": 4,
+            "respuesta": "Conducir corrientes de descarga a tierra.",
+            "es_correcta": false,
+            "explicacion": "Esa es la función de la red de tierras."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-22",
+        "pregunta": "¿Cuál es la característica clave del 'Contactor' según la ITC-BT-01?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Es accionado exclusivamente de forma manual.",
+            "es_correcta": false,
+            "explicacion": "Es un aparato no accionado manualmente (es electromagnético)."
+          },
+          {
+            "id": 2,
+            "respuesta": "Tiene múltiples posiciones de reposo.",
+            "es_correcta": false,
+            "explicacion": "Solo tiene una posición de reposo."
+          },
+          {
+            "id": 3,
+            "respuesta": "Es un aparato de interrupción no accionado manualmente, con una sola posición de reposo.",
+            "es_correcta": true,
+            "explicacion": "Recoge fielmente las características de la definición reglamentaria."
+          },
+          {
+            "id": 4,
+            "respuesta": "No permite maniobras frecuentes.",
+            "es_correcta": false,
+            "explicacion": "Está diseñado precisamente para maniobras frecuentes."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-23",
+        "pregunta": "El 'Contactor de sobrecarrera' entra en acción cuando:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Un elemento móvil ha sobrepasado su posición de fin de carrera.",
+            "es_correcta": true,
+            "explicacion": "Actúa como protección cuando se excede el límite de movimiento previsto."
+          },
+          {
+            "id": 2,
+            "respuesta": "La tensión de red supera el 10% del valor nominal.",
+            "es_correcta": false,
+            "explicacion": "Eso sería un protector de sobretensiones."
+          },
+          {
+            "id": 3,
+            "respuesta": "Se produce un cortocircuito en la instalación.",
+            "es_correcta": false,
+            "explicacion": "Actúa un magnetotérmico o fusible."
+          },
+          {
+            "id": 4,
+            "respuesta": "La temperatura ambiente supera los 40 ºC.",
+            "es_correcta": false,
+            "explicacion": "No es un protector térmico ambiental."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-24",
+        "pregunta": "¿Qué tipo de aparato es el 'Contactor de sobrecarrera'?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Un dispositivo de protección diferencial.",
+            "es_correcta": false,
+            "explicacion": "Protege contra movimiento físico, no contra fugas de corriente."
+          },
+          {
+            "id": 2,
+            "respuesta": "Un interruptor contactor de posición.",
+            "es_correcta": true,
+            "explicacion": "La definición oficial indica que es un 'interruptor contactor de posición'."
+          },
+          {
+            "id": 3,
+            "respuesta": "Un fusible de alta velocidad.",
+            "es_correcta": false,
+            "explicacion": "No es un elemento fusible."
+          },
+          {
+            "id": 4,
+            "respuesta": "Un cable de seguridad.",
+            "es_correcta": false,
+            "explicacion": "Es un aparato, no un cable."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-25",
+        "pregunta": "El contacto de personas o animales con partes activas de los materiales y equipos se define como:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Contacto indirecto.",
+            "es_correcta": false,
+            "explicacion": "Eso sería con masas puestas bajo tensión."
+          },
+          {
+            "id": 2,
+            "respuesta": "Choque capacitivo.",
+            "es_correcta": false,
+            "explicacion": "No es un término de la ITC-BT-01."
+          },
+          {
+            "id": 3,
+            "respuesta": "Contacto directo.",
+            "es_correcta": true,
+            "explicacion": "Tocar partes que normalmente están en tensión (activas) se denomina contacto directo."
+          },
+          {
+            "id": 4,
+            "respuesta": "Falla a tierra.",
+            "es_correcta": false,
+            "explicacion": "Es una anomalía de la red, no un contacto humano."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-26",
+        "pregunta": "El 'Contacto indirecto' ocurre cuando personas o animales domésticos entran en contacto con:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Partes activas de la red.",
+            "es_correcta": false,
+            "explicacion": "Esto es contacto directo."
+          },
+          {
+            "id": 2,
+            "respuesta": "Conductores de fase sin aislamiento.",
+            "es_correcta": false,
+            "explicacion": "Esto también es contacto directo."
+          },
+          {
+            "id": 3,
+            "respuesta": "Partes que se han puesto bajo tensión como resultado de un fallo de aislamiento.",
+            "es_correcta": true,
+            "explicacion": "Tocar envolventes o chasis metálicos (masas) accidentalmente electrizados."
+          },
+          {
+            "id": 4,
+            "respuesta": "Cualquier envolvente plástica.",
+            "es_correcta": false,
+            "explicacion": "El plástico es aislante y no transfiere potencial."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-27",
+        "pregunta": "Respecto a los contactos eléctricos, ¿cuál de las siguientes afirmaciones es correcta?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "El contacto directo es con partes puestas bajo tensión por un fallo de aislamiento.",
+            "es_correcta": false,
+            "explicacion": "Ese es el contacto indirecto."
+          },
+          {
+            "id": 2,
+            "respuesta": "El contacto indirecto es con partes activas de los materiales.",
+            "es_correcta": false,
+            "explicacion": "Ese es el contacto directo."
+          },
+          {
+            "id": 3,
+            "respuesta": "El contacto directo es con partes activas de los materiales y equipos.",
+            "es_correcta": true,
+            "explicacion": "Afirmación veraz y coincidente con la definición de ITC-BT-01."
+          },
+          {
+            "id": 4,
+            "respuesta": "Ambos contactos requieren un fallo previo de aislamiento.",
+            "es_correcta": false,
+            "explicacion": "El contacto directo ocurre sin necesidad de un fallo (por ej. tocar una barra desnuda)."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-28",
+        "pregunta": "La suma algebraica de los valores instantáneos de las corrientes que circulan a través de todos los conductores activos de un circuito se denomina:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Corriente de cortocircuito.",
+            "es_correcta": false,
+            "explicacion": "El cortocircuito es un fallo de muy baja impedancia."
+          },
+          {
+            "id": 2,
+            "respuesta": "Corriente diferencial residual.",
+            "es_correcta": true,
+            "explicacion": "Es la base del funcionamiento del interruptor diferencial (suma vectorial de corrientes)."
+          },
+          {
+            "id": 3,
+            "respuesta": "Sobreintensidad transitoria.",
+            "es_correcta": false,
+            "explicacion": "Corresponde a picos de consumo (arranque de motores)."
+          },
+          {
+            "id": 4,
+            "respuesta": "Corriente de sobrecarga.",
+            "es_correcta": false,
+            "explicacion": "Corriente excesiva debida a exceso de receptores."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-29",
+        "pregunta": "¿Cómo se calcula la 'Corriente diferencial residual' según la normativa?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Es la suma aritmética de los valores eficaces de todos los conductores.",
+            "es_correcta": false,
+            "explicacion": "Debe ser suma algebraica (teniendo en cuenta la dirección)."
+          },
+          {
+            "id": 2,
+            "respuesta": "Es la diferencia entre la fase de mayor carga y la de menor carga.",
+            "es_correcta": false,
+            "explicacion": "Ese sería el desequilibrio de fases, no la corriente residual."
+          },
+          {
+            "id": 3,
+            "respuesta": "Es la suma algebraica de los valores instantáneos de las corrientes que circulan a través de todos los conductores activos de un circuito.",
+            "es_correcta": true,
+            "explicacion": "En condiciones normales la suma es cero; si hay fuga, el valor es la corriente residual."
+          },
+          {
+            "id": 4,
+            "respuesta": "Es el producto de la tensión y la impedancia del bucle de defecto.",
+            "es_correcta": false,
+            "explicacion": "Cálculo incorrecto."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-30",
+        "pregunta": "El valor de la corriente diferencial residual que provoca el funcionamiento de un dispositivo de protección se llama:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Corriente admisible.",
+            "es_correcta": false,
+            "explicacion": "Corriente máxima que puede transportar un cable."
+          },
+          {
+            "id": 2,
+            "respuesta": "Corriente de diseño.",
+            "es_correcta": false,
+            "explicacion": "Corriente prevista para el funcionamiento normal del circuito."
+          },
+          {
+            "id": 3,
+            "respuesta": "Corriente diferencial residual de funcionamiento.",
+            "es_correcta": true,
+            "explicacion": "Es la sensibilidad nominal del diferencial (ej. 30 mA)."
+          },
+          {
+            "id": 4,
+            "respuesta": "Corriente nominal de cortocircuito.",
+            "es_correcta": false,
+            "explicacion": "Intensidad máxima ante un fallo franco entre conductores."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-31",
+        "pregunta": "Un aparato cuyo cometido es el de interrumpir el circuito en el que está intercalado, por fusión de uno de sus elementos es un:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Contactor.",
+            "es_correcta": false,
+            "explicacion": "Abre y cierra por bobina electromagnética."
+          },
+          {
+            "id": 2,
+            "respuesta": "Cortacircuito fusible.",
+            "es_correcta": true,
+            "explicacion": "El elemento se calienta y funde interrumpiendo el paso eléctrico."
+          },
+          {
+            "id": 3,
+            "respuesta": "Interruptor diferencial.",
+            "es_correcta": false,
+            "explicacion": "Abre el circuito mecánicamente ante una fuga."
+          },
+          {
+            "id": 4,
+            "respuesta": "Seccionador de corte en carga.",
+            "es_correcta": false,
+            "explicacion": "Abre el circuito de forma manual sin fusión."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-32",
+        "pregunta": "¿Cuál es el mecanismo de acción de un 'Cortacircuito fusible'?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Apertura electromagnética de contactos.",
+            "es_correcta": false,
+            "explicacion": "Mecanismo del interruptor automático (parte magnética)."
+          },
+          {
+            "id": 2,
+            "respuesta": "Activación por corriente residual diferencial.",
+            "es_correcta": false,
+            "explicacion": "Mecanismo del diferencial."
+          },
+          {
+            "id": 3,
+            "respuesta": "Interrumpir el circuito por fusión de uno de sus elementos.",
+            "es_correcta": true,
+            "explicacion": "Se sacrifica el hilo interior al superar la temperatura por exceso de corriente."
+          },
+          {
+            "id": 4,
+            "respuesta": "Bloqueo mecánico por sobretensión.",
+            "es_correcta": false,
+            "explicacion": "Mecanismo de las protecciones contra sobretensiones (algunos tipos)."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-33",
+        "pregunta": "En un 'Material de Clase I', la protección contra el choque eléctrico:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Se basa únicamente en el aislamiento principal.",
+            "es_correcta": false,
+            "explicacion": "Ese sería un equipo de Clase 0 (prohibidos en su mayoría)."
+          },
+          {
+            "id": 2,
+            "respuesta": "No requiere conexión a un conductor de protección.",
+            "es_correcta": false,
+            "explicacion": "El Clase II (doble aislamiento) no requiere conexión a tierra."
+          },
+          {
+            "id": 3,
+            "respuesta": "Comporta una medida de seguridad complementaria conectando las partes conductoras accesibles a un conductor de protección puesto a tierra.",
+            "es_correcta": true,
+            "explicacion": "La conexión de las masas metálicas a tierra caracteriza a la Clase I."
+          },
+          {
+            "id": 4,
+            "respuesta": "Utiliza únicamente muy baja tensión de seguridad (MBTS).",
+            "es_correcta": false,
+            "explicacion": "Esa es la característica de la Clase III."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-34",
+        "pregunta": "El propósito de la medida complementaria en el 'Material de Clase I' es:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Que las partes conductoras accesibles no puedan presentar tensiones peligrosas.",
+            "es_correcta": true,
+            "explicacion": "Al derivar la corriente de fuga a tierra, se dispara la protección (diferencial) evitando tensiones peligrosas prolongadas."
+          },
+          {
+            "id": 2,
+            "respuesta": "Que el material pueda funcionar a mayor potencia.",
+            "es_correcta": false,
+            "explicacion": "La conexión a tierra es para seguridad, no mejora el rendimiento."
+          },
+          {
+            "id": 3,
+            "respuesta": "Reducir la resistencia de los conductores de fase.",
+            "es_correcta": false,
+            "explicacion": "No afecta a los conductores de fase."
+          },
+          {
+            "id": 4,
+            "respuesta": "Mejorar la disipación térmica del aparato.",
+            "es_correcta": false,
+            "explicacion": "La función es evitar choques, no disipar calor."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-35",
+        "pregunta": "¿Es correcto afirmar que en un 'Material de Clase I' la protección se basa únicamente en el aislamiento principal?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Sí, es su característica definitoria.",
+            "es_correcta": false,
+            "explicacion": "Es incorrecto."
+          },
+          {
+            "id": 2,
+            "respuesta": "No, comporta además la conexión de las masas a un conductor de protección.",
+            "es_correcta": true,
+            "explicacion": "Tiene aislamiento principal + conexión de tierra."
+          },
+          {
+            "id": 3,
+            "respuesta": "Solo en instalaciones domésticas.",
+            "es_correcta": false,
+            "explicacion": "Aplica a todos los ámbitos."
+          },
+          {
+            "id": 4,
+            "respuesta": "Sí, salvo que el equipo indique lo contrario.",
+            "es_correcta": false,
+            "explicacion": "La Clase I requiere por definición conexión a tierra."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-36",
+        "pregunta": "Toda corriente superior a un valor asignado se denomina:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Corriente admisible.",
+            "es_correcta": false,
+            "explicacion": "Es el límite máximo para operar en condiciones nominales."
+          },
+          {
+            "id": 2,
+            "respuesta": "Sobreintensidad.",
+            "es_correcta": true,
+            "explicacion": "Puede deberse a sobrecargas o a cortocircuitos."
+          },
+          {
+            "id": 3,
+            "respuesta": "Corriente de fuga.",
+            "es_correcta": false,
+            "explicacion": "Es una corriente que deriva a tierra por un aislamiento imperfecto."
+          },
+          {
+            "id": 4,
+            "respuesta": "Corriente nominal.",
+            "es_correcta": false,
+            "explicacion": "Es la corriente de diseño."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-37",
+        "pregunta": "Para la definición de 'Sobreintensidad' en los conductores, ¿cuál es el valor asignado que se toma como referencia?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "La corriente de cortocircuito.",
+            "es_correcta": false,
+            "explicacion": "El cortocircuito es un evento anómalo."
+          },
+          {
+            "id": 2,
+            "respuesta": "La corriente de defecto.",
+            "es_correcta": false,
+            "explicacion": "Es la corriente que circula al haber un fallo a masa."
+          },
+          {
+            "id": 3,
+            "respuesta": "La corriente admisible.",
+            "es_correcta": true,
+            "explicacion": "La ITC-BT-01 define la sobreintensidad en función de superar la corriente admisible del conductor."
+          },
+          {
+            "id": 4,
+            "respuesta": "La corriente diferencial residual.",
+            "es_correcta": false,
+            "explicacion": "Referencia a fugas, no al transporte general por el conductor."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-38",
+        "pregunta": "Un suelo o pared no susceptible de propagar potenciales se denomina:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Suelo o pared equipotencial.",
+            "es_correcta": false,
+            "explicacion": "Equipotencialidad implica igualar potenciales, usualmente conectados."
+          },
+          {
+            "id": 2,
+            "respuesta": "Suelo o pared no conductor.",
+            "es_correcta": true,
+            "explicacion": "Actúa como medio aislante para la protección."
+          },
+          {
+            "id": 3,
+            "respuesta": "Suelo o pared semiconductor.",
+            "es_correcta": false,
+            "explicacion": "No es terminología oficial en este aspecto."
+          },
+          {
+            "id": 4,
+            "respuesta": "Suelo o pared de Clase II.",
+            "es_correcta": false,
+            "explicacion": "La clase II se aplica a aparatos, no a suelos."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-39",
+        "pregunta": "Para que un suelo sea considerado 'Suelo o pared no conductor' en una instalación de tensión nominal inferior o igual a 500 V, debe presentar una resistencia igual o superior a:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "10.000 ohmios.",
+            "es_correcta": false,
+            "explicacion": "Valor demasiado bajo."
+          },
+          {
+            "id": 2,
+            "respuesta": "50.000 ohmios.",
+            "es_correcta": true,
+            "explicacion": "La resistencia mínima exigida por el REBT para U <= 500V es 50 kΩ."
+          },
+          {
+            "id": 3,
+            "respuesta": "100.000 ohmios.",
+            "es_correcta": false,
+            "explicacion": "Este es el valor para tensiones mayores de 500 V."
+          },
+          {
+            "id": 4,
+            "respuesta": "500.000 ohmios.",
+            "es_correcta": false,
+            "explicacion": "No es el límite fijado reglamentariamente."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-40",
+        "pregunta": "Si la tensión nominal de la instalación es superior a 500 V, un suelo se considera 'Suelo o pared no conductor' si su resistencia es igual o superior a:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "50.000 ohmios.",
+            "es_correcta": false,
+            "explicacion": "Valor para <= 500 V."
+          },
+          {
+            "id": 2,
+            "respuesta": "100.000 ohmios.",
+            "es_correcta": true,
+            "explicacion": "Al subir la tensión, se requiere el doble de resistencia mínima (100 kΩ)."
+          },
+          {
+            "id": 3,
+            "respuesta": "250.000 ohmios.",
+            "es_correcta": false,
+            "explicacion": "No requerido."
+          },
+          {
+            "id": 4,
+            "respuesta": "1.000.000 ohmios.",
+            "es_correcta": false,
+            "explicacion": "No requerido."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-41",
+        "pregunta": "En una instalación de 400 V, ¿qué resistencia mínima debe tener una pared para considerarse 'pared no conductora'?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "50.000 Ω.",
+            "es_correcta": true,
+            "explicacion": "Al ser 400 V (menor de 500 V), el límite es 50.000 ohmios."
+          },
+          {
+            "id": 2,
+            "respuesta": "100.000 Ω.",
+            "es_correcta": false,
+            "explicacion": "Aplicable a más de 500 V."
+          },
+          {
+            "id": 3,
+            "respuesta": "10.000 Ω.",
+            "es_correcta": false,
+            "explicacion": "Insuficiente."
+          },
+          {
+            "id": 4,
+            "respuesta": "5.000 Ω.",
+            "es_correcta": false,
+            "explicacion": "Insuficiente."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-42",
+        "pregunta": "En una instalación de 690 V, ¿qué resistencia mínima debe tener el suelo para ser considerado 'suelo no conductor'?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "50.000 Ω.",
+            "es_correcta": false,
+            "explicacion": "Aplica solo hasta 500 V."
+          },
+          {
+            "id": 2,
+            "respuesta": "100.000 Ω.",
+            "es_correcta": true,
+            "explicacion": "Como 690 V es mayor que 500 V, el reglamento exige al menos 100 kΩ."
+          },
+          {
+            "id": 3,
+            "respuesta": "500.000 Ω.",
+            "es_correcta": false,
+            "explicacion": "Superior a lo exigido estrictamente."
+          },
+          {
+            "id": 4,
+            "respuesta": "No existe requerimiento.",
+            "es_correcta": false,
+            "explicacion": "Sí existe, está definido explícitamente en la norma."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-43",
+        "pregunta": "¿Qué tipo de cable es aquel que tiene un conductor concéntrico destinado a utilizarse como neutro?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Cable coaxial de telecomunicaciones.",
+            "es_correcta": false,
+            "explicacion": "No es cable de energía para uso de neutro."
+          },
+          {
+            "id": 2,
+            "respuesta": "Cable de guarda.",
+            "es_correcta": false,
+            "explicacion": "Utilizado en alta tensión para pararrayos/tierra."
+          },
+          {
+            "id": 3,
+            "respuesta": "Cable con neutro concéntrico.",
+            "es_correcta": true,
+            "explicacion": "Definido así para cables de energía de BT donde la protección o el neutro envuelven la fase."
+          },
+          {
+            "id": 4,
+            "respuesta": "Cable unipolar de potencia.",
+            "es_correcta": false,
+            "explicacion": "No tiene conductor concéntrico asignado al neutro."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-44",
+        "pregunta": "Respecto a la corriente admisible, si un conductor sufre el paso de una corriente superior a ella, ¿qué condición se produce según ITC-BT-01?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Un cortocircuito franco obligatoriamente.",
+            "es_correcta": false,
+            "explicacion": "Podría ser simplemente una sobrecarga sin llegar a ser cortocircuito."
+          },
+          {
+            "id": 2,
+            "respuesta": "Una caída de tensión admisible.",
+            "es_correcta": false,
+            "explicacion": "Se producirá una caída mayor, pero no es el término de la condición."
+          },
+          {
+            "id": 3,
+            "respuesta": "Una sobreintensidad.",
+            "es_correcta": true,
+            "explicacion": "Toda corriente superior al valor asignado (corriente admisible en el conductor) es una sobreintensidad."
+          },
+          {
+            "id": 4,
+            "respuesta": "Una sobretensión.",
+            "es_correcta": false,
+            "explicacion": "Exceso de amperaje, no de voltaje."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-45",
+        "pregunta": "En la terminología del REBT, ¿qué aísla específicamente el 'Aislamiento principal'?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Las partes conductoras accesibles.",
+            "es_correcta": false,
+            "explicacion": "Aísla las partes activas, no las accesibles (masas)."
+          },
+          {
+            "id": 2,
+            "respuesta": "Las partes activas.",
+            "es_correcta": true,
+            "explicacion": "Aísla el elemento que conduce normalmente corriente peligrosa."
+          },
+          {
+            "id": 3,
+            "respuesta": "Exclusivamente el conductor de protección.",
+            "es_correcta": false,
+            "explicacion": "El CP no requiere aislamiento principal para evitar riesgo primario."
+          },
+          {
+            "id": 4,
+            "respuesta": "Las envolventes metálicas.",
+            "es_correcta": false,
+            "explicacion": "Las envolventes protegen mecánicamente, el aislamiento protege eléctricamente el interior."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-46",
+        "pregunta": "¿Cuál de las siguientes es una condición de un 'Material de Clase I'?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "No tener medios de protección por puesta a tierra.",
+            "es_correcta": false,
+            "explicacion": "Eso sería Clase 0 o Clase II."
+          },
+          {
+            "id": 2,
+            "respuesta": "Tener partes conductoras accesibles unidas a un conductor de protección puesto a tierra.",
+            "es_correcta": true,
+            "explicacion": "Es la base de su diseño complementario de seguridad."
+          },
+          {
+            "id": 3,
+            "respuesta": "Funcionar obligatoriamente a tensiones superiores a 1000 V.",
+            "es_correcta": false,
+            "explicacion": "Aplica a baja tensión."
+          },
+          {
+            "id": 4,
+            "respuesta": "Tener todos sus conductores sin aislamiento.",
+            "es_correcta": false,
+            "explicacion": "Totalmente prohibido."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-47",
+        "pregunta": "La definición 'Recinto situado bajo el nivel del suelo o piso y cuyas dimensiones no permiten circular' corresponde a:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Galería registrable.",
+            "es_correcta": false,
+            "explicacion": "La galería registrable suele permitir mayor accesibilidad y es otro término normativo en redes subterráneas."
+          },
+          {
+            "id": 2,
+            "respuesta": "Bandeja de cables.",
+            "es_correcta": false,
+            "explicacion": "La bandeja es superficial o en falso techo/suelo, no es el 'recinto bajo el nivel' en este contexto formal."
+          },
+          {
+            "id": 3,
+            "respuesta": "Canal.",
+            "es_correcta": true,
+            "explicacion": "La ITC-BT-01 restringe el término canal a esta característica arquitectónica (si va bajo nivel del suelo)."
+          },
+          {
+            "id": 4,
+            "respuesta": "Zanja convencional.",
+            "es_correcta": false,
+            "explicacion": "Una zanja se rellena de tierra, el canal queda hueco."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-48",
+        "pregunta": "¿Cuál de los siguientes NO es un requisito del 'Suelo no conductor' según la ITC-BT-01?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Ser no susceptible de propagar potenciales.",
+            "es_correcta": false,
+            "explicacion": "Sí es un requisito principal."
+          },
+          {
+            "id": 2,
+            "respuesta": "Resistencia >= 50.000 Ω para U <= 500 V.",
+            "es_correcta": false,
+            "explicacion": "Sí es requisito numérico oficial."
+          },
+          {
+            "id": 3,
+            "respuesta": "Resistencia >= 100.000 Ω para U > 500 V.",
+            "es_correcta": false,
+            "explicacion": "Sí es requisito numérico oficial."
+          },
+          {
+            "id": 4,
+            "respuesta": "Debe estar conectado al conductor equipotencial obligatoriamente.",
+            "es_correcta": true,
+            "explicacion": "Al revés, si es no conductor no transfiere potencial y se usa como medida aislante para *no* usar tierras."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-49",
+        "pregunta": "El 'Conductor de protección' conecta masas o elementos conductores con el fin de proteger contra:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Variaciones de frecuencia.",
+            "es_correcta": false,
+            "explicacion": "Afecta a componentes electrónicos o motores, no protege personas."
+          },
+          {
+            "id": 2,
+            "respuesta": "Choques eléctricos.",
+            "es_correcta": true,
+            "explicacion": "Es el propósito fundamental de seguridad (contacto indirecto)."
+          },
+          {
+            "id": 3,
+            "respuesta": "Ondulaciones en corriente continua.",
+            "es_correcta": false,
+            "explicacion": "Se soluciona con filtros capacitivos."
+          },
+          {
+            "id": 4,
+            "respuesta": "Altas temperaturas ambientales.",
+            "es_correcta": false,
+            "explicacion": "No refrigera equipos."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-50",
+        "pregunta": "La suma algebraica de los valores instantáneos de las corrientes en todos los conductores activos se define estrictamente como:",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Corriente diferencial residual.",
+            "es_correcta": true,
+            "explicacion": "Definición oficial que activa un diferencial si no suma 0."
+          },
+          {
+            "id": 2,
+            "respuesta": "Sobreintensidad de cortocircuito.",
+            "es_correcta": false,
+            "explicacion": "Pico brusco de corriente al fallar el aislamiento."
+          },
+          {
+            "id": 3,
+            "respuesta": "Falla a tierra directa.",
+            "es_correcta": false,
+            "explicacion": "Es una causa, no el término técnico de la suma de corrientes."
+          },
+          {
+            "id": 4,
+            "respuesta": "Contacto indirecto.",
+            "es_correcta": false,
+            "explicacion": "Es el tipo de incidente que sufren las personas."
           }
         ]
       }

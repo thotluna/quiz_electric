@@ -1,8 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { QuizSetup } from './QuizSetup'
-import { Quiz } from './Quiz'
+import { QuizManager } from './QuizManager'
 import { QuizResults } from './QuizResults'
 import { StatsDashboard } from './StatsDashboard'
 import UserMenu from '@/components/auth/UserMenu'
@@ -29,7 +28,6 @@ export const QuizHome = ({ topics, user }: QuizHomeProps) => {
   const initialQuestions = useQuizStore((s) => s.initialQuestions)
   const isTimeOut = useQuizStore((s) => s.isTimeOut)
   const resetQuiz = useQuizStore((s) => s.resetQuiz)
-  const startQuiz = useQuizStore((s) => s.startQuiz)
 
   const [showStats, setShowStats] = useState(false)
   const [stats, setStats] = useState<UserStats | null>(null)
@@ -66,7 +64,7 @@ export const QuizHome = ({ topics, user }: QuizHomeProps) => {
               Preparación REBT · Nivel Profesional
             </p>
           </div>
-          
+
           <div className="flex items-center gap-4">
             {!isStarted && (
               <button
@@ -82,13 +80,8 @@ export const QuizHome = ({ topics, user }: QuizHomeProps) => {
         </header>
 
         <main className="relative">
-          {!isStarted ? (
-            <QuizSetup 
-              topics={topics} 
-              onStart={startQuiz}
-            />
-          ) : isFinished ? (
-            <QuizResults 
+          {isFinished ? (
+            <QuizResults
               userAnswers={userAnswers}
               timeElapsed={timeElapsed}
               totalQuestions={initialQuestions.length}
@@ -97,7 +90,10 @@ export const QuizHome = ({ topics, user }: QuizHomeProps) => {
               onReset={resetQuiz}
             />
           ) : (
-            <Quiz />
+            <QuizManager
+              topics={topics}
+              userId={user.id}
+            />
           )}
         </main>
 
