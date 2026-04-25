@@ -1,0 +1,118 @@
+[
+  {
+    "id": "itc-01",
+    "itc": "ITC-BT 01",
+    "preguntas": [
+      {
+        "id": "q1",
+        "pregunta": "Pregunta 1 (La correcta es la 1)",
+        "opciones": [
+          { "id": 101, "respuesta": "Opción 1", "es_correcta": true, "explicacion": "Explicación 1" },
+          { "id": 102, "respuesta": "Opción 2", "es_correcta": false, "explicacion": "Mal 2" },
+          { "id": 103, "respuesta": "Opción 3", "es_correcta": false, "explicacion": "Mal 3" },
+          { "id": 104, "respuesta": "Opción 4", "es_correcta": false, "explicacion": "Mal 4" }
+        ],
+        "tipo": "simple"
+      },
+      {
+        "id": "q2",
+        "pregunta": "Pregunta 2 (La correcta es la 2)",
+        "opciones": [
+          { "id": 201, "respuesta": "Opción 1", "es_correcta": false, "explicacion": "Mal 1" },
+          { "id": 202, "respuesta": "Opción 2", "es_correcta": true, "explicacion": "Explicación 2" },
+          { "id": 203, "respuesta": "Opción 3", "es_correcta": false, "explicacion": "Mal 3" },
+          { "id": 204, "respuesta": "Opción 4", "es_correcta": false, "explicacion": "Mal 4" }
+        ],
+        "tipo": "simple"
+      },
+      {
+        "id": "q3",
+        "pregunta": "Pregunta 3 (La correcta es la 3)",
+        "opciones": [
+          { "id": 301, "respuesta": "Opción 1", "es_correcta": false, "explicacion": "Mal 1" },
+          { "id": 302, "respuesta": "Opción 2", "es_correcta": false, "explicacion": "Mal 2" },
+          { "id": 303, "respuesta": "Opción 3", "es_correcta": true, "explicacion": "Explicación 3" },
+          { "id": 304, "respuesta": "Opción 4", "es_correcta": false, "explicacion": "Mal 4" }
+        ],
+        "tipo": "simple"
+      },
+      {
+        "id": "q4",
+        "pregunta": "Pregunta 4 (La correcta es la 4)",
+        "opciones": [
+          { "id": 401, "respuesta": "Opción 1", "es_correcta": false, "explicacion": "Mal 1" },
+          { "id": 402, "respuesta": "Opción 2", "es_correcta": false, "explicacion": "Mal 2" },
+          { "id": 403, "respuesta": "Opción 3", "es_correcta": false, "explicacion": "Mal 3" },
+          { "id": 404, "respuesta": "Opción 4", "es_correcta": true, "explicacion": "Explicación 4" }
+        ],
+        "tipo": "simple"
+      },
+      {
+        "id": "q5",
+        "pregunta": "Pregunta 5 (La correcta es la 1)",
+        "opciones": [
+          { "id": 501, "respuesta": "Opción 1", "es_correcta": true, "explicacion": "Explicación 5" },
+          { "id": 502, "respuesta": "Opción 2", "es_correcta": false, "explicacion": "Mal 2" },
+          { "id": 503, "respuesta": "Opción 3", "es_correcta": false, "explicacion": "Mal 3" },
+          { "id": 504, "respuesta": "Opción 4", "es_correcta": false, "explicacion": "Mal 4" }
+        ],
+        "tipo": "simple"
+      },
+      {
+        "id": "q6",
+        "pregunta": "Pregunta 6 (La correcta es la 2)",
+        "opciones": [
+          { "id": 601, "respuesta": "Opción 1", "es_correcta": false, "explicacion": "Mal 1" },
+          { "id": 602, "respuesta": "Opción 2", "es_correcta": true, "explicacion": "Explicación 6" },
+          { "id": 603, "respuesta": "Opción 3", "es_correcta": false, "explicacion": "Mal 3" },
+          { "id": 604, "respuesta": "Opción 4", "es_correcta": false, "explicacion": "Mal 4" }
+        ],
+        "tipo": "simple"
+      },
+      {
+        "id": "q7",
+        "pregunta": "Pregunta 7 (La correcta es la 3)",
+        "opciones": [
+          { "id": 701, "respuesta": "Opción 1", "es_correcta": false, "explicacion": "Mal 1" },
+          { "id": 702, "respuesta": "Opción 2", "es_correcta": false, "explicacion": "Mal 2" },
+          { "id": 703, "respuesta": "Opción 3", "es_correcta": true, "explicacion": "Explicación 7" },
+          { "id": 704, "respuesta": "Opción 4", "es_correcta": false, "explicacion": "Mal 4" }
+        ],
+        "tipo": "simple"
+      },
+      {
+        "id": "q8",
+        "pregunta": "Pregunta 8 (La correcta es la 4)",
+        "opciones": [
+          { "id": 801, "respuesta": "Opción 1", "es_correcta": false, "explicacion": "Mal 1" },
+          { "id": 802, "respuesta": "Opción 2", "es_correcta": false, "explicacion": "Mal 2" },
+          { "id": 803, "respuesta": "Opción 3", "es_correcta": false, "explicacion": "Mal 3" },
+          { "id": 804, "respuesta": "Opción 4", "es_correcta": true, "explicacion": "Explicación 8" }
+        ],
+        "tipo": "simple"
+      },
+      {
+        "id": "q9",
+        "pregunta": "Pregunta 9 (Múltiple: 1 y 3 correctas)",
+        "opciones": [
+          { "id": 901, "respuesta": "Opción 1", "es_correcta": true, "explicacion": "Bien 1" },
+          { "id": 902, "respuesta": "Opción 2", "es_correcta": false, "explicacion": "Mal 2" },
+          { "id": 903, "respuesta": "Opción 3", "es_correcta": true, "explicacion": "Bien 3" },
+          { "id": 904, "respuesta": "Opción 4", "es_correcta": false, "explicacion": "Mal 4" }
+        ],
+        "tipo": "multiple"
+      },
+      {
+        "id": "q10",
+        "pregunta": "Pregunta 10 (Múltiple: 1, 2 y 4 correctas)",
+        "opciones": [
+          { "id": 1001, "respuesta": "Opción 1", "es_correcta": true, "explicacion": "Bien 1" },
+          { "id": 1002, "respuesta": "Opción 2", "es_correcta": true, "explicacion": "Bien 2" },
+          { "id": 1003, "respuesta": "Opción 3", "es_correcta": false, "explicacion": "Mal 3" },
+          { "id": 1004, "respuesta": "Opción 4", "es_correcta": true, "explicacion": "Bien 4" }
+        ],
+        "tipo": "multiple"
+      }
+    ]
+  }
+]
