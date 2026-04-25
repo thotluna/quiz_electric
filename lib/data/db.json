@@ -1,114 +1,110 @@
-{
-  "preguntas": [
-    {
-      "id": "ITC-BT-01-01",
-      "pregunta": "¿Qué se entiende por 'Acometida' según el REBT?",
-      "tipo": "simple",
-      "opciones": [
-        {
-          "id": 1,
-          "respuesta": "Parte de la instalación de la red de distribución que alimenta la caja o cajas generales de protección.",
-          "es_correcta": true,
-          "explicacion": "Definida en la ITC-BT-01 como la parte de la red de distribución que alimenta la CGP."
-        },
-        {
-          "id": 2,
-          "respuesta": "Instalación que une la caja general de protección con la centralización de contadores.",
-          "es_correcta": false,
-          "explicacion": "Eso es la línea general de alimentación (LGA)."
-        },
-        {
-          "id": 3,
-          "respuesta": "Conjunto de cables que van desde el contador hasta el cuadro general de la vivienda.",
-          "es_correcta": false,
-          "explicacion": "Eso es la derivación individual."
-        }
-      ]
-    },
-    {
-      "id": "ITC-BT-01-02",
-      "pregunta": "¿Cómo se define un 'Circuito' en una instalación eléctrica?",
-      "tipo": "simple",
-      "opciones": [
-        {
-          "id": 4,
-          "respuesta": "Conjunto de conductores y aparamenta protegidos por el mismo dispositivo de protección contra sobreintensidades.",
-          "es_correcta": true,
-          "explicacion": "Es la definición técnica exacta del REBT para un circuito independiente."
-        },
-        {
-          "id": 5,
-          "respuesta": "Cualquier tramo de cable con tensión.",
-          "es_correcta": false
-        },
-        {
-          "id": 6,
-          "respuesta": "La unión entre dos cajas de derivación.",
-          "es_correcta": false
-        }
-      ]
-    },
-    {
-      "id": "ITC-BT-01-03",
-      "pregunta": "¿Cuál es la definición de 'Puesta a Tierra'?",
-      "tipo": "simple",
-      "opciones": [
-        {
-          "id": 7,
-          "respuesta": "Unión eléctrica directa, sin fusibles ni protección alguna, de una parte del circuito eléctrico o de una parte conductora no perteneciente al mismo, a un electrodo o grupo de electrodos enterrados en el suelo.",
-          "es_correcta": true,
-          "explicacion": "Definición técnica para asegurar la descarga de corrientes de defecto a tierra."
-        },
-        {
-          "id": 8,
-          "respuesta": "Conexión del neutro al borne de tierra del edificio.",
-          "es_correcta": false
-        },
-        {
-          "id": 9,
-          "respuesta": "Instalación de una pica de cobre en el jardín.",
-          "es_correcta": false
-        }
-      ]
-    },
-    {
-      "id": "ITC-BT-01-04",
-      "pregunta": "Identifique los elementos que forman parte de una 'Instalación de Enlace':",
-      "tipo": "multiple",
-      "opciones": [
-        {
-          "id": 10,
-          "respuesta": "Caja General de Protección (CGP)",
-          "es_correcta": true,
-          "explicacion": "La CGP es el primer elemento de la instalación de enlace."
-        },
-        {
-          "id": 11,
-          "respuesta": "Línea General de Alimentación (LGA)",
-          "es_correcta": true,
-          "explicacion": "La LGA une la CGP con la centralización de contadores."
-        },
-        {
-          "id": 12,
-          "respuesta": "Derivación Individual (DI)",
-          "es_correcta": true,
-          "explicacion": "La DI une el contador con el cuadro general del usuario."
-        },
-        {
-          "id": 13,
-          "respuesta": "Red de distribución pública",
-          "es_correcta": false,
-          "explicacion": "La red de distribución es propiedad de la compañía y es previa a la instalación de enlace."
-        }
-      ]
-    }
-  ],
-  "temas": [
-    {
-      "id": "ITC-BT-01",
-      "itc": "ITC-BT 01",
-      "nombre": "Terminología",
-      "preguntas_ids": ["ITC-BT-01-01", "ITC-BT-01-02", "ITC-BT-01-03", "ITC-BT-01-04"]
-    }
-  ]
-}
+[
+  {
+    "id": "ITC-BT-01",
+    "itc": "ITC-BT 01",
+    "preguntas": [
+      {
+        "id": "ITC-BT-01-01",
+        "pregunta": "¿Qué se entiende por 'Acometida' según el REBT?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 1,
+            "respuesta": "Parte de la instalación de la red de distribución que alimenta la caja o cajas generales de protección.",
+            "es_correcta": true,
+            "explicacion": "Definida en la ITC-BT-01 como la parte de la red de distribución que alimenta la CGP."
+          },
+          {
+            "id": 2,
+            "respuesta": "Instalación que une la caja general de protección con la centralización de contadores.",
+            "es_correcta": false,
+            "explicacion": "Eso es la línea general de alimentación (LGA)."
+          },
+          {
+            "id": 3,
+            "respuesta": "Conjunto de cables que van desde el contador hasta el cuadro general de la vivienda.",
+            "es_correcta": false,
+            "explicacion": "Eso es la derivación individual."
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-02",
+        "pregunta": "¿Cómo se define un 'Circuito' en una instalación eléctrica?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 4,
+            "respuesta": "Conjunto de conductores y aparamenta protegidos por el mismo dispositivo de protección contra sobreintensidades.",
+            "es_correcta": true,
+            "explicacion": "Es la definición técnica exacta del REBT para un circuito independiente."
+          },
+          {
+            "id": 5,
+            "respuesta": "Cualquier tramo de cable con tensión.",
+            "es_correcta": false
+          },
+          {
+            "id": 6,
+            "respuesta": "La unión entre dos cajas de derivación.",
+            "es_correcta": false
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-03",
+        "pregunta": "¿Cuál es la definición de 'Puesta a Tierra'?",
+        "tipo": "simple",
+        "opciones": [
+          {
+            "id": 7,
+            "respuesta": "Unión eléctrica directa, sin fusibles ni protección alguna, de una parte del circuito eléctrico o de una parte conductora no perteneciente al mismo, a un electrodo o grupo de electrodos enterrados en el suelo.",
+            "es_correcta": true,
+            "explicacion": "Definición técnica para asegurar la descarga de corrientes de defecto a tierra."
+          },
+          {
+            "id": 8,
+            "respuesta": "Conexión del neutro al borne de tierra del edificio.",
+            "es_correcta": false
+          },
+          {
+            "id": 9,
+            "respuesta": "Instalación de una pica de cobre en el jardín.",
+            "es_correcta": false
+          }
+        ]
+      },
+      {
+        "id": "ITC-BT-01-04",
+        "pregunta": "Identifique los elementos que forman parte de una 'Instalación de Enlace':",
+        "tipo": "multiple",
+        "opciones": [
+          {
+            "id": 10,
+            "respuesta": "Caja General de Protección (CGP)",
+            "es_correcta": true,
+            "explicacion": "La CGP es el primer elemento de la instalación de enlace."
+          },
+          {
+            "id": 11,
+            "respuesta": "Línea General de Alimentación (LGA)",
+            "es_correcta": true,
+            "explicacion": "La LGA une la CGP con la centralización de contadores."
+          },
+          {
+            "id": 12,
+            "respuesta": "Derivación Individual (DI)",
+            "es_correcta": true,
+            "explicacion": "La DI une el contador con el cuadro general del usuario."
+          },
+          {
+            "id": 13,
+            "respuesta": "Red de distribución pública",
+            "es_correcta": false,
+            "explicacion": "La red de distribución es propiedad de la compañía y es previa a la instalación de enlace."
+          }
+        ]
+      }
+    ]
+  }
+]
