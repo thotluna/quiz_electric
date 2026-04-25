@@ -1,13 +1,9 @@
 "use client";
 
-import React from 'react';
-import { UserGlobalStats, TopicStat } from '@/lib/queries/user-stats';
+import { UserStats } from '@/lib/actions/stats';
 
 interface StatsDashboardProps {
-  stats: {
-    global: UserGlobalStats;
-    topics: TopicStat[];
-  };
+  stats: UserStats;
   onClose: () => void;
 }
 
@@ -39,22 +35,22 @@ export const StatsDashboard = ({ stats, onClose }: StatsDashboardProps) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <StatCard 
             label="Total Respondidas" 
-            value={global.totalAnswered.toString()} 
+            value={(global?.totalAnswered || 0).toString()} 
             icon="📊" 
-            subValue={`${global.totalCorrect} correctas`}
+            subValue={`${global?.totalCorrect || 0} correctas`}
           />
           <StatCard 
             label="Precisión Media" 
-            value={`${Math.round(global.accuracy)}%`} 
+            value={`${Math.round(global?.accuracy || 0)}%`} 
             icon="🎯" 
-            color={global.accuracy > 80 ? 'text-status-correct' : global.accuracy > 50 ? 'text-accent-primary' : 'text-status-incorrect'}
-            subValue={global.accuracy > 80 ? 'Excelente nivel' : 'Sigue practicando'}
+            color={(global?.accuracy || 0) > 80 ? 'text-status-correct' : (global?.accuracy || 0) > 50 ? 'text-accent-primary' : 'text-status-incorrect'}
+            subValue={(global?.accuracy || 0) > 80 ? 'Excelente nivel' : 'Sigue practicando'}
           />
           <StatCard 
             label="Temas Dominados" 
-            value={topics.filter(t => t.accuracy >= 80).length.toString()} 
+            value={(topics || []).filter(t => (t.accuracy || 0) >= 80).length.toString()} 
             icon="🏆" 
-            subValue={`De ${topics.length} temas intentados`}
+            subValue={`De ${(topics || []).length} temas intentados`}
           />
         </div>
 
@@ -67,20 +63,20 @@ export const StatsDashboard = ({ stats, onClose }: StatsDashboardProps) => {
             </h2>
             
             <div className="space-y-6">
-              {topics.map((topic) => (
-                <div key={topic.topic} className="space-y-2">
+              {(topics || []).map((topic) => (
+                <div key={topic.topicId} className="space-y-2">
                   <div className="flex justify-between items-end">
-                    <span className="font-bold text-sm text-foreground/80">{topic.topic}</span>
+                    <span className="font-bold text-sm text-foreground/80">{topic.topicId}</span>
                     <span className="text-xs font-black text-foreground/40 uppercase">
-                      {topic.correct}/{topic.answered} · {Math.round(topic.accuracy)}%
+                      {topic.totalCorrect}/{topic.totalAnswered} · {Math.round(topic.accuracy || 0)}%
                     </span>
                   </div>
                   <div className="h-3 bg-foreground/5 rounded-full overflow-hidden border border-foreground/5">
                     <div 
                       className={`h-full rounded-full transition-all duration-1000 ${
-                        topic.accuracy > 80 ? 'bg-status-correct' : topic.accuracy > 50 ? 'bg-accent-primary' : 'bg-status-incorrect'
+                        (topic.accuracy || 0) > 80 ? 'bg-status-correct' : (topic.accuracy || 0) > 50 ? 'bg-accent-primary' : 'bg-status-incorrect'
                       }`}
-                      style={{ width: `${topic.accuracy}%` }}
+                      style={{ width: `${topic.accuracy || 0}%` }}
                     />
                   </div>
                 </div>
