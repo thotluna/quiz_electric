@@ -6,15 +6,15 @@ import { cookies } from 'next/headers'
 import { SupabaseClient } from '@supabase/supabase-js'
 
 export interface GlobalStats {
-  total_questions: number;
-  total_correct: number;
-  avg_accuracy: number;
+  totalAnswered: number;
+  totalCorrect: number;
+  accuracy: number;
 }
 
 export interface TopicStats {
-  topic_id: string;
-  total_questions: number;
-  total_correct: number;
+  topicId: string;
+  totalAnswered: number;
+  totalCorrect: number;
   accuracy: number;
 }
 
@@ -106,11 +106,11 @@ export async function getUserStats(): Promise<UserStats> {
     .eq('user_id', user.id);
 
   const global: GlobalStats = {
-    total_questions: qStats?.reduce((acc, curr) => acc + (curr.times_answered || 0), 0) || 0,
-    total_correct: qStats?.reduce((acc, curr) => acc + (curr.times_correct || 0), 0) || 0,
-    avg_accuracy: 0
+    totalAnswered: qStats?.reduce((acc, curr) => acc + (curr.times_answered || 0), 0) || 0,
+    totalCorrect: qStats?.reduce((acc, curr) => acc + (curr.times_correct || 0), 0) || 0,
+    accuracy: 0
   };
-  global.avg_accuracy = global.total_questions > 0 ? Math.round((global.total_correct / global.total_questions) * 100) : 0;
+  global.accuracy = global.totalAnswered > 0 ? Math.round((global.totalCorrect / global.totalAnswered) * 100) : 0;
 
   // Topic stats (mocking for now as we need a join or separate query)
   const topics: TopicStats[] = [];
