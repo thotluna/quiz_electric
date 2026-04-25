@@ -1,12 +1,13 @@
 "use client";
 
 import React from 'react';
-import { UserGlobalStats, TopicStat } from '@/lib/queries/user-stats';
+import { UserGlobalStats, TopicStat, QuizSession } from '@/lib/queries/user-stats';
 
 interface StatsDashboardProps {
   stats: {
     global: UserGlobalStats;
     topics: TopicStat[];
+    sessions?: QuizSession[];
   };
   onClose: () => void;
 }
@@ -109,9 +110,32 @@ export const StatsDashboard = ({ stats, onClose }: StatsDashboardProps) => {
                   <span>📅</span> Actividad Reciente
                 </h3>
                 <div className="space-y-4">
-                  <p className="text-xs text-foreground/30 font-bold uppercase tracking-widest text-center py-8">
-                    Próximamente: Historial de Tests
-                  </p>
+                  {stats.sessions && stats.sessions.length > 0 ? (
+                    <div className="space-y-3">
+                      {stats.sessions.map((session) => (
+                        <div key={session.id} className="flex items-center justify-between p-3 rounded-xl bg-foreground/5 border border-foreground/5 hover:border-accent-primary/20 transition-all">
+                          <div className="space-y-0.5">
+                            <p className="text-xs font-black text-foreground">
+                              {session.mode === 'timed' ? '⏱️' : session.mode === 'standard' ? '📝' : '♾️'} {session.itc_filter || 'Reglamento Completo'}
+                            </p>
+                            <p className="text-[10px] text-foreground/40 font-bold uppercase tracking-tighter">
+                              {new Date(session.created_at).toLocaleDateString()} · {Math.floor(session.time_elapsed / 60)}m {session.time_elapsed % 60}s
+                            </p>
+                          </div>
+                          <div className="text-right">
+                            <p className={`text-sm font-black ${(session.score / session.total_questions) >= 0.8 ? 'text-status-correct' : 'text-status-incorrect'}`}>
+                              {session.score.toFixed(1)}/{session.total_questions}
+                            </p>
+                            <p className="text-[9px] font-black opacity-30 uppercase tracking-widest">Puntos</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-xs text-foreground/30 font-bold uppercase tracking-widest text-center py-8">
+                      No hay historial de tests todavía.
+                    </p>
+                  )}
                 </div>
              </div>
           </section>
