@@ -1,8 +1,8 @@
 import { getTopics } from "@/lib/queries/questions";
 import { createClient } from "@/lib/supabase/server";
-import LoginPage from "@/components/auth/LoginPage";
 import { QuizHome } from "@/components/quiz/QuizHome";
 import { User } from "@supabase/supabase-js";
+import { redirect } from "next/navigation";
 
 export default async function Home(props: { searchParams: Promise<{ test_session?: string }> }) {
   const searchParams = await props.searchParams;
@@ -16,7 +16,7 @@ export default async function Home(props: { searchParams: Promise<{ test_session
   }
 
   if (!finalUser) {
-    return <LoginPage />;
+    redirect("/login");
   }
 
   const topics = await getTopics();
