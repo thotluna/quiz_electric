@@ -1,6 +1,5 @@
 import { StatsDashboard } from "@/components/quiz/StatsDashboard";
 import { getUserStats } from "@/lib/actions/stats";
-import { Header } from "@/components/header/header";
 
 export default async function StatsPage() {
   const stats = await getUserStats()
