@@ -33,6 +33,9 @@ test.describe('Authentication Flow (E2E Mocks)', () => {
 
     // The Header or UserMenu should show the mock user name
     await expect(page.getByText(/Expert Test User/i)).toBeVisible();
+
+    // Verify the mock data from db.mock.json is loaded (ITC-BT 01 topic)
+    await expect(page.getByText(/ITC-BT 01/i)).toBeVisible();
   });
 
 });
