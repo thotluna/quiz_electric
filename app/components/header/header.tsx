@@ -1,6 +1,6 @@
 import { getUser } from "@/lib/auth/getUser";
-import UserMenu from "../auth/UserMenu";
 import { ButtonStats } from "./ButtonStats";
+import UserMenu from "@/components/auth/UserMenu";
 
 export async function Header() {
   const user = await getUser();

@@ -43,3 +43,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+lib/data/db.json.bak
+
+# local env files
+.env*.local
+.env.test
+
+# editor
+.vscode/
