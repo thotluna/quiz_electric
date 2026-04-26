@@ -1,10 +1,9 @@
-import { createClient } from "@/lib/supabase/server";
+import { getUser } from "@/lib/auth/getUser";
 import UserMenu from "../auth/UserMenu";
 import { ButtonStats } from "./ButtonStats";
 
 export async function Header() {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const user = await getUser();
   return (
     <header className="grid grid-cols-2 md:flex md:justify-between items-center border-b border-border p-4 pb-4 relative w-full ">
 

@@ -1,9 +1,8 @@
-import { createClient } from '@/lib/supabase/server'
+import { getUser } from '@/lib/auth/getUser'
 import UserMenuClient from './UserMenuClient'
 
 export default async function UserMenu() {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const user = await getUser()
 
   if (!user) return null
 

@@ -33,6 +33,7 @@ export default function UserMenuClient({ avatarUrl, userName, emailFirstLetter }
               src={avatarUrl}
               alt={userName || 'User'}
               fill
+              sizes="32px"
               className="object-cover"
               referrerPolicy="no-referrer"
             />
