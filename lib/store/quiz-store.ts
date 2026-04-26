@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { Question, QuizConfig, UserAnswer } from '@/types';
+import { Question, QuizConfig, UserAnswer, QuizMode } from '@/types';
 import { getQuestionsByTopic, getAllQuestions } from '@/lib/queries/questions';
 import { getUserStatsForQuestions } from '@/lib/actions/stats';
 
@@ -10,8 +10,8 @@ const TIMED_MODE_SECONDS = 180;
 interface QuizState {
   userId: string | null;
   config: QuizConfig | null;
-  questions: Question[]; // Esta será la cola de trabajo (se irá vaciando)
-  initialQuestions: Question[]; // Copia para los resultados finales
+  questions: Question[];
+  initialQuestions: Question[];
   currentIndex: number;
   userAnswers: UserAnswer[];
   timeElapsed: number;
@@ -19,7 +19,6 @@ interface QuizState {
   isFinished: boolean;
   isTimeOut: boolean;
   questionStartTime: number;
-
   selectedOptionIds: number[];
   isShowingResult: boolean;
   isAutoAdvancing: boolean;
@@ -29,6 +28,7 @@ interface QuizState {
 interface QuizActions {
   setUserId: (id: string) => void;
   startQuiz: (quizConfig: QuizConfig) => Promise<void>;
+  initQuiz: (config: QuizConfig, questions: Question[]) => void;
   selectOption: (id: number) => void;
   toggleOption: (id: number) => void;
   evaluateAnswer: () => void;
@@ -76,21 +76,36 @@ export const useQuizStore = create<QuizStore>()(
         set({ userId: id });
       },
 
+      initQuiz: (config: QuizConfig, questions: Question[]): void => {
+        const isTest = typeof window !== 'undefined' && document.cookie.includes('test_session');
+        const shuffled = isTest ? questions : [...questions].sort(() => Math.random() - 0.5);
+
+        set({
+          ...initialTransientState,
+          config,
+          questions: shuffled,
+          initialQuestions: [...shuffled],
+          currentIndex: 0,
+          userAnswers: [],
+          timeElapsed: 0,
+          score: 0,
+          isFinished: false,
+          isTimeOut: false,
+          questionStartTime: Date.now(),
+          isLoading: false,
+        });
+      },
+
       startQuiz: async (quizConfig: QuizConfig): Promise<void> => {
         set({ isLoading: true });
-
         try {
           let rawQuestions: Question[] = [];
-          
           if (!quizConfig.topicIds || quizConfig.topicIds.length === 0) {
             rawQuestions = await getAllQuestions();
           } else {
-            // Buscamos preguntas de todos los temas seleccionados en paralelo
             const results = await Promise.all(
               quizConfig.topicIds.map(id => getQuestionsByTopic(id))
             );
-            
-            // Aplanamos el array y eliminamos posibles duplicados por ID
             const flatQuestions = results.flat();
             const uniqueQuestionsMap = new Map<string, Question>();
             flatQuestions.forEach(q => uniqueQuestionsMap.set(q.id, q));
@@ -99,8 +114,7 @@ export const useQuizStore = create<QuizStore>()(
 
           const questionIds = rawQuestions.map(q => q.id);
           const stats = await getUserStatsForQuestions(questionIds);
-
-          // Categorizamos
+          
           const unseen: Question[] = [];
           const failed: Question[] = [];
           const correct: Question[] = [];
@@ -116,13 +130,10 @@ export const useQuizStore = create<QuizStore>()(
             }
           });
 
-          // Selección con pesos: 50% Nuevas, 30% Falladas, 20% Acertadas
           const totalTarget = quizConfig.questionCount || 10;
-          const targetUnseen = Math.ceil(totalTarget * 0.5); // 5
-          const targetFailed = Math.ceil(totalTarget * 0.3); // 3
-          // targetCorrect is the rest
+          const targetUnseen = Math.ceil(totalTarget * 0.5);
+          const targetFailed = Math.ceil(totalTarget * 0.3);
 
-          // Función para elegir aleatoriamente de un pool
           const pickFromPool = (pool: Question[], count: number) => {
             return [...pool].sort(() => Math.random() - 0.5).slice(0, Math.max(0, count));
           };
@@ -133,24 +144,15 @@ export const useQuizStore = create<QuizStore>()(
           if (isTest) {
             finalSelection = rawQuestions;
           } else {
-            // 1. Intentamos pillar las Nuevas
             const pickedUnseen = pickFromPool(unseen, targetUnseen);
             finalSelection = [...finalSelection, ...pickedUnseen];
-
-            // 2. Intentamos pillar las Falladas
-            // Si faltaron nuevas, las sumamos al cupo de falladas
             const extraForFailed = targetUnseen - pickedUnseen.length;
             const pickedFailed = pickFromPool(failed, targetFailed + extraForFailed);
             finalSelection = [...finalSelection, ...pickedFailed];
-
-            // 3. Intentamos pillar las Acertadas
-            // El resto hasta llegar al total
             const remainingToFill = totalTarget - finalSelection.length;
             const pickedCorrect = pickFromPool(correct, remainingToFill);
             finalSelection = [...finalSelection, ...pickedCorrect];
 
-            // 4. Si aún no llegamos al total (porque hay pocas preguntas en el tema)
-            // Rellenamos con cualquier cosa que falte de los pools
             if (finalSelection.length < totalTarget) {
               const currentIds = new Set(finalSelection.map(q => q.id));
               const others = rawQuestions.filter(q => !currentIds.has(q.id));
@@ -159,8 +161,6 @@ export const useQuizStore = create<QuizStore>()(
             }
           }
 
-          // Mezcla final para que no salgan por bloques de categorías
-          // NOTA: Desactivamos el shuffle en modo test para que sea determinista
           const shuffled = isTest ? finalSelection : finalSelection.sort(() => Math.random() - 0.5);
 
           set({
@@ -226,11 +226,8 @@ export const useQuizStore = create<QuizStore>()(
           });
           
           points = partialScore;
-          // Consideramos "correcto" si ha marcado todas las que son y ninguna de las que no
-          // lo cual daría exactamente 1 punto
           isCorrect = Math.abs(partialScore - 1) < 0.01;
         } else {
-          // Simple: solo tomamos la primera (o única) selección
           const selectedId = selectedOptionIds[0];
           const selectedOption = currentQuestion.opciones.find(o => o.id === selectedId);
           isCorrect = !!selectedOption?.es_correcta;
@@ -268,7 +265,6 @@ export const useQuizStore = create<QuizStore>()(
         const currentQuestion = questions[0];
         const timeSpent = Math.round((Date.now() - questionStartTime) / 1000);
 
-        // Registramos el salto si no existía ya
         const existingIndex = userAnswers.findIndex(a => a.question.id === currentQuestion.id);
         const newUserAnswers = [...userAnswers];
         
@@ -281,7 +277,6 @@ export const useQuizStore = create<QuizStore>()(
           });
         }
 
-        // Movemos la pregunta actual al final de la cola
         const remaining = questions.filter(q => q.id !== currentQuestion.id);
         const reorderedQuestions = [...remaining, currentQuestion];
 
@@ -300,7 +295,6 @@ export const useQuizStore = create<QuizStore>()(
         const { questions, userAnswers, isFinished } = get();
         if (isFinished || questions.length === 0) return;
 
-        // Buscamos la respuesta correspondiente a la pregunta que está actualmente en el índice 0
         const currentQuestionInQueue = questions[0];
         const currentAnswer = userAnswers.find(a => a.question.id === currentQuestionInQueue.id);
         
