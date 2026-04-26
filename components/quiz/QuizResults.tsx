@@ -17,10 +17,10 @@ export const QuizResults = ({ userAnswers, timeElapsed, totalQuestions, score, i
   const skippedCount = totalQuestions - answeredCount;
   const correctCount = userAnswers.filter((a) => a.isCorrect).length;
   const incorrectCount = answeredCount - correctCount;
-  
+
   // Use the pre-calculated score from the store
   const rebtScore = Math.max(0, score).toFixed(2);
-  
+
   // Normalized score (0 to 100) based on max possible points
   const normalizedScore = Math.max(0, (score / totalQuestions) * 100).toFixed(1);
   const passThreshold = totalQuestions * 0.8;
@@ -34,7 +34,7 @@ export const QuizResults = ({ userAnswers, timeElapsed, totalQuestions, score, i
 
 
   return (
-    <div className="min-h-screen bg-surface-main pt-0 pb-12 md:pt-12 px-0 md:px-6">
+    <div className="min-h-screen w-full bg-surface-main pt-0 pb-12 md:pt-12 px-0 md:px-6">
       <div className="max-w-4xl mx-auto space-y-4 md:space-y-8">
         {/* Main Card */}
         <div className="bg-surface-card rounded-none md:rounded-[2.5rem] p-4 md:p-12 shadow-2xl border-x-0 border-y md:border border-foreground/5 relative overflow-hidden">
@@ -52,20 +52,19 @@ export const QuizResults = ({ userAnswers, timeElapsed, totalQuestions, score, i
               <h2 className="text-2xl md:text-5xl font-black text-foreground tracking-tight">
                 {isTimeOut ? "¡Se acabó el tiempo!" : "¡Simulacro Finalizado!"}
               </h2>
-              
+
               <div className="flex flex-col items-center gap-2 md:gap-4">
                 <p className="text-xs md:text-base text-foreground/50 max-w-md mx-auto font-medium leading-relaxed px-4 md:px-0">
-                  {isTimeOut 
+                  {isTimeOut
                     ? `Has respondido ${answeredCount} de ${totalQuestions} preguntas antes de que el reloj llegara a cero.`
                     : `Has completado el entrenamiento técnico con ${answeredCount} preguntas respondidas.`}
                 </p>
-                
+
                 <div className="flex flex-col items-center gap-2">
-                  <div className={`px-6 py-2 md:px-8 md:py-3 rounded-xl md:rounded-2xl border-2 font-black text-xl md:text-2xl tracking-tight uppercase shadow-sm transition-all duration-500 ${
-                    isPassed 
-                      ? "bg-status-correct/10 border-status-correct text-status-correct shadow-status-correct/10" 
+                  <div className={`px-6 py-2 md:px-8 md:py-3 rounded-xl md:rounded-2xl border-2 font-black text-xl md:text-2xl tracking-tight uppercase shadow-sm transition-all duration-500 ${isPassed
+                      ? "bg-status-correct/10 border-status-correct text-status-correct shadow-status-correct/10"
                       : "bg-status-incorrect/10 border-status-incorrect text-status-incorrect shadow-status-incorrect/10"
-                  }`}>
+                    }`}>
                     {isPassed ? "✓ APTO" : "✗ NO APTO"}
                   </div>
                   <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-foreground/20">
@@ -81,8 +80,8 @@ export const QuizResults = ({ userAnswers, timeElapsed, totalQuestions, score, i
                 <svg viewBox="0 0 100 50" className="w-full h-full overflow-visible">
                   <defs>
                     <filter id="glow">
-                      <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
-                      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                      <feGaussianBlur stdDeviation="1" result="coloredBlur" />
+                      <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
                     </filter>
                   </defs>
                   <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="currentColor" strokeWidth="12" className="text-foreground/5" strokeLinecap="round" />
@@ -182,58 +181,58 @@ export const QuizResults = ({ userAnswers, timeElapsed, totalQuestions, score, i
                   const selectedOptions = answer.question.opciones.filter(o => answer.selectedOptionIds.includes(o.id));
 
                   return (
-                    <div 
-                      key={answer.question.id} 
+                    <div
+                      key={answer.question.id}
                       className="bg-surface-card rounded-2xl p-6 border border-foreground/5 shadow-lg space-y-4 hover:border-accent-primary/20 transition-colors"
                     >
-                    <div className="flex justify-between items-start gap-4">
-                      <span className="shrink-0 w-8 h-8 rounded-lg bg-foreground/5 flex items-center justify-center text-xs font-bold text-foreground/40">
-                        {index + 1}
-                      </span>
-                      <p className="text-foreground font-bold leading-tight grow">
-                        {answer.question.pregunta}
-                      </p>
-                    </div>
+                      <div className="flex justify-between items-start gap-4">
+                        <span className="shrink-0 w-8 h-8 rounded-lg bg-foreground/5 flex items-center justify-center text-xs font-bold text-foreground/40">
+                          {index + 1}
+                        </span>
+                        <p className="text-foreground font-bold leading-tight grow">
+                          {answer.question.pregunta}
+                        </p>
+                      </div>
 
-                    <div className="grid md:grid-cols-2 gap-3">
-                      <div className="p-4 rounded-xl bg-status-incorrect/5 border border-status-incorrect/10 space-y-1">
-                        <p className="text-[10px] font-black uppercase tracking-widest text-status-incorrect opacity-70">Tu selección</p>
-                        <div className="space-y-1">
-                          {selectedOptions.map(o => (
-                            <p key={o.id} className="text-sm font-bold text-status-incorrect">• {o.respuesta}</p>
-                          ))}
+                      <div className="grid md:grid-cols-2 gap-3">
+                        <div className="p-4 rounded-xl bg-status-incorrect/5 border border-status-incorrect/10 space-y-1">
+                          <p className="text-[10px] font-black uppercase tracking-widest text-status-incorrect opacity-70">Tu selección</p>
+                          <div className="space-y-1">
+                            {selectedOptions.map(o => (
+                              <p key={o.id} className="text-sm font-bold text-status-incorrect">• {o.respuesta}</p>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="p-4 rounded-xl bg-status-correct/5 border border-status-correct/10 space-y-1">
+                          <p className="text-[10px] font-black uppercase tracking-widest text-status-correct opacity-70">Respuestas correctas</p>
+                          <div className="space-y-1">
+                            {correctOptions.map(o => (
+                              <p key={o.id} className="text-sm font-bold text-status-correct">• {o.respuesta}</p>
+                            ))}
+                          </div>
                         </div>
                       </div>
-                      <div className="p-4 rounded-xl bg-status-correct/5 border border-status-correct/10 space-y-1">
-                        <p className="text-[10px] font-black uppercase tracking-widest text-status-correct opacity-70">Respuestas correctas</p>
-                        <div className="space-y-1">
-                          {correctOptions.map(o => (
-                            <p key={o.id} className="text-sm font-bold text-status-correct">• {o.respuesta}</p>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
 
-                    {correctOptions.some(o => o.explicacion) && (
-                      <div className="mt-4 p-4 rounded-xl bg-accent-primary/5 border border-accent-primary/10">
-                        <p className="text-[10px] font-black uppercase tracking-widest text-accent-primary opacity-70 mb-2">Explicación técnica</p>
-                        <div className="space-y-3">
-                          {correctOptions.filter(o => o.explicacion).map(o => (
-                            <div key={o.id}>
-                              {correctOptions.length > 1 && (
-                                <p className="text-[10px] font-bold text-accent-primary/60 mb-1">{o.respuesta}</p>
-                              )}
-                              <p className="text-sm text-foreground/70 leading-relaxed font-medium">
-                                {o.explicacion}
-                              </p>
-                            </div>
-                          ))}
+                      {correctOptions.some(o => o.explicacion) && (
+                        <div className="mt-4 p-4 rounded-xl bg-accent-primary/5 border border-accent-primary/10">
+                          <p className="text-[10px] font-black uppercase tracking-widest text-accent-primary opacity-70 mb-2">Explicación técnica</p>
+                          <div className="space-y-3">
+                            {correctOptions.filter(o => o.explicacion).map(o => (
+                              <div key={o.id}>
+                                {correctOptions.length > 1 && (
+                                  <p className="text-[10px] font-bold text-accent-primary/60 mb-1">{o.respuesta}</p>
+                                )}
+                                <p className="text-sm text-foreground/70 leading-relaxed font-medium">
+                                  {o.explicacion}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+                      )}
+                    </div>
+                  );
+                })}
             </div>
           </div>
         )}

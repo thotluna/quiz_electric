@@ -20,5 +20,7 @@ export default async function Home(props: { searchParams: Promise<{ test_session
   }
 
   const topics = await getTopics();
-  return <QuizHome user={finalUser} topics={topics} />;
+  return (
+    <QuizHome user={finalUser} topics={topics} />
+  );
 }
