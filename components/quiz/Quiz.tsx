@@ -195,11 +195,7 @@ export const Quiz = (): React.ReactElement => {
         />
       </div>
 
-      <div className="text-center mt-4">
-        <p className="text-[10px] text-foreground/30 font-medium uppercase tracking-widest">
-          {config?.mode === "timed" ? "🏁 Entrenamiento Contra Reloj" : config?.mode === "infinite" ? "♾️ Entrenamiento Infinito" : "📋 Simulacro Estándar"}
-        </p>
-      </div>
+
     </div>
   );
 };
