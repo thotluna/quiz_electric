@@ -1,15 +1,7 @@
 import { QuestionByTopic, Question } from '@/types'
 import db from "../data/db.json";
 
-type MockWindow = typeof window & {
-  __MOCK_QUESTIONS__?: QuestionByTopic[];
-};
-
 export const getDbAll = (): QuestionByTopic[] => {
-  // Check browser mock (E2E Playwright)
-  if (typeof window !== "undefined" && (window as MockWindow).__MOCK_QUESTIONS__) {
-    return (window as MockWindow).__MOCK_QUESTIONS__!;
-  }
   return db as unknown as QuestionByTopic[];
 };
 
