@@ -44,3 +44,8 @@
 ## Perfil y Estadísticas
 - [x] Implementar perfil de usuario con dashboard de estadísticas detallado
 - [x] Visualizar historial de simulacros realizados
+
+## Arquitectura Next.js 16
+- [x] Refactorizar Auth Guard a Data Access Layer (DAL)
+- [x] Migrar `middleware.ts` a `proxy.ts` (Next 16 standard)
+- [x] Implementar ruta dedicada `/login` para separación de responsabilidades
