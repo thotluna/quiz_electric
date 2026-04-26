@@ -1,13 +1,31 @@
-interface GoogleSignInButtonProps {
-  onClick: () => void;
-  disabled?: boolean;
-}
+'use client'
 
-export const GoogleSignInButton = ({ onClick, disabled }: GoogleSignInButtonProps) => {
+import { createClient } from "@/lib/supabase/client";
+import { useState } from "react";
+
+export const GoogleSignInButton = () => {
+  const [loading, setLoading] = useState(false)
+  const supabase = createClient()
+
+  const handleSignIn = async () => {
+    setLoading(true)
+    try {
+      await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${window.location.origin}/auth/callback`,
+        },
+      })
+    } catch (error) {
+      console.error('Error signing in:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
   return (
     <button
-      onClick={onClick}
-      disabled={disabled}
+      onClick={handleSignIn}
+      disabled={loading}
       className="w-full flex items-center justify-center gap-4 py-4 px-6 rounded-2xl bg-white text-slate-900 font-black text-sm hover:bg-slate-50 transition-all border border-slate-200 shadow-xl disabled:opacity-50 group"
     >
       <svg className="w-5 h-5 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
