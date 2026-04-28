@@ -51,7 +51,7 @@ export async function saveQuizResults(
   const supabase = await createClient();
   const { data: { user: supabaseUser } } = await supabase.auth.getUser();
   const cookieStore = await cookies();
-  
+
   let user = supabaseUser;
   if (!user && process.env.NODE_ENV === 'development' && cookieStore.get('test_session')) {
     user = { id: 'test-user-123', email: 'test@example.com' } as never;
@@ -74,7 +74,7 @@ export async function saveQuizResults(
 
       const { error: globalErr } = await upsertGlobalStats(supabase, answer);
       const { error: userErr } = await upsertUserStats(supabase, user.id, answer);
-      
+
       if (!globalErr && !userErr) {
         savedCount++;
       } else {
@@ -101,7 +101,7 @@ export async function getUserStats(): Promise<UserStats> {
   const supabase = await createClient();
   const { data: { user: supabaseUser } } = await supabase.auth.getUser();
   const cookieStore = await cookies();
-  
+
   let user = supabaseUser;
   if (!user && process.env.NODE_ENV === 'development' && cookieStore.get('test_session')) {
     user = { id: 'test-user-123', email: 'test@example.com' } as never;
@@ -146,7 +146,7 @@ export async function getUserStatsForQuestions(questionIds: string[]) {
   const supabase = await createClient();
   const { data: { user: supabaseUser } } = await supabase.auth.getUser();
   const cookieStore = await cookies();
-  
+
   let user = supabaseUser;
   if (!user && process.env.NODE_ENV === 'development' && cookieStore.get('test_session')) {
     user = { id: 'test-user-123', email: 'test@example.com' } as never;
@@ -186,13 +186,13 @@ async function upsertGlobalStats(supabase: SupabaseClient, answer: UserAnswer) {
     const isCorrect = answer.isCorrect;
     const newTimesCorrect = (existing.times_correct || 0) + (isCorrect ? 1 : 0);
     let newAvgTime = existing.avg_correct_time || 0;
-    
+
     if (isCorrect) {
       const currentTimesCorrect = existing.times_correct || 0;
       const totalTime = (newAvgTime * currentTimesCorrect) + answer.timeSpent;
       newAvgTime = Math.round(totalTime / newTimesCorrect);
     }
-    
+
     return supabase.from('questions').update({
       times_answered: (existing.times_answered || 0) + 1,
       times_correct: newTimesCorrect,
@@ -223,7 +223,7 @@ async function upsertUserStats(supabase: SupabaseClient, userId: string, answer:
     const isCorrect = answer.isCorrect;
     const currentMin = existing.min_correct_time || 0;
     const currentMax = existing.max_correct_time || 0;
-    
+
     const newMin = isCorrect ? (currentMin === 0 ? answer.timeSpent : Math.min(currentMin, answer.timeSpent)) : currentMin;
     const newMax = isCorrect ? Math.max(currentMax, answer.timeSpent) : currentMax;
 
