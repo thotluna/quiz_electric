@@ -50,9 +50,13 @@
 - [x] Refactorizar Auth Guard a Data Access Layer (DAL)
 - [x] Migrar `middleware.ts` a `proxy.ts` (Next 16 standard)
 - [x] Implementar ruta dedicada `/login` para separación de responsabilidades
+- [x] Migrar Home a **Server Components** con carga progresiva (Suspense + Skeletons)
+- [x] Desacoplar configuración de ejecución: Navegación basada en **URL Query Params**
+- [x] Reorganizar arquitectura de componentes (Colocalización en carpetas privadas `app/_components`)
+- [x] Implementar **tests E2E** para validación de estado inicial y flujo de navegación
 
 ## Arquitectura de Seguridad y Estado (Zustand + Server Actions)
-- [x] Refactorizar a arquitectura "Continente e Islas" (Page Server + Island Zustand)
+- [x] Refactorizar a arquitectura \"Continente e Islas\" (Page Server + Island Zustand)
 - [x] Implementar tipado ClientQuestion para ocultar respuestas correctas al cliente
 - [x] Migrar lógica de evaluación a Server Actions seguros
 - [x] Centralizar mapeo de datos en la capa de consultas (DAL)
