@@ -62,8 +62,8 @@ export const QuizResults = ({ userAnswers, timeElapsed, totalQuestions, score, i
 
                 <div className="flex flex-col items-center gap-2">
                   <div className={`px-6 py-2 md:px-8 md:py-3 rounded-xl md:rounded-2xl border-2 font-black text-xl md:text-2xl tracking-tight uppercase shadow-sm transition-all duration-500 ${isPassed
-                      ? "bg-status-correct/10 border-status-correct text-status-correct shadow-status-correct/10"
-                      : "bg-status-incorrect/10 border-status-incorrect text-status-incorrect shadow-status-incorrect/10"
+                    ? "bg-status-correct/10 border-status-correct text-status-correct shadow-status-correct/10"
+                    : "bg-status-incorrect/10 border-status-incorrect text-status-incorrect shadow-status-incorrect/10"
                     }`}>
                     {isPassed ? "✓ APTO" : "✗ NO APTO"}
                   </div>
@@ -177,12 +177,12 @@ export const QuizResults = ({ userAnswers, timeElapsed, totalQuestions, score, i
               {userAnswers
                 .filter(a => a.selectedOptionIds.length > 0 && !a.isCorrect)
                 .map((answer, index) => {
-                  const correctOptions = answer.question.opciones.filter(o => o.es_correcta);
-                  const selectedOptions = answer.question.opciones.filter(o => answer.selectedOptionIds.includes(o.id));
+                  const correctOptions = answer.question?.opciones.filter(o => o.es_correcta) || [];
+                  const selectedOptions = answer.question?.opciones.filter(o => answer.selectedOptionIds.includes(o.id)) || [];
 
                   return (
                     <div
-                      key={answer.question.id}
+                      key={answer.questionId}
                       className="bg-surface-card rounded-2xl p-6 border border-foreground/5 shadow-lg space-y-4 hover:border-accent-primary/20 transition-colors"
                     >
                       <div className="flex justify-between items-start gap-4">
@@ -190,7 +190,7 @@ export const QuizResults = ({ userAnswers, timeElapsed, totalQuestions, score, i
                           {index + 1}
                         </span>
                         <p className="text-foreground font-bold leading-tight grow">
-                          {answer.question.pregunta}
+                          {answer.questionText}
                         </p>
                       </div>
 

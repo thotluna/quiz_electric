@@ -40,7 +40,7 @@ export const QuizManager = ({ topics, userId }: QuizManagerProps) => {
   const [hasSavedSession, setHasSavedSession] = useState<boolean>(false);
   const [isReady, setIsReady] = useState<boolean>(false);
   const hasCheckedInitialSession = useRef<boolean>(false);
-  
+
   const config = useQuizStore((s) => s.config);
   const startQuiz = useQuizStore((s) => s.startQuiz);
   const resumeQuiz = useQuizStore((s) => s.resumeQuiz);
@@ -53,11 +53,11 @@ export const QuizManager = ({ topics, userId }: QuizManagerProps) => {
     setUserId(userId);
 
     const persisted = readPersistedSession();
-    const hasSession = persisted !== null 
-      && !persisted.isFinished 
+    const hasSession = persisted !== null
+      && !persisted.isFinished
       && persisted.questions.length > 0
       && persisted.userAnswers.length > 0; // Only resume if there's actual progress
-    
+
     setHasSavedSession(hasSession);
     setShouldShowResume(hasSession);
     setIsReady(true);
