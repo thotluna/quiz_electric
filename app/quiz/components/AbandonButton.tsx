@@ -1,25 +1,27 @@
-"use client";
+\"use client\";
 
-import { useRouter } from "next/navigation";
-import { useQuizStore } from "@/lib/store/quiz-store";
+import { useRouter } from \"next/navigation\";
+import { useQuizStore } from \"@/lib/store/quiz-store\";
 
 export const AbandonButton = () => {
   const router = useRouter();
-  const resetQuiz = useQuizStore((s) => s.resetQuiz);
+  const finishQuiz = useQuizStore((s) => s.finishQuiz);
+  const discardSavedQuiz = useQuizStore((s) => s.discardSavedQuiz);
 
-  const handleAbandon = () => {
-    if (confirm("¿Estás seguro de que quieres abandonar el simulacro?")) {
-      resetQuiz();
-      router.push("/");
+  const handleAbandon = async () => {
+    if (confirm(\"\u00bfEst\u00e1s seguro de que quieres abandonar el simulacro? Se guardar\u00e1n las estad\u00edsticas actuales.\")) {
+      await finishQuiz();
+      discardSavedQuiz();
+      router.push(\"/\");
     }
   };
 
   return (
     <button
       onClick={handleAbandon}
-      className="text-[10px] font-bold text-foreground/30 uppercase tracking-widest hover:text-accent-primary transition-colors"
+      className=\"px-3 py-1.5 rounded-lg border border-foreground/10 hover:bg-foreground/5 text-foreground/50 hover:text-foreground text-[10px] font-bold uppercase tracking-wider transition-all\"
     >
-      ← Abandonar
+      Abandonar
     </button>
   );
 };

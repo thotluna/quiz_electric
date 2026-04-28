@@ -1,26 +1,9 @@
-export type QuestionType = 'simple' | 'multiple';
-
-export interface Question {
-  id: string;
-  pregunta: string;
-  opciones: Option[];
-  tipo: QuestionType;
-}
-
-export interface QuestionCompocat extends Question {
-  itc: string;
-}
-
-export interface Option {
-  id: number;
-  respuesta: string;
-  es_correcta: boolean;
-  explicacion: string;
-}
+import { Question, QuestionType, User } from \"@/types\";
 
 export interface ClientOption {
   id: number;
   respuesta: string;
+  explicacion?: string;
 }
 
 export interface ClientQuestion {
