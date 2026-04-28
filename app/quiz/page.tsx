@@ -1,70 +1,62 @@
-import { Suspense } from "react";
-import { redirect } from "next/navigation";
+import { QuestionCard } from "@/app/quiz/components/QuestionCard";
+import { QuizControls } from "@/app/quiz/components/QuizControls";
+import { StatsBar } from "@/app/quiz/components/StatsBar";
+import { OptionsList } from "@/app/quiz/components/OptionsList";
+import { AbandonButton } from "@/app/quiz/components/AbandonButton";
 import { verifySession } from "@/lib/auth/getUser";
-import { getQuestionsByTopic, getAllQuestions } from "@/lib/queries/questions";
-import { QuizManager } from "@/components/quiz/QuizManager";
-import { QuizMode, Question } from "@/types";
+import { getQuestionsByTopic } from "@/lib/queries/questions";
+import { QuizMode, ClientQuestion, QuizConfig } from "@/types";
+import { QuizInitialization } from "@/app/quiz/components/QuizInitialization";
 
-interface QuizPageProps {
-  searchParams: Promise<{
-    mode?: string;
-    topics?: string;
-  }>;
+interface PageProps {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
-export default async function QuizPage({ searchParams }: QuizPageProps) {
+export default async function QuizPage({ searchParams }: PageProps) {
+
   const user = await verifySession();
-  const params = await searchParams;
+  const data = await searchParams;
+  const topics = data.topics
+    ? (data.topics as string).split(',')
+    : []
+  const mode = data.mode as QuizMode;
 
-  const mode = (params.mode as QuizMode) || 'standard';
-  const topicIds = params.topics ? params.topics.split(',') : [];
+  const questions = await getQuestionsByTopic(topics, mode, user.id);
 
-  // Fetch questions on the server
-  let questions: Question[] = [];
-  
-  try {
-    if (topicIds.length === 0) {
-      questions = await getAllQuestions();
-    } else {
-      const results = await Promise.all(
-        topicIds.map(id => getQuestionsByTopic(id))
-      );
-      
-      // Flatten and deduplicate
-      const flatQuestions = results.flat();
-      const uniqueMap = new Map<string, Question>();
-      flatQuestions.forEach(q => uniqueMap.set(q.id, q));
-      questions = Array.from(uniqueMap.values());
-    }
-  } catch (error) {
-    console.error("Failed to load questions:", error);
-    // You might want to redirect to an error page or back to home
-    redirect('/?error=load_failed');
-  }
-
-  if (questions.length === 0) {
-    redirect('/?error=no_questions');
-  }
+  const config: QuizConfig = {
+    mode,
+    topicIds: topics,
+    questionCount: questions.length,
+  };
 
   return (
-    <main className="flex flex-col w-full h-full items-center justify-center relative z-10 p-4">
-      <Suspense fallback={<QuizLoading />}>
-         <QuizManager 
-            userId={user.id} 
-            initialQuestions={questions} 
-            mode={mode} 
-            topicIds={topicIds} 
-          />
-      </Suspense>
-    </main>
-  );
-}
+    <div className="max-w-2xl mx-auto">
+      <QuizInitialization
+        questions={questions}
+        config={config}
+      />
+      <div className="bg-surface-card rounded-2xl p-4 md:p-6 shadow-xl border border-foreground/5 backdrop-blur-sm">
+        <div className="flex justify-between items-center mb-4">
+          <AbandonButton />
+          <div className="flex items-center gap-2">
+            {mode === "infinite" && (
+              <span className="px-2 py-1 rounded-md bg-accent-primary/10 text-accent-primary text-[10px] font-black uppercase tracking-tighter">
+                Modo Infinito
+              </span>
+            )}
+          </div>
+        </div>
 
-function QuizLoading() {
-  return (
-    <div className="flex flex-col items-center justify-center p-20 space-y-4">
-      <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-      <p className="text-foreground/50 font-medium animate-pulse">Cargando simulacro...</p>
+        <StatsBar />
+
+        <QuestionCard />
+
+        <div className="space-y-2 mt-4">
+          <OptionsList />
+        </div>
+
+        <QuizControls />
+      </div>
     </div>
   );
 }
