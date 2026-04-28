@@ -1,6 +1,6 @@
-\"use client\";
+"use client";
 
-import { useQuizConfigStore } from \"@/lib/store/quiz-config-store\";
+import { useQuizConfigStore } from "@/lib/store/quiz-config-store";
 
 export function QuizTopics({ topics }: {
   topics: {
@@ -16,10 +16,10 @@ export function QuizTopics({ topics }: {
   }
 
   return (
-    <div className=\"bg-card/30 border border-border rounded-xl p-3\">
-      <div className=\"grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2\">
+    <div className="bg-card/30 border border-border rounded-xl p-3">
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2">
         <button
-          onClick={() => setSelectedTopics(\"\")}
+          onClick={() => setSelectedTopics("")}
           className={`
                 col-span-2 py-1.5 px-3 rounded-lg text-[9px] font-black uppercase tracking-wider border transition-all
                 ${selectedTopics.length === 0

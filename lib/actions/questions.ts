@@ -1,11 +1,11 @@
-\"use server\";
+"use server";
 
-import { getQuestionsByTopic as getQuestionsByTopicQuery, getAllQuestions as getAllQuestionsQuery } from \"@/lib/queries/questions\";
-import { ClientQuestion } from \"@/types\";
+import { getQuestionsByTopic as getQuestionsByTopicQuery, getAllQuestions as getAllQuestionsQuery } from "@/lib/queries/questions";
+import { ClientQuestion, QuizMode } from "@/types";
 
 export async function getQuestionsByTopicAction(
   topicIds: string[],
-  mode: string,
+  mode: QuizMode,
   userId?: string
 ): Promise<ClientQuestion[]> {
   return getQuestionsByTopicQuery(topicIds, mode, userId);

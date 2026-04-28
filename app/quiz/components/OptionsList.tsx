@@ -1,9 +1,10 @@
-\"use client\";
+"use client";
 
-import { useQuizStore } from \"@/lib/store/quiz-store\";
-import { OptionButton } from \"./OptionButton\";
+import { useQuizStore } from "@/lib/store/quiz-store";
+import { OptionButton } from "./OptionButton";
+import type { ReactElement } from "react";
 
-export const OptionsList = (): JSX.Element | null => {
+export const OptionsList = (): ReactElement | null => {
   const currentIndex = useQuizStore((s) => s.currentIndex);
   const questions = useQuizStore((s) => s.questions);
   const selectedOptionIds = useQuizStore((s) => s.selectedOptionIds);
@@ -19,7 +20,7 @@ export const OptionsList = (): JSX.Element | null => {
   const currentAnswer = userAnswers.find(a => a.questionId === currentQuestion.id);
 
   return (
-    <div className=\"space-y-2 mt-4\">
+    <div className="space-y-2 mt-4">
       {currentQuestion.opciones.map((option) => {
         const isSelected = selectedOptionIds.includes(option.id);
         const isCorrect = isShowingResult && isSelected && currentAnswer?.isCorrect;
@@ -35,7 +36,7 @@ export const OptionsList = (): JSX.Element | null => {
             isIncorrect={isIncorrect}
             type={currentQuestion.tipo}
             onClick={(id) => {
-              if (currentQuestion.tipo === \"multiple\") {
+              if (currentQuestion.tipo === "multiple") {
                 toggleOption(id);
               } else {
                 selectOption(id);

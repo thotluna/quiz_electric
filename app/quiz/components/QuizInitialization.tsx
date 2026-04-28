@@ -1,15 +1,16 @@
-\"use client\";
+"use client";
 
-import { useEffect } from \"react\";
-import { useQuizStore } from \"@/lib/store/quiz-store\";
-import { ClientQuestion, QuizConfig } from \"@/types\";
+import { useEffect } from "react";
+import { useQuizStore } from "@/lib/store/quiz-store";
+import { ClientQuestion, QuizConfig } from "@/types";
+import type { ReactElement } from "react";
 
 interface QuizInitializationProps {
   questions: ClientQuestion[];
   config: QuizConfig;
 }
 
-export const QuizInitialization = ({ questions, config }: QuizInitializationProps) => {
+export const QuizInitialization = ({ questions, config }: QuizInitializationProps): ReactElement | null => {
   const initQuiz = useQuizStore((s) => s.initQuiz);
   const tick = useQuizStore((s) => s.tick);
 

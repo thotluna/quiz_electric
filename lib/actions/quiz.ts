@@ -1,7 +1,7 @@
-\"use server\";
+"use server";
 
-import { getQuestionById } from \"@/lib/queries/questions\";
-import { EvaluationResult } from \"@/types\";
+import { getQuestionById } from "@/lib/queries/questions";
+import { EvaluationResult } from "@/types";
 
 export async function evaluateAnswerAction(
   questionId: string,
@@ -10,7 +10,7 @@ export async function evaluateAnswerAction(
   const question = getQuestionById(questionId);
 
   if (!question) {
-    throw new Error(\"Question not found\");
+    throw new Error("Question not found");
   }
 
   const correctOptions = question.opciones.filter(o => o.es_correcta);
@@ -24,7 +24,7 @@ export async function evaluateAnswerAction(
   const points = isCorrect ? 1 : -0.25;
 
   // Build combined explanation
-  const explicacion = correctOptions.map(o => o.explicacion).filter(Boolean).join(\"\\n\\n\");
+  const explicacion = correctOptions.map(o => o.explicacion).filter(Boolean).join("\\n\\n");
 
   return {
     isCorrect,

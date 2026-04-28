@@ -1,4 +1,22 @@
-import { Question, QuestionType, User } from \"@/types\";
+export type QuestionType = "simple" | "multiple";
+
+export interface Option {
+  id: number;
+  respuesta: string;
+  es_correcta: boolean;
+  explicacion: string;
+}
+
+export interface Question {
+  id: string;
+  pregunta: string;
+  opciones: Option[];
+  tipo: QuestionType;
+}
+
+export interface QuestionCompocat extends Question {
+  itc: string;
+}
 
 export interface ClientOption {
   id: number;
@@ -19,7 +37,7 @@ export interface QuestionByTopic {
   preguntas: Question[];
 }
 
-export type QuizMode = 'timed' | 'standard' | 'infinite';
+export type QuizMode = "timed" | "standard" | "infinite";
 
 export interface QuizConfig {
   mode: QuizMode;
@@ -43,4 +61,10 @@ export interface EvaluationResult {
   points: number;
   explicacion: string;
   fullQuestion: Question;
+}
+
+// Minimal User interface to satisfy imports if needed
+export interface User {
+  id: string;
+  email?: string;
 }

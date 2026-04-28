@@ -1,10 +1,10 @@
-\"use client\";
+"use client";
 
-import { create } from \"zustand\";
-import { persist } from \"zustand/middleware\";
-import { ClientQuestion, UserAnswer, QuizConfig, EvaluationResult } from \"@/types\";
-import { evaluateAnswerAction } from \"@/lib/actions/quiz\";
-import { saveQuizStatsAction } from \"@/lib/actions/stats\";
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import { ClientQuestion, UserAnswer, QuizConfig, EvaluationResult } from "@/types";
+import { evaluateAnswerAction } from "@/lib/actions/quiz";
+import { saveQuizStatsAction } from "@/lib/actions/stats";
 
 interface QuizState {
   questions: ClientQuestion[];
@@ -112,7 +112,7 @@ export const useQuizStore = create<QuizState>()(
             isEvaluating: false
           }));
         } catch (error) {
-          console.error(\"Evaluation failed:\", error);
+          console.error("Evaluation failed:", error);
           set({ isEvaluating: false, isPaused: false });
         }
       },
@@ -134,11 +134,13 @@ export const useQuizStore = create<QuizState>()(
       },
 
       finishQuiz: async () => {
-        const { userId, userAnswers } = get();
+        const { userId, userAnswers, config } = get();
         set({ isFinished: true, isPaused: true });
 
-        if (userId && userAnswers.length > 0) {
-          await saveQuizStatsAction(userId, userAnswers);
+        if (userId && userAnswers.length > 0 && config) {
+          const score = userAnswers.filter(a => a.isCorrect).length;
+          const totalTime = userAnswers.reduce((acc, a) => acc + a.timeSpent, 0);
+          await saveQuizStatsAction(userId, userAnswers, config, score, totalTime);
         }
       },
 
@@ -165,7 +167,7 @@ export const useQuizStore = create<QuizState>()(
       setPaused: (isPaused) => set({ isPaused })
     }),
     {
-      name: \"quiz-electric-session\",
+      name: "quiz-electric-session",
       partialize: (state) => ({
         config: state.config,
         questions: state.questions,
