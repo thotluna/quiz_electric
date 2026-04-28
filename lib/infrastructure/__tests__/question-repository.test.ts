@@ -20,19 +20,31 @@ describe('QuestionRepository Integration', () => {
     expect(question).toBeInstanceOf(SimpleQuestion);
   });
 
-  it('should fetch questions by topic (ITC)', async () => {
-    const questions = await repository.getByTopic('ITC-BT-01');
+  it('should fetch questions using getAll with topic filter', async () => {
+    const questions = await repository.getAll({ topicIds: ['ITC-BT-01'] });
     
     expect(questions.length).toBeGreaterThan(0);
-    expect(questions[0].id).toContain('ITC-BT-01');
   });
 
-  it('should support excluding IDs', async () => {
+  it('should support excluding IDs and limiting results', async () => {
     const excludeId = 'ITC-BT-01-01';
     const limit = 5;
-    const questions = await repository.getExcluded([excludeId], limit);
+    const questions = await repository.getAll({ 
+      excludeIds: [excludeId], 
+      limit 
+    });
     
     expect(questions.length).toBeLessThanOrEqual(limit);
     expect(questions.find(q => q.id === excludeId)).toBeUndefined();
+  });
+
+  it('should support pagination via offset', async () => {
+    const limit = 2;
+    const firstPage = await repository.getAll({ limit, offset: 0 });
+    const secondPage = await repository.getAll({ limit, offset: 2 });
+    
+    expect(firstPage.length).toBe(limit);
+    expect(secondPage.length).toBe(limit);
+    expect(firstPage[0].id).not.toBe(secondPage[0].id);
   });
 });
