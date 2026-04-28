@@ -1,37 +1,50 @@
-import { IQuestionDataSource, QuestionDTO, QuestionFilter } from '../contracts/question-datasource';
+import { IQuestionDataSource, QuestionDTO, QuestionFilter, OptionDTO } from '../contracts/question-datasource';
 import db from '@/lib/data/db.json';
+
+interface RawQuestion {
+  id: string | number;
+  pregunta: string;
+  opciones: OptionDTO[];
+  tipo: string;
+}
 
 interface RawTopic {
   id: string;
   itc: string;
-  preguntas: QuestionDTO[];
+  preguntas: RawQuestion[];
 }
 
 export class JsonQuestionDataSource implements IQuestionDataSource {
-  private readonly questions: QuestionDTO[] = (db as unknown as RawTopic[]).flatMap((topic: RawTopic) => 
-    topic.preguntas.map((q: QuestionDTO) => ({
-      ...q,
-      itc: topic.itc
-    }))
-  );
+  private readonly questions: QuestionDTO[];
+
+  constructor() {
+    this.questions = this.parseJsonData();
+  }
+
+  private parseJsonData(): QuestionDTO[] {
+    const topics = db satisfies RawTopic[];
+
+    return topics.flatMap(topic =>
+      topic.preguntas.map(question => ({
+        id: String(question.id),
+        pregunta: question.pregunta,
+        opciones: question.opciones,
+        tipo: question.tipo as 'simple' | 'multiple',
+        itc: topic.itc
+      }))
+    );
+  }
 
   public async fetchById(id: string): Promise<QuestionDTO | null> {
     return this.questions.find(q => q.id === id) ?? null;
   }
 
-  public async fetchByIds(ids: string[]): Promise<QuestionDTO[]> {
-    return this.questions.filter(q => ids.includes(q.id));
-  }
-
-  public async fetchByTopic(topicId: string): Promise<QuestionDTO[]> {
-    return this.questions.filter(q => q.itc === topicId);
-  }
-
   public async fetchAll(filter?: QuestionFilter): Promise<QuestionDTO[]> {
     let result = [...this.questions];
 
-    if (filter?.topicId) {
-      result = result.filter(q => q.itc === filter.topicId);
+    if (filter?.topicIds && filter.topicIds.length > 0) {
+      const topicSet = new Set(filter.topicIds);
+      result = result.filter(q => q.itc && topicSet.has(q.itc));
     }
 
     if (filter?.excludeIds && filter.excludeIds.length > 0) {
@@ -39,10 +52,15 @@ export class JsonQuestionDataSource implements IQuestionDataSource {
       result = result.filter(q => !excludeSet.has(q.id));
     }
 
-    if (filter?.limit) {
-      result = result.slice(0, filter.limit);
+    // Solo barajamos si NO hay offset (o si se quiere explícitamente), 
+    // para mantener consistencia en paginación si se usara offset secuencial.
+    if (!filter?.offset) {
+      result.sort(() => Math.random() - 0.5);
     }
 
-    return result;
+    const start = filter?.offset ?? 0;
+    const end = filter?.limit ? start + filter.limit : undefined;
+
+    return result.slice(start, end);
   }
 }

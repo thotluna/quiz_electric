@@ -1,12 +1,18 @@
 import { QuestionEntity } from './entities';
-
+import { QuestionStat } from './repositories/user-stats';
 
 export type AnyQuestionEntity = QuestionEntity<number> | QuestionEntity<number[]>;
 
+export interface QuestionFilter {
+  topicIds?: string[];
+  excludeIds?: string[];
+  limit?: number;
+  offset?: number;
+}
 
 export interface IQuestionRepository {
   getById(id: string): Promise<AnyQuestionEntity | null>;
-  getByTopic(topicId: string): Promise<AnyQuestionEntity[]>;
-  getAll(): Promise<AnyQuestionEntity[]>;
-  getExcluded(ids: string[], limit?: number): Promise<AnyQuestionEntity[]>;
+  getAll(filter?: QuestionFilter): Promise<AnyQuestionEntity[]>;
 }
+
+export * from './repositories/user-stats';

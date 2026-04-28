@@ -14,14 +14,13 @@ export interface QuestionDTO {
 }
 
 export interface QuestionFilter {
-  topicId?: string;
+  topicIds?: string[];
   excludeIds?: string[];
   limit?: number;
+  offset?: number;
 }
 
 export interface IQuestionDataSource {
   fetchById(id: string): Promise<QuestionDTO | null>;
-  fetchByIds(ids: string[]): Promise<QuestionDTO[]>;
-  fetchByTopic(topicId: string): Promise<QuestionDTO[]>;
   fetchAll(filter?: QuestionFilter): Promise<QuestionDTO[]>;
 }
