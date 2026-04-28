@@ -11,6 +11,7 @@ interface QuizConfigActions {
   setUserId: (userId: string) => void;
   setMode: (mode: QuizMode) => void;
   setTopicIds: (topicIds: string[]) => void;
+  setTopicId: (topicIds: string) => void;
   toggleTopic: (topicId: string) => void;
   resetConfig: () => void;
 }
@@ -23,7 +24,7 @@ const initialState: QuizConfigState = {
   topicIds: [],
 };
 
-export const useQuizConfigStore = create<QuizConfigStore>((set) => ({
+export const useQuizConfigStore = create<QuizConfigStore>((set, get) => ({
   ...initialState,
 
   setUserId: (userId: string): void => {
@@ -36,6 +37,15 @@ export const useQuizConfigStore = create<QuizConfigStore>((set) => ({
 
   setTopicIds: (topicIds: string[]): void => {
     set({ topicIds });
+  },
+
+  setTopicId: (topicId: string): void => {
+    const { topicIds } = get();
+    if (topicIds.includes(topicId)) {
+      set({ topicIds: topicIds.filter((id) => id !== topicId) });
+    } else {
+      set({ topicIds: [...topicIds, topicId] });
+    }
   },
 
   toggleTopic: (topicId: string): void => {
