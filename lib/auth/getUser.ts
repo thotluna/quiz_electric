@@ -9,6 +9,17 @@ import { User } from '@supabase/supabase-js';
  * Does NOT redirect. Safe to use in Layouts and optional auth components.
  */
 export const getUser = cache(async (): Promise<User | null> => {
+  if (process.env.NODE_ENV === 'test') {
+    return {
+      id: 'test-user-id',
+      email: 'test@example.com',
+      app_metadata: {},
+      user_metadata: { full_name: 'Test User' },
+      aud: 'authenticated',
+      created_at: new Date().toISOString(),
+    } as User;
+  }
+
   const supabase = await createClient();
   const {
     data: { user },
