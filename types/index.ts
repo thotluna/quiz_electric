@@ -1,23 +1,15 @@
 export type QuestionType = 'simple' | 'multiple';
 
-export interface Question {
-  id: string;
-  pregunta: string;
-  opciones: Option[];
-  tipo: QuestionType;
-}
-
-export interface Option {
+export interface ClientOption {
   id: number;
   respuesta: string;
-  es_correcta: boolean;
-  explicacion: string;
 }
 
-export interface QuestionByTopic {
+export interface ClientQuestion {
   id: string;
-  itc: string;
-  preguntas: Question[];
+  pregunta: string;
+  opciones: ClientOption[];
+  tipo: QuestionType;
 }
 
 export type QuizMode = 'timed' | 'standard' | 'infinite';
@@ -29,8 +21,11 @@ export interface QuizConfig {
 }
 
 export interface UserAnswer {
-  question: Question;
+  question: ClientQuestion;
   selectedOptionIds: number[];
   isCorrect: boolean;
+  points: number;
   timeSpent: number;
+  explanation?: string;
+  correctIds?: number[];
 }
