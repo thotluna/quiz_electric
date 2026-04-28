@@ -51,3 +51,4 @@ lib/data/db.json.bak
 
 # editor
 .vscode/
+implementation_plan.md
