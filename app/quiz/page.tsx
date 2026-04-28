@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { verifySession } from "@/lib/auth/getUser";
-import { getQuestionsByTopic, getAllQuestions } from "@/lib/queries/questions";
+import { getQuizQuestionsAction } from "@/lib/application/actions/quiz-actions";
 import { QuizManager } from "@/components/quiz/QuizManager";
-import { QuizMode, Question } from "@/types";
+import { QuizMode } from "@/types";
 
 interface QuizPageProps {
   searchParams: Promise<{
@@ -19,28 +19,7 @@ export default async function QuizPage({ searchParams }: QuizPageProps) {
   const mode = (params.mode as QuizMode) || 'standard';
   const topicIds = params.topics ? params.topics.split(',') : [];
 
-  // Fetch questions on the server
-  let questions: Question[] = [];
-  
-  try {
-    if (topicIds.length === 0) {
-      questions = await getAllQuestions();
-    } else {
-      const results = await Promise.all(
-        topicIds.map(id => getQuestionsByTopic(id))
-      );
-      
-      // Flatten and deduplicate
-      const flatQuestions = results.flat();
-      const uniqueMap = new Map<string, Question>();
-      flatQuestions.forEach(q => uniqueMap.set(q.id, q));
-      questions = Array.from(uniqueMap.values());
-    }
-  } catch (error) {
-    console.error("Failed to load questions:", error);
-    // You might want to redirect to an error page or back to home
-    redirect('/?error=load_failed');
-  }
+  const questions = await getQuizQuestionsAction(topicIds, mode === 'timed' ? 10 : 50, user.id);
 
   if (questions.length === 0) {
     redirect('/?error=no_questions');

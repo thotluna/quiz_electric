@@ -1,7 +1,7 @@
-import { Question } from "@/types";
+import { ClientQuestion } from "@/types";
 
 interface QuestionCardProps {
-  question: Question;
+  question: ClientQuestion;
   questionNumber: number;
   totalQuestions?: number;
 }
@@ -10,7 +10,7 @@ export const QuestionCard = ({
   question,
   questionNumber,
   totalQuestions,
-}: QuestionCardProps) => {
+}: QuestionCardProps): React.ReactElement => {
   return (
     <div className="mb-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
       {question.tipo === "multiple" && (

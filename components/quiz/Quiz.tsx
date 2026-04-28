@@ -23,6 +23,7 @@ export const Quiz = (): React.ReactElement => {
   const isTimeOut = useQuizStore((s) => s.isTimeOut);
   const isAutoAdvancing = useQuizStore((s) => s.isAutoAdvancing);
   const userAnswers = useQuizStore((s) => s.userAnswers);
+  const lastEvaluation = useQuizStore((s) => s.lastEvaluation);
 
   const selectOption = useQuizStore((s) => s.selectOption);
   const toggleOption = useQuizStore((s) => s.toggleOption);
@@ -38,21 +39,16 @@ export const Quiz = (): React.ReactElement => {
   const isInfinite = config?.mode === "infinite";
   const timeLeft = config?.mode === "timed" ? TIMED_MODE_SECONDS - timeElapsed : 0;
 
-  // Efecto para el temporizador
   useEffect(() => {
     if (isFinished || isAutoAdvancing) return;
 
     const interval = setInterval(() => {
-      const timeRanOut = tick();
-      if (timeRanOut) {
-        console.log('Time out!');
-      }
+      tick();
     }, 1000);
 
     return () => clearInterval(interval);
   }, [isFinished, isAutoAdvancing, tick]);
 
-  // Efecto para guardar resultados automáticamente cuando el test termina
   useEffect(() => {
     if (isFinished && userAnswers.length > 0) {
       saveQuizResults(userAnswers).catch(console.error);
@@ -62,7 +58,7 @@ export const Quiz = (): React.ReactElement => {
   if (!questions || questions.length === 0) {
     return (
       <div className="text-center p-12 bg-surface-card rounded-2xl border-2 border-foreground/5 space-y-6">
-        <p className="text-foreground/50">No hay preguntas disponibles para este tema.</p>
+        <p className="text-foreground/50">No hay preguntas disponibles.</p>
         <button onClick={resetQuiz} className="px-6 py-2 rounded-xl bg-accent-primary text-white font-bold">
           Volver al inicio
         </button>
@@ -73,19 +69,14 @@ export const Quiz = (): React.ReactElement => {
   const currentQuestion = questions[0];
   const isMultiple = currentQuestion.tipo === "multiple";
 
-  const selectedOptions = currentQuestion.opciones.filter(opt => selectedOptionIds.includes(opt.id));
-  const firstIncorrect = selectedOptions.find(o => !o.es_correcta);
-  const selectedOption = firstIncorrect || selectedOptions[0];
-
-  const handleNext = (): void => {
+  const handleNext = async (): Promise<void> => {
     if (autoAdvanceTimerRef.current) {
       clearTimeout(autoAdvanceTimerRef.current);
     }
 
     if (!isShowingResult) {
-      evaluateAnswer();
+      await evaluateAnswer();
 
-      // Esperamos 3 segundos de feedback antes de avanzar automáticamente
       autoAdvanceTimerRef.current = setTimeout(() => {
         advance();
       }, 3000);
@@ -115,6 +106,10 @@ export const Quiz = (): React.ReactElement => {
     );
   }
 
+  const answeredCount = userAnswers.length;
+  const total = useQuizStore.getState().initialQuestions.length;
+  const displayIndex = Math.min(answeredCount + 1, total);
+
   return (
     <div className="max-w-2xl mx-auto">
       <div className="bg-surface-card rounded-2xl p-4 md:p-6 shadow-xl border border-foreground/5 backdrop-blur-sm">
@@ -134,35 +129,25 @@ export const Quiz = (): React.ReactElement => {
           </div>
         </div>
 
-        {(() => {
-          const answeredCount = userAnswers.length;
-          const total = useQuizStore.getState().initialQuestions.length;
-          const displayIndex = Math.min(answeredCount + 1, total);
+        <StatsBar
+          timeElapsed={config?.mode === "timed" ? timeLeft : timeElapsed}
+          correctAnswers={score}
+          currentQuestion={displayIndex}
+          totalQuestions={total}
+          isCountdown={config?.mode === "timed"}
+        />
 
-          return (
-            <>
-              <StatsBar
-                timeElapsed={config?.mode === "timed" ? timeLeft : timeElapsed}
-                correctAnswers={score}
-                currentQuestion={displayIndex}
-                totalQuestions={total}
-                isCountdown={config?.mode === "timed"}
-              />
-
-              <QuestionCard
-                question={currentQuestion}
-                questionNumber={displayIndex}
-                totalQuestions={total}
-              />
-            </>
-          );
-        })()}
+        <QuestionCard
+          question={currentQuestion}
+          questionNumber={displayIndex}
+          totalQuestions={total}
+        />
 
         <div className="space-y-2 mt-4">
           {currentQuestion.opciones.map((option) => {
             const isSelected = selectedOptionIds.includes(option.id);
-            const isCorrect = isShowingResult && isSelected && option.es_correcta;
-            const isIncorrect = isShowingResult && isSelected && !option.es_correcta;
+            const isCorrect = isShowingResult && lastEvaluation?.correctIds.includes(option.id);
+            const isIncorrect = isShowingResult && isSelected && !lastEvaluation?.correctIds.includes(option.id);
 
             return (
               <OptionButton
@@ -170,8 +155,8 @@ export const Quiz = (): React.ReactElement => {
                 option={option}
                 isSelected={isSelected}
                 isDisabled={isShowingResult}
-                isCorrect={isCorrect}
-                isIncorrect={isIncorrect}
+                isCorrect={!!isCorrect}
+                isIncorrect={!!isIncorrect}
                 type={currentQuestion.tipo}
                 onClick={isMultiple ? toggleOption : selectOption}
               />
@@ -182,20 +167,18 @@ export const Quiz = (): React.ReactElement => {
         <QuizControls
           onNext={handleNext}
           onSkip={skipQuestion}
-          onFinish={() => {
+          onFinish={(): void => {
             useQuizStore.getState().finishQuiz();
           }}
-          showFinish={userAnswers.length >= useQuizStore.getState().initialQuestions.length}
+          showFinish={userAnswers.length >= total}
           hasSelected={selectedOptionIds.length > 0}
           isShowingResult={isShowingResult}
           isAutoAdvancing={isAutoAdvancing}
-          isCorrect={userAnswers.find(a => a.question.id === currentQuestion.id)?.isCorrect}
+          isCorrect={lastEvaluation?.isCorrect}
           isLastQuestion={!isInfinite && currentIndex === questions.length - 1}
-          explanation={selectedOption?.explicacion}
+          explanation={lastEvaluation?.explanation}
         />
       </div>
-
-
     </div>
   );
 };

@@ -1,9 +1,9 @@
 "use client";
 
-import { Option } from "@/types";
+import { ClientOption } from "@/types";
 
 interface OptionButtonProps {
-  option: Option;
+  option: ClientOption;
   isSelected: boolean;
   isDisabled: boolean;
   isCorrect?: boolean;
@@ -20,14 +20,14 @@ export const OptionButton = ({
   isIncorrect,
   onClick,
   type = 'simple',
-}: OptionButtonProps) => {
+}: OptionButtonProps): React.ReactElement => {
   const isMultiple = type === 'multiple';
 
   return (
     <button
       id={`option-${option.id}`}
       data-testid={`option-${option.id}`}
-      onClick={() => onClick(option.id)}
+      onClick={(): void => onClick(option.id)}
       disabled={isDisabled}
       className={`
         relative w-full p-3 md:p-4 mb-2 text-left transition-all duration-300 rounded-xl border-2
@@ -38,6 +38,8 @@ export const OptionButton = ({
             ? "border-status-incorrect bg-status-incorrect/10 shadow-md scale-[1.01]"
             : isSelected
             ? "border-accent-primary bg-accent-primary/5 shadow-md scale-[1.01]"
+            : isCorrect && isDisabled
+            ? "border-status-correct/30 bg-status-correct/5"
             : "border-foreground/5 bg-surface-card hover:border-accent-primary/50 hover:shadow-sm"
         }
         ${isDisabled ? "cursor-not-allowed opacity-90" : "cursor-pointer"}

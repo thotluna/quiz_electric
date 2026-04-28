@@ -1,21 +1,21 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuizStore } from "@/lib/store/quiz-store";
 import { Quiz } from "./Quiz";
 import { ResumeModal } from "./ResumeModal";
-import { QuizConfig, Question, UserAnswer, QuizMode } from "@/types";
+import { QuizConfig, ClientQuestion, UserAnswer, QuizMode } from "@/types";
 
 interface QuizManagerProps {
   userId: string;
-  initialQuestions?: Question[];
+  initialQuestions?: ClientQuestion[];
   mode?: QuizMode;
   topicIds?: string[];
 }
 
 interface PersistedState {
   config: QuizConfig | null;
-  questions: Question[];
+  questions: ClientQuestion[];
   userAnswers: UserAnswer[];
   isFinished: boolean;
 }
@@ -38,7 +38,6 @@ const readPersistedSession = (): PersistedState | null => {
 export const QuizManager = ({ userId, initialQuestions, mode, topicIds }: QuizManagerProps) => {
   const [resumeResolved, setResumeResolved] = useState<boolean>(false);
   const [shouldShowResume, setShouldShowResume] = useState<boolean>(false);
-  const [hasSavedSession, setHasSavedSession] = useState<boolean>(false);
   const [isReady, setIsReady] = useState<boolean>(false);
   
   const config = useQuizStore((s) => s.config);
@@ -54,15 +53,12 @@ export const QuizManager = ({ userId, initialQuestions, mode, topicIds }: QuizMa
     const persisted = readPersistedSession();
     const hasSession = persisted !== null 
       && !persisted.isFinished 
-      && persisted.questions.length > 0
-      && persisted.userAnswers.length > 0;
+      && persisted.questions.length > 0;
     
-    // If we have initial data from server AND no session to resume, init now
     if (initialQuestions && mode && !hasSession) {
       initQuiz({ mode, topicIds }, initialQuestions);
     }
 
-    setHasSavedSession(hasSession);
     setShouldShowResume(hasSession);
     setIsReady(true);
   }, [userId, setUserId, initialQuestions, mode, topicIds, initQuiz]);
