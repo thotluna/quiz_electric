@@ -44,8 +44,16 @@
 ## Perfil y Estadísticas
 - [x] Implementar perfil de usuario con dashboard de estadísticas detallado
 - [x] Visualizar historial de simulacros realizados
+- [x] Crear función para obtener IDs de preguntas respondidas correctamente en menos de 1 segundo
 
 ## Arquitectura Next.js 16
 - [x] Refactorizar Auth Guard a Data Access Layer (DAL)
 - [x] Migrar `middleware.ts` a `proxy.ts` (Next 16 standard)
 - [x] Implementar ruta dedicada `/login` para separación de responsabilidades
+
+## Arquitectura de Seguridad y Estado (Zustand + Server Actions)
+- [x] Refactorizar a arquitectura "Continente e Islas" (Page Server + Island Zustand)
+- [x] Implementar tipado ClientQuestion para ocultar respuestas correctas al cliente
+- [x] Migrar lógica de evaluación a Server Actions seguros
+- [x] Centralizar mapeo de datos en la capa de consultas (DAL)
+- [x] Reorganizar componentes locales en `/app/quiz/components`
