@@ -56,7 +56,7 @@ export const QuizManager = ({ userId, initialQuestions, mode, topicIds }: QuizMa
       && persisted.questions.length > 0;
     
     if (initialQuestions && mode && !hasSession) {
-      initQuiz({ mode, topicIds }, initialQuestions);
+      initQuiz({ mode, topicIds: topicIds || [] }, initialQuestions);
     }
 
     setShouldShowResume(hasSession);
@@ -72,7 +72,7 @@ export const QuizManager = ({ userId, initialQuestions, mode, topicIds }: QuizMa
   const handleDiscard = (): void => {
     discardSavedQuiz();
     if (initialQuestions && mode) {
-      initQuiz({ mode, topicIds }, initialQuestions);
+      initQuiz({ mode, topicIds: topicIds || [] }, initialQuestions);
     }
     setResumeResolved(true);
     setShouldShowResume(false);

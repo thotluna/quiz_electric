@@ -43,9 +43,10 @@ export async function getQuizQuestionsAction(
   return questions.map(mapToClientQuestion);
 }
 
-export async function evaluateQuestionAction(
+export async function evaluateAnswerAction(
   questionId: string,
-  selection: number | number[]
+  selection: number | number[],
+  _timeSpent?: number // Mantenemos el parámetro por compatibilidad con el store aunque no lo usemos aquí
 ): Promise<EvaluationResult> {
   const question = await questionRepo.getById(questionId);
 
@@ -57,6 +58,9 @@ export async function evaluateQuestionAction(
 
   if (question instanceof SimpleQuestion && typeof selection === 'number') {
     points = question.evaluate(selection);
+  } else if (question instanceof SimpleQuestion && Array.isArray(selection)) {
+     // Fallback para selección única enviada como array
+     points = question.evaluate(selection[0]);
   } else if (question instanceof MultipleQuestion && Array.isArray(selection)) {
     points = question.evaluate(selection);
   } else {

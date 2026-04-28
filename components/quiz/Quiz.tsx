@@ -7,32 +7,29 @@ import { OptionButton } from "./OptionButton";
 import { QuizControls } from "./QuizControls";
 import { StatsBar } from "./StatsBar";
 import { QuizResults } from "./QuizResults";
-import { saveQuizResults } from "@/lib/actions/stats";
+import { saveQuizStatsAction } from "@/lib/actions/stats";
 
 const TIMED_MODE_SECONDS = 180;
 
 export const Quiz = (): React.ReactElement => {
   const config = useQuizStore((s) => s.config);
   const questions = useQuizStore((s) => s.questions);
-  const currentIndex = useQuizStore((s) => s.currentIndex);
+  const userId = useQuizStore((s) => s.userId);
   const selectedOptionIds = useQuizStore((s) => s.selectedOptionIds);
   const isShowingResult = useQuizStore((s) => s.isShowingResult);
   const isFinished = useQuizStore((s) => s.isFinished);
   const score = useQuizStore((s) => s.score);
   const timeElapsed = useQuizStore((s) => s.timeElapsed);
   const isTimeOut = useQuizStore((s) => s.isTimeOut);
-  const isAutoAdvancing = useQuizStore((s) => s.isAutoAdvancing);
   const userAnswers = useQuizStore((s) => s.userAnswers);
   const lastEvaluation = useQuizStore((s) => s.lastEvaluation);
 
   const selectOption = useQuizStore((s) => s.selectOption);
   const toggleOption = useQuizStore((s) => s.toggleOption);
   const evaluateAnswer = useQuizStore((s) => s.evaluateAnswer);
-  const skipQuestion = useQuizStore((s) => s.skipQuestion);
-  const advance = useQuizStore((s) => s.advance);
+  const nextQuestion = useQuizStore((s) => s.nextQuestion);
   const resetQuiz = useQuizStore((s) => s.resetQuiz);
   const tick = useQuizStore((s) => s.tick);
-  const setIsAutoAdvancing = useQuizStore((s) => s.setIsAutoAdvancing);
 
   const autoAdvanceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -40,22 +37,34 @@ export const Quiz = (): React.ReactElement => {
   const timeLeft = config?.mode === "timed" ? TIMED_MODE_SECONDS - timeElapsed : 0;
 
   useEffect(() => {
-    if (isFinished || isAutoAdvancing) return;
+    if (isFinished) return;
 
     const interval = setInterval(() => {
       tick();
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [isFinished, isAutoAdvancing, tick]);
+  }, [isFinished, tick]);
 
   useEffect(() => {
-    if (isFinished && userAnswers.length > 0) {
-      saveQuizResults(userAnswers).catch(console.error);
+    if (isFinished && userAnswers.length > 0 && userId && config) {
+      saveQuizStatsAction(userId, userAnswers, config, score, timeElapsed).catch(console.error);
     }
-  }, [isFinished, userAnswers]);
+  }, [isFinished, userAnswers, userId, config, score, timeElapsed]);
 
   if (!questions || questions.length === 0) {
+    if (isFinished) {
+       return (
+        <QuizResults
+          userAnswers={userAnswers}
+          timeElapsed={timeElapsed}
+          totalQuestions={useQuizStore.getState().initialQuestions.length}
+          score={score}
+          isTimeOut={isTimeOut}
+          onReset={resetQuiz}
+        />
+      );
+    }
     return (
       <div className="text-center p-12 bg-surface-card rounded-2xl border-2 border-foreground/5 space-y-6">
         <p className="text-foreground/50">No hay preguntas disponibles.</p>
@@ -78,33 +87,12 @@ export const Quiz = (): React.ReactElement => {
       await evaluateAnswer();
 
       autoAdvanceTimerRef.current = setTimeout(() => {
-        advance();
+        nextQuestion();
       }, 3000);
     } else {
-      setIsAutoAdvancing(false);
-      advance();
+      nextQuestion();
     }
   };
-
-  const handleReset = (): void => {
-    if (autoAdvanceTimerRef.current) {
-      clearTimeout(autoAdvanceTimerRef.current);
-    }
-    resetQuiz();
-  };
-
-  if (isFinished) {
-    return (
-      <QuizResults
-        userAnswers={userAnswers}
-        timeElapsed={timeElapsed}
-        totalQuestions={useQuizStore.getState().initialQuestions.length}
-        score={score}
-        isTimeOut={isTimeOut}
-        onReset={handleReset}
-      />
-    );
-  }
 
   const answeredCount = userAnswers.length;
   const total = useQuizStore.getState().initialQuestions.length;
@@ -115,7 +103,7 @@ export const Quiz = (): React.ReactElement => {
       <div className="bg-surface-card rounded-2xl p-4 md:p-6 shadow-xl border border-foreground/5 backdrop-blur-sm">
         <div className="flex justify-between items-center mb-4">
           <button
-            onClick={handleReset}
+            onClick={resetQuiz}
             className="text-[10px] font-bold text-foreground/30 uppercase tracking-widest hover:text-accent-primary transition-colors"
           >
             ← Abandonar
@@ -146,8 +134,8 @@ export const Quiz = (): React.ReactElement => {
         <div className="space-y-2 mt-4">
           {currentQuestion.opciones.map((option) => {
             const isSelected = selectedOptionIds.includes(option.id);
-            const isCorrect = isShowingResult && lastEvaluation?.correctIds.includes(option.id);
-            const isIncorrect = isShowingResult && isSelected && !lastEvaluation?.correctIds.includes(option.id);
+            const isCorrect = isShowingResult && lastEvaluation?.correctIds?.includes(option.id);
+            const isIncorrect = isShowingResult && isSelected && !lastEvaluation?.correctIds?.includes(option.id);
 
             return (
               <OptionButton
@@ -166,16 +154,16 @@ export const Quiz = (): React.ReactElement => {
 
         <QuizControls
           onNext={handleNext}
-          onSkip={skipQuestion}
+          onSkip={nextQuestion}
           onFinish={(): void => {
             useQuizStore.getState().finishQuiz();
           }}
           showFinish={userAnswers.length >= total}
           hasSelected={selectedOptionIds.length > 0}
           isShowingResult={isShowingResult}
-          isAutoAdvancing={isAutoAdvancing}
+          isAutoAdvancing={false}
           isCorrect={lastEvaluation?.isCorrect}
-          isLastQuestion={!isInfinite && currentIndex === questions.length - 1}
+          isLastQuestion={!isInfinite && questions.length === 1}
           explanation={lastEvaluation?.explanation}
         />
       </div>

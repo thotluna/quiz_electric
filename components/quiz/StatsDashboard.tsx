@@ -1,13 +1,14 @@
 "use client";
 
-import { UserStats } from '@/lib/actions/stats';
+import { UserStats, TopicStats } from '@/lib/actions/stats';
 import { useRouter } from 'next/navigation';
+import type { ReactElement } from "react";
 
 interface StatsDashboardProps {
   stats: UserStats;
 }
 
-export const StatsDashboard = ({ stats }: StatsDashboardProps) => {
+export const StatsDashboard = ({ stats }: StatsDashboardProps): ReactElement => {
   const router = useRouter();
   const { global, topics } = stats;
 
@@ -24,7 +25,6 @@ export const StatsDashboard = ({ stats }: StatsDashboardProps) => {
             </p>
           </div>
           <button
-
             className="px-6 py-2 rounded-xl bg-foreground/5 hover:bg-foreground/10 text-foreground/60 font-bold text-sm transition-all border border-foreground/5"
             onClick={() => router.back()}
           >
@@ -49,7 +49,7 @@ export const StatsDashboard = ({ stats }: StatsDashboardProps) => {
           />
           <StatCard
             label="Temas Dominados"
-            value={(topics || []).filter(t => (t.accuracy || 0) >= 80).length.toString()}
+            value={(topics || []).filter((t: TopicStats) => (t.accuracy || 0) >= 80).length.toString()}
             icon="🏆"
             subValue={`De ${(topics || []).length} temas intentados`}
           />
@@ -64,10 +64,10 @@ export const StatsDashboard = ({ stats }: StatsDashboardProps) => {
             </h2>
 
             <div className="space-y-6">
-              {(topics || []).map((topic) => (
-                <div key={topic.topicId} className="space-y-2">
+              {(topics || []).map((topic: TopicStats) => (
+                <div key={topic.id} className="space-y-2">
                   <div className="flex justify-between items-end">
-                    <span className="font-bold text-sm text-foreground/80">{topic.topicId}</span>
+                    <span className="font-bold text-sm text-foreground/80">{topic.name}</span>
                     <span className="text-xs font-black text-foreground/40 uppercase">
                       {topic.totalCorrect}/{topic.totalAnswered} · {Math.round(topic.accuracy || 0)}%
                     </span>
@@ -117,13 +117,15 @@ export const StatsDashboard = ({ stats }: StatsDashboardProps) => {
   );
 };
 
-const StatCard = ({ label, value, icon, subValue, color = 'text-foreground' }: {
-  label: string,
-  value: string,
-  icon: string,
-  subValue: string,
-  color?: string
-}) => (
+interface StatCardProps {
+  label: string;
+  value: string;
+  icon: string;
+  subValue: string;
+  color?: string;
+}
+
+const StatCard = ({ label, value, icon, subValue, color = 'text-foreground' }: StatCardProps): ReactElement => (
   <div className="bg-surface-card border border-foreground/5 rounded-3xl p-6 shadow-lg hover:shadow-accent-primary/5 transition-all group overflow-hidden relative">
     <div className="absolute -right-4 -top-4 text-6xl opacity-[0.03] group-hover:scale-110 transition-transform duration-700 select-none">
       {icon}
