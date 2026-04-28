@@ -19,9 +19,6 @@ export interface QuestionFilter {
   limit?: number;
 }
 
-/**
- * Contrato técnico para la extracción de datos con capacidades de filtrado.
- */
 export interface IQuestionDataSource {
   fetchById(id: string): Promise<QuestionDTO | null>;
   fetchByIds(ids: string[]): Promise<QuestionDTO[]>;

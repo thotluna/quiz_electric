@@ -2,9 +2,6 @@ import { QuestionDTO } from '../contracts/question-datasource';
 import { SimpleQuestion, MultipleQuestion, OptionEntity } from '@/lib/domain/entities';
 import { AnyQuestionEntity } from '@/lib/domain/repositories';
 
-/**
- * Mapeador encargado de transformar DTOs técnicos en Entidades de Dominio.
- */
 export class QuestionMapper {
   public static toDomain(dto: QuestionDTO): AnyQuestionEntity {
     const options = dto.opciones.map(

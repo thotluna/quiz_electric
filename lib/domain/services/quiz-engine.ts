@@ -1,9 +1,6 @@
 import { QuestionEntity } from '../entities';
 
 export class QuizEngine {
-  /**
-   * Calcula el puntaje de una pregunta delegando en su implementación específica.
-   */
   public static calculateScore<T>(
     question: QuestionEntity<T>,
     selection: T

@@ -1,15 +1,17 @@
 import { IQuestionDataSource, QuestionDTO, QuestionFilter } from '../contracts/question-datasource';
 import db from '@/lib/data/db.json';
 
+interface RawTopic {
+  id: string;
+  itc: string;
+  preguntas: QuestionDTO[];
+}
+
 export class JsonQuestionDataSource implements IQuestionDataSource {
-  /**
-   * El JSON tiene una estructura de [ { itc: '...', preguntas: [...] }, ... ]
-   * Aplanamos todas las preguntas e INYECTAMOS el itc del padre en cada pregunta.
-   */
-  private readonly questions: QuestionDTO[] = (db as any).flatMap((topic: any) => 
-    topic.preguntas.map((q: any) => ({
+  private readonly questions: QuestionDTO[] = (db as unknown as RawTopic[]).flatMap((topic: RawTopic) => 
+    topic.preguntas.map((q: QuestionDTO) => ({
       ...q,
-      itc: topic.itc // Inyectamos el contexto del tema
+      itc: topic.itc
     }))
   );
 
