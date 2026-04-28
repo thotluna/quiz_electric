@@ -1,139 +1,73 @@
-"use client";
+\"use client\";
 
-import { useQuizStore } from "@/lib/store/quiz-store";
+import { useQuizStore } from \"@/lib/store/quiz-store\";
+import { useState, useEffect } from \"react\";
 
-interface QuizControlsProps {
-  hasSelected?: boolean;
-  isShowingResult?: boolean;
-  isAutoAdvancing?: boolean;
-  isCorrect?: boolean;
-  isLastQuestion?: boolean;
-  explanation?: string;
-  onNext?: () => void;
-  onSkip?: () => void;
-  onFinish?: () => void;
-  showFinish?: boolean;
-  isEvaluating?: boolean;
-}
+export const QuizControls = () => {
+  const isShowingResult = useQuizStore((s) => s.isShowingResult);
+  const isEvaluating = useQuizStore((s) => s.isEvaluating);
+  const selectedOptionIds = useQuizStore((s) => s.selectedOptionIds);
+  const evaluateCurrentAnswer = useQuizStore((s) => s.evaluateCurrentAnswer);
+  const nextQuestion = useQuizStore((s) => s.nextQuestion);
+  const currentIndex = useQuizStore((s) => s.currentIndex);
+  const questionsCount = useQuizStore((s) => s.questions.length);
 
-export const QuizControls = ({
-  hasSelected: propsHasSelected,
-  isShowingResult: propsIsShowingResult,
-  isAutoAdvancing: propsIsAutoAdvancing,
-  isCorrect: propsIsCorrect,
-  isLastQuestion: propsIsLastQuestion,
-  explanation: propsExplanation,
-  onNext: propsOnNext,
-  onSkip: propsOnSkip,
-  onFinish: propsOnFinish,
-  showFinish = true,
-  isEvaluating: propsIsEvaluating,
-}: QuizControlsProps) => {
-  const storeSelectedIds = useQuizStore((s) => s.selectedOptionIds);
-  const storeIsShowingResult = useQuizStore((s) => s.isShowingResult);
-  const storeIsAutoAdvancing = useQuizStore((s) => s.isAutoAdvancing);
-  const storeQuestions = useQuizStore((s) => s.questions);
-  const storeUserAnswers = useQuizStore((s) => s.userAnswers);
-  const storeIsEvaluating = useQuizStore((s) => s.isEvaluating);
-  const storeConfig = useQuizStore((s) => s.config);
-  
-  const evaluateAnswer = useQuizStore((s) => s.evaluateAnswer);
-  const advance = useQuizStore((s) => s.advance);
-  const skipQuestion = useQuizStore((s) => s.skipQuestion);
-  const finishQuiz = useQuizStore((s) => s.finishQuiz);
+  const [timeLeft, setTimeLeft] = useState(0);
 
-  const currentQuestionId = storeQuestions[0]?.id;
-  const currentAnswer = storeUserAnswers.find(a => a.questionId === currentQuestionId);
-
-  const hasSelected = propsHasSelected ?? storeSelectedIds.length > 0;
-  const isShowingResult = propsIsShowingResult ?? storeIsShowingResult;
-  const isAutoAdvancing = propsIsAutoAdvancing ?? storeIsAutoAdvancing;
-  const isCorrect = propsIsCorrect ?? currentAnswer?.isCorrect;
-  const isEvaluating = propsIsEvaluating ?? storeIsEvaluating;
-  const explanation = propsExplanation ?? currentAnswer?.explicacion;
-  const isLastQuestion = propsIsLastQuestion ?? (storeConfig?.mode !== 'infinite' && storeQuestions.length === 1);
-
-  const onNext = propsOnNext ?? (isShowingResult ? advance : evaluateAnswer);
-  const onSkip = propsOnSkip ?? skipQuestion;
-  const onFinish = propsOnFinish ?? finishQuiz;
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (isShowingResult) {
+      setTimeLeft(3);
+      timer = setInterval(() => {
+        setTimeLeft((prev) => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            nextQuestion();
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [isShowingResult, nextQuestion]);
 
   return (
-    <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-foreground/5">
-      {isShowingResult && explanation && (
-        <div className={`p-3 rounded-xl mb-1 flex items-start gap-3 animate-in fade-in zoom-in duration-300 border-2 ${isCorrect
-          ? "bg-status-correct/10 border-status-correct/20 text-status-correct"
-          : "bg-status-incorrect/10 border-status-incorrect/20 text-status-incorrect"
-          }`}>
-          <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 shadow-sm ${isCorrect ? "bg-status-correct text-white" : "bg-status-incorrect text-white"
-            }`}>
-            {isCorrect ? (
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-              </svg>
-            ) : (
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            )}
-          </div>
-          <div className="min-w-0">
-            <p className="text-[10px] font-black uppercase tracking-widest opacity-60 mb-0.5">
-              {isCorrect ? "Correcto" : "Incorrecto"}
-            </p>
-            <p className="text-xs font-bold leading-relaxed">{explanation}</p>
+    <div className=\"mt-8 flex flex-col items-center gap-4\">
+      {!isShowingResult ? (
+        <button
+          disabled={selectedOptionIds.length === 0 || isEvaluating}
+          onClick={evaluateCurrentAnswer}
+          className=\"group relative flex items-center justify-center gap-3 px-10 py-4 bg-accent-primary text-white rounded-2xl font-black text-lg transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:grayscale disabled:scale-100 shadow-xl shadow-accent-primary/25 overflow-hidden w-full md:w-auto\"
+        >
+          <div className=\"absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300\" />
+          <span className=\"relative\">
+            {isEvaluating ? \"Evaluando...\" : \"Evaluar Respuesta\"}
+          </span>
+          <svg className=\"w-5 h-5 relative group-hover:translate-x-1 transition-transform\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">
+            <path strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth={3} d=\"M14 5l7 7m0 0l-7 7m7-7H3\" />
+          </svg>
+        </button>
+      ) : (
+        <div className=\"flex flex-col items-center gap-3 w-full\">
+          <button
+            onClick={nextQuestion}
+            className=\"group relative flex items-center justify-center gap-3 px-10 py-4 bg-foreground text-background rounded-2xl font-black text-lg transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-foreground/10 overflow-hidden w-full md:w-auto\"
+          >
+            <div className=\"absolute inset-0 bg-background/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300\" />
+            <span className=\"relative\">Siguiente Pregunta</span>
+            <div className=\"relative flex items-center justify-center w-6 h-6 rounded-full bg-background/20 text-[10px]\">
+              {timeLeft}
+            </div>
+          </button>
+          <div className=\"w-full md:w-64 h-1 bg-foreground/5 rounded-full overflow-hidden\">
+            <div
+              className=\"h-full bg-accent-primary transition-all duration-1000 ease-linear\"
+              style={{ width: `${(timeLeft / 3) * 100}%` }}
+            />
           </div>
         </div>
       )}
-
-      <div className="flex gap-2">
-        {!isShowingResult && (
-          <button
-            id="btn-skip"
-            data-testid="btn-skip"
-            onClick={onSkip}
-            disabled={isEvaluating}
-            className="flex-1 py-3.5 px-4 rounded-xl font-bold transition-all duration-300 active:scale-[0.95] text-[10px] uppercase tracking-widest border border-foreground/5 text-foreground/40 hover:text-foreground/60 hover:bg-foreground/5 disabled:opacity-50"
-          >
-            Saltar
-          </button>
-        )}
-
-        <button
-          id="btn-next"
-          data-testid="btn-next"
-          onClick={onNext}
-          disabled={(!hasSelected && !isShowingResult) || isEvaluating}
-          className={`
-            relative overflow-hidden flex-1 py-3.5 px-4 rounded-xl font-black transition-all duration-300 active:scale-[0.95] uppercase text-[10px] tracking-[0.2em]
-            ${!hasSelected && !isShowingResult
-              ? "bg-foreground/5 text-foreground/20 cursor-not-allowed"
-              : isShowingResult
-                ? isCorrect
-                  ? "bg-status-correct text-white shadow-lg shadow-status-correct/25 hover:shadow-status-correct/40"
-                  : "bg-status-incorrect text-white shadow-lg shadow-status-incorrect/25 hover:shadow-status-incorrect/40"
-                : "bg-accent-primary text-white shadow-lg shadow-accent-primary/25 hover:shadow-accent-primary/40"
-            }
-          `}
-        >
-          {isEvaluating && (
-            <div className="absolute inset-0 bg-black/10 flex items-center justify-center">
-              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            </div>
-          )}
-
-          <span className="relative z-10">
-            {isEvaluating
-              ? "Evaluando..."
-              : !hasSelected && !isShowingResult
-                ? "Confirmar"
-                : !isShowingResult
-                  ? "Evaluar"
-                  : isAutoAdvancing
-                    ? (isLastQuestion ? "Fin..." : "Próxima")
-                    : (isLastQuestion ? "Finalizar" : "Siguiente")}
-          </span>
-        </button>
-      </div>
     </div>
   );
 };

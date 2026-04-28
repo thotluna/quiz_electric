@@ -1,24 +1,28 @@
-"use client";
+\"use client\";
 
-import { useEffect, useRef } from "react";
-import { useQuizStore } from "@/lib/store/quiz-store";
-import { ClientQuestion, QuizConfig } from "@/types";
+import { useEffect } from \"react\";
+import { useQuizStore } from \"@/lib/store/quiz-store\";
+import { ClientQuestion, QuizConfig } from \"@/types\";
 
 interface QuizInitializationProps {
   questions: ClientQuestion[];
   config: QuizConfig;
 }
 
-export function QuizInitialization({ questions, config }: QuizInitializationProps) {
-  const initQuiz = useQuizStore((state) => state.initQuiz);
-  const initialized = useRef<boolean>(false);
+export const QuizInitialization = ({ questions, config }: QuizInitializationProps) => {
+  const initQuiz = useQuizStore((s) => s.initQuiz);
+  const tick = useQuizStore((s) => s.tick);
 
   useEffect(() => {
-    if (!initialized.current) {
-      initQuiz(config, questions);
-      initialized.current = true;
-    }
-  }, [questions, config, initQuiz]);
+    initQuiz(config, questions);
+  }, [initQuiz, config, questions]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      tick();
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [tick]);
 
   return null;
-}
+};

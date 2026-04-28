@@ -1,25 +1,27 @@
-"use client";
+\"use client\";
 
-import { useQuizStore } from "@/lib/store/quiz-store";
-import { OptionButton } from "./OptionButton";
+import { useQuizStore } from \"@/lib/store/quiz-store\";
+import { OptionButton } from \"./OptionButton\";
 
 export const OptionsList = () => {
-  const currentQuestion = useQuizStore((s) => s.questions[0]);
+  const currentIndex = useQuizStore((s) => s.currentIndex);
+  const questions = useQuizStore((s) => s.questions);
   const selectedOptionIds = useQuizStore((s) => s.selectedOptionIds);
   const isShowingResult = useQuizStore((s) => s.isShowingResult);
   const userAnswers = useQuizStore((s) => s.userAnswers);
   const selectOption = useQuizStore((s) => s.selectOption);
   const toggleOption = useQuizStore((s) => s.toggleOption);
 
+  const currentQuestion = questions[currentIndex];
+
   if (!currentQuestion) return null;
 
   const currentAnswer = userAnswers.find(a => a.questionId === currentQuestion.id);
 
   return (
-    <div className="space-y-2 mt-4">
+    <div className=\"space-y-2 mt-4\">
       {currentQuestion.opciones.map((option) => {
         const isSelected = selectedOptionIds.includes(option.id);
-        // The visual correction is based on the result returned from server in UserAnswer
         const isCorrect = isShowingResult && isSelected && currentAnswer?.isCorrect;
         const isIncorrect = isShowingResult && isSelected && !currentAnswer?.isCorrect;
 
@@ -33,7 +35,7 @@ export const OptionsList = () => {
             isIncorrect={isIncorrect}
             type={currentQuestion.tipo}
             onClick={(id) => {
-              if (currentQuestion.tipo === "multiple") {
+              if (currentQuestion.tipo === \"multiple\") {
                 toggleOption(id);
               } else {
                 selectOption(id);
