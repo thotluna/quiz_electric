@@ -1,8 +1,0 @@
-\"use client\";
-
-import { useQuizStore } from \"@/lib/store/quiz-store\";
-import { OptionButton } from \"./OptionButton\";
-
-export const OptionsList = () => {
-  const currentQuestion = useQuizStore((s) => s.questions[get().currentIndex]); // Wait, get() is not available here. I should use s.currentIndex
-  // Let's fix this in the push.

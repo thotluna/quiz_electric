@@ -1,7 +1,7 @@
 import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 
-import { User } from '@supabase/supabase-js'
+import { User, Session } from '@supabase/supabase-js'
 import { cache } from 'react'
 
 export const createClient = cache(async () => {
@@ -64,12 +64,13 @@ export const createClient = cache(async () => {
             refresh_token: 'mock-refresh-token',
             expires_in: 3600,
             token_type: 'bearer',
-          } as any,
+          } as unknown as Session,
         },
         error: null,
       }
     }
   }
+
 
   return client
 })

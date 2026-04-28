@@ -2,7 +2,6 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { UserAnswer, QuizConfig } from "@/types";
-import { cookies } from "next/headers";
 
 export interface GlobalStats {
   totalAnswered: number;
@@ -11,7 +10,8 @@ export interface GlobalStats {
 }
 
 export interface TopicStats {
-  topicId: string;
+  id: string;
+  name: string;
   totalAnswered: number;
   totalCorrect: number;
   accuracy: number;
@@ -20,57 +20,7 @@ export interface TopicStats {
 export interface UserStats {
   global: GlobalStats;
   topics: TopicStats[];
-  sessions: {
-    id: string;
-    created_at: string;
-    score: number;
-    total_questions: number;
-    mode: string;
-    time_elapsed: number;
-    itc_filter: string;
-  }[];
-}
-
-export async function getUserStats(): Promise<UserStats> {
-  const supabase = await createClient();
-  const { data: { user: supabaseUser } } = await supabase.auth.getUser();
-  const cookieStore = await cookies();
-
-  let user = supabaseUser;
-  if (!user && process.env.NODE_ENV === "development" && cookieStore.get("test_session")) {
-    user = { id: "test-user-123", email: "test@example.com" } as any;
-  }
-
-  if (!user) {
-    throw new Error("Not authenticated");
-  }
-
-  const { data: qStats } = await supabase
-    .from("user_question_stats")
-    .select("times_answered, times_correct")
-    .eq("user_id", user.id);
-
-  const global: GlobalStats = {
-    totalAnswered: qStats?.reduce((acc, curr) => acc + (curr.times_answered || 0), 0) || 0,
-    totalCorrect: qStats?.reduce((acc, curr) => acc + (curr.times_correct || 0), 0) || 0,
-    accuracy: 0
-  };
-  global.accuracy = global.totalAnswered > 0 ? Math.round((global.totalCorrect / global.totalAnswered) * 100) : 0;
-
-  const topics: TopicStats[] = [];
-
-  const { data: sessions } = await supabase
-    .from("quiz_sessions")
-    .select("*")
-    .eq("user_id", user.id)
-    .order("created_at", { ascending: false })
-    .limit(10);
-
-  return {
-    global,
-    topics,
-    sessions: sessions || []
-  };
+  recentSessions: any[];
 }
 
 export async function saveQuizStatsAction(
@@ -84,20 +34,20 @@ export async function saveQuizStatsAction(
 
   try {
     for (const answer of answers) {
+      // Ignorar si no hay respuesta seleccionada
       if (answer.selectedOptionIds.length === 0) continue;
 
-      // Upsert user question stats
       const { data: existing } = await supabase
         .from("user_question_stats")
         .select("*")
         .eq("user_id", userId)
-        .eq("question_id", answer.questionId)
+        .eq("question_id", answer.question.id)
         .single();
 
       if (!existing) {
         await supabase.from("user_question_stats").insert({
           user_id: userId,
-          question_id: answer.questionId,
+          question_id: answer.question.id,
           times_answered: 1,
           times_correct: answer.isCorrect ? 1 : 0,
           min_correct_time: answer.isCorrect ? answer.timeSpent : 0,
@@ -118,11 +68,11 @@ export async function saveQuizStatsAction(
           min_correct_time: newMin,
           max_correct_time: newMax,
           last_answered_at: new Date().toISOString()
-        }).eq("user_id", userId).eq("question_id", answer.questionId);
+        }).eq("user_id", userId).eq("question_id", answer.question.id);
       }
     }
 
-    // Save session
+    // Guardar sesión
     await supabase.from("quiz_sessions").insert({
       user_id: userId,
       mode: config.mode,
@@ -137,4 +87,42 @@ export async function saveQuizStatsAction(
     console.error("Error saving stats:", error);
     return { success: false, error: error.message };
   }
+}
+
+export async function getUserStats(): Promise<UserStats> {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error("Not authenticated");
+  }
+
+  // Global stats
+  const { data: qStats } = await supabase
+    .from("user_question_stats")
+    .select("times_answered, times_correct")
+    .eq("user_id", user.id);
+
+  const totalAnswered = qStats?.reduce((acc, curr) => acc + (curr.times_answered || 0), 0) || 0;
+  const totalCorrect = qStats?.reduce((acc, curr) => acc + (curr.times_correct || 0), 0) || 0;
+
+  const global: GlobalStats = {
+    totalAnswered,
+    totalCorrect,
+    accuracy: totalAnswered > 0 ? (totalCorrect / totalAnswered) * 100 : 0
+  };
+
+  // Recent sessions
+  const { data: sessions } = await supabase
+    .from("quiz_sessions")
+    .select("*")
+    .eq("user_id", user.id)
+    .order("created_at", { ascending: false })
+    .limit(10);
+
+  return {
+    global,
+    topics: [], // Implementación simplificada por ahora
+    recentSessions: sessions || []
+  };
 }

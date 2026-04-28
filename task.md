@@ -78,3 +78,27 @@
 - [x] Desacoplar configuración de ejecución: Navegación basada en **URL Query Params**
 - [x] Reorganizar arquitectura de componentes (Colocalización en carpetas privadas `app/_components`)
 - [x] Implementar **tests E2E** para validación de estado inicial y flujo de navegación
+
+## Desacoplamiento y Seguridad (Rich Domain Model)
+- [x] Refactorizar Infraestructura y Seguridad (Domain-Driven Design)
+    - [x] Implementar `IQuestionDataSource` y `QuestionRepository` desacoplados.
+    - [x] Crear Server Actions seguras para evaluación y obtención de preguntas.
+    - [x] Refactorizar store de Zustand para eliminar lógica de evaluación cliente.
+    - [x] Actualizar componentes de UI para consumir datos seguros (`ClientQuestion`).
+    - [x] Eliminar deuda técnica y tipos `any` en todo el flujo de datos.
+
+## Selección Inteligente de Preguntas (Supabase + JSON)
+- [x] Definir contrato `IUserStatsRepository` y modelo `QuestionStat`
+- [x] Implementar `QuestionSelectorService` (Lógica de dominio para filtrado)
+- [x] Implementar `SupabaseUserStatsRepository` (Infraestructura)
+- [x] Refactorizar `getQuizQuestionsAction` para integrar ambos mundos
+
+## Calidad y Testing
+- [x] Actualizar tests unitarios de `QuestionRepository`
+- [x] Crear tests unitarios para `SupabaseUserStatsRepository`
+- [x] Crear tests de integración para `getQuizQuestionsAction`
+
+## Estabilidad y Build
+- [x] Corregir errores de tipado en `useQuizStore` (Zustand)
+- [x] Refactorizar archivos legacy (`lib/queries/questions.ts`) para eliminar tipos rotos
+- [x] Validar build de producción con `pnpm build`

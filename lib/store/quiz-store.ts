@@ -1,182 +1,210 @@
 "use client";
 
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
-import { ClientQuestion, UserAnswer, QuizConfig, EvaluationResult } from "@/types";
-import { evaluateAnswerAction } from "@/lib/actions/quiz";
-import { saveQuizStatsAction } from "@/lib/actions/stats";
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+import { ClientQuestion, QuizConfig, UserAnswer } from '@/types';
+import { evaluateAnswerAction } from '@/lib/application/actions/quiz-actions';
+
+const STORAGE_KEY = 'quiz-electric-session';
+const TIMED_MODE_SECONDS = 180;
 
 interface QuizState {
+  userId: string | null;
+  config: QuizConfig | null;
   questions: ClientQuestion[];
+  initialQuestions: ClientQuestion[];
   currentIndex: number;
   userAnswers: UserAnswer[];
-  config: QuizConfig | null;
-  userId: string | null;
+  timeElapsed: number;
+  score: number;
   isFinished: boolean;
-  isLoading: boolean;
-  isEvaluating: boolean;
+  isTimeOut: boolean;
+  questionStartTime: number;
   selectedOptionIds: number[];
   isShowingResult: boolean;
-  lastEvaluation: EvaluationResult | null;
-  timer: number;
-  isPaused: boolean;
-
-  // Actions
-  initQuiz: (config: QuizConfig, questions: ClientQuestion[]) => void;
-  setUserId: (userId: string) => void;
-  selectOption: (optionId: number) => void;
-  toggleOption: (optionId: number) => void;
-  evaluateCurrentAnswer: () => Promise<void>;
-  nextQuestion: () => void;
-  finishQuiz: () => Promise<void>;
-  discardSavedQuiz: () => void;
-  resumeQuiz: () => void;
-  tick: () => void;
-  setPaused: (paused: boolean) => void;
+  isAutoAdvancing: boolean;
+  isLoading: boolean;
+  lastEvaluation: {
+    isCorrect: boolean;
+    points: number;
+    explanation?: string;
+    correctIds?: number[];
+  } | null;
 }
 
-export const useQuizStore = create<QuizState>()(
+interface QuizActions {
+  setUserId: (id: string) => void;
+  initQuiz: (config: QuizConfig, questions: ClientQuestion[]) => void;
+  selectOption: (id: number) => void;
+  toggleOption: (id: number) => void;
+  evaluateAnswer: () => Promise<void>;
+  nextQuestion: () => void;
+  finishQuiz: () => void;
+  resetQuiz: () => void;
+  resumeQuiz: () => void;
+  discardSavedQuiz: () => void;
+  tick: () => boolean;
+  setIsAutoAdvancing: (value: boolean) => void;
+  hasActiveSession: () => boolean;
+}
+
+type QuizStore = QuizState & QuizActions;
+
+const initialState: QuizState = {
+  userId: null,
+  config: null,
+  questions: [],
+  initialQuestions: [],
+  currentIndex: 0,
+  userAnswers: [],
+  timeElapsed: 0,
+  score: 0,
+  isFinished: false,
+  isTimeOut: false,
+  questionStartTime: 0,
+  selectedOptionIds: [],
+  isShowingResult: false,
+  isAutoAdvancing: false,
+  isLoading: false,
+  lastEvaluation: null,
+};
+
+export const useQuizStore = create<QuizStore>()(
   persist(
     (set, get) => ({
-      questions: [],
-      currentIndex: 0,
-      userAnswers: [],
-      config: null,
-      userId: null,
-      isFinished: false,
-      isLoading: false,
-      isEvaluating: false,
-      selectedOptionIds: [],
-      isShowingResult: false,
-      lastEvaluation: null,
-      timer: 0,
-      isPaused: false,
+      ...initialState,
 
-      setUserId: (userId) => set({ userId }),
+      setUserId: (id: string): void => { set({ userId: id }) },
 
-      initQuiz: (config, questions) => {
+      initQuiz: (config: QuizConfig, questions: ClientQuestion[]): void => {
         set({
+          ...initialState,
           config,
           questions,
-          currentIndex: 0,
-          userAnswers: [],
-          isFinished: false,
-          selectedOptionIds: [],
-          isShowingResult: false,
-          lastEvaluation: null,
-          timer: 0,
-          isPaused: false
+          initialQuestions: questions,
+          userId: get().userId,
+          questionStartTime: Date.now(),
         });
       },
 
-      selectOption: (id) => {
+      selectOption: (id: number): void => {
         if (get().isShowingResult) return;
         set({ selectedOptionIds: [id] });
       },
 
-      toggleOption: (id) => {
+      toggleOption: (id: number): void => {
         if (get().isShowingResult) return;
-        const current = get().selectedOptionIds;
-        const next = current.includes(id)
-          ? current.filter((i) => i !== id)
-          : [...current, id];
-        set({ selectedOptionIds: next });
+        const { selectedOptionIds } = get();
+        const newIds = selectedOptionIds.includes(id)
+          ? selectedOptionIds.filter(optId => optId !== id)
+          : [...selectedOptionIds, id];
+        set({ selectedOptionIds: newIds });
       },
 
-      evaluateCurrentAnswer: async () => {
-        const { questions, currentIndex, selectedOptionIds, timer } = get();
-        const question = questions[currentIndex];
+      evaluateAnswer: async (): Promise<void> => {
+        const { selectedOptionIds, questions, questionStartTime, score, userAnswers } = get();
+        if (selectedOptionIds.length === 0 || questions.length === 0) return;
 
-        if (!question || selectedOptionIds.length === 0) return;
+        const currentQuestion = questions[0]; // In our queue system, we always evaluate the first one
+        const timeSpent = Math.floor((Date.now() - questionStartTime) / 1000);
 
-        set({ isEvaluating: true, isPaused: true });
+        set({ isLoading: true });
 
         try {
-          const result = await evaluateAnswerAction(question.id, selectedOptionIds);
+          const result = await evaluateAnswerAction(currentQuestion.id, selectedOptionIds, timeSpent);
 
-          const answer: UserAnswer = {
-            questionId: question.id,
-            questionText: question.pregunta,
+          const newAnswer: UserAnswer = {
+            question: currentQuestion,
             selectedOptionIds,
             isCorrect: result.isCorrect,
-            timeSpent: timer,
             points: result.points,
-            explicacion: result.explicacion,
-            question: result.fullQuestion // We store full question in user answer for results screen
+            timeSpent,
+            explanation: result.explanation,
+            correctIds: result.correctIds,
           };
 
-          set((s) => ({
-            userAnswers: [...s.userAnswers, answer],
-            isShowingResult: true,
-            lastEvaluation: result,
-            isEvaluating: false
-          }));
-        } catch (error) {
-          console.error("Evaluation failed:", error);
-          set({ isEvaluating: false, isPaused: false });
-        }
-      },
-
-      nextQuestion: () => {
-        const { currentIndex, questions } = get();
-        if (currentIndex < questions.length - 1) {
           set({
-            currentIndex: currentIndex + 1,
-            selectedOptionIds: [],
-            isShowingResult: false,
-            lastEvaluation: null,
-            timer: 0,
-            isPaused: false
+            score: score + result.points,
+            userAnswers: [...userAnswers, newAnswer],
+            lastEvaluation: {
+              isCorrect: result.isCorrect,
+              points: result.points,
+              explanation: result.explanation,
+              correctIds: result.correctIds,
+            },
+            isShowingResult: true,
+            isLoading: false,
           });
-        } else {
-          get().finishQuiz();
+        } catch (error) {
+          console.error('Error evaluating answer:', error);
+          set({ isLoading: false });
         }
       },
 
-      finishQuiz: async () => {
-        const { userId, userAnswers, config } = get();
-        set({ isFinished: true, isPaused: true });
+      nextQuestion: (): void => {
+        const { questions, initialQuestions } = get();
+        const remainingQuestions = questions.slice(1);
 
-        if (userId && userAnswers.length > 0 && config) {
-          const score = userAnswers.filter(a => a.isCorrect).length;
-          const totalTime = userAnswers.reduce((acc, a) => acc + a.timeSpent, 0);
-          await saveQuizStatsAction(userId, userAnswers, config, score, totalTime);
+        if (remainingQuestions.length === 0) {
+          set({ isFinished: true, isAutoAdvancing: false });
+          return;
         }
-      },
 
-      discardSavedQuiz: () => {
         set({
-          config: null,
-          questions: [],
-          userAnswers: [],
-          currentIndex: 0,
-          isFinished: false
+          questions: remainingQuestions,
+          currentIndex: initialQuestions.length - remainingQuestions.length,
+          selectedOptionIds: [],
+          isShowingResult: false,
+          lastEvaluation: null,
+          questionStartTime: Date.now(),
         });
       },
 
-      resumeQuiz: () => {
-        set({ isPaused: false });
-      },
+      finishQuiz: (): void => { set({ isFinished: true, isAutoAdvancing: false }) },
 
-      tick: () => {
-        if (!get().isPaused && !get().isFinished) {
-          set((s) => ({ timer: s.timer + 1 }));
+      resetQuiz: (): void => { set({ ...initialState, userId: get().userId }) },
+
+      resumeQuiz: (): void => { set({ isShowingResult: false, questionStartTime: Date.now() }) },
+
+      discardSavedQuiz: (): void => { set({ ...initialState, userId: get().userId }) },
+
+      tick: (): boolean => {
+        const { timeElapsed, config } = get();
+        if (get().isFinished) return false;
+
+        const newTime = timeElapsed + 1;
+
+        if (config?.mode === 'timed' && newTime >= TIMED_MODE_SECONDS) {
+          set({ timeElapsed: newTime, isTimeOut: true, isFinished: true });
+          return true;
         }
+
+        set({ timeElapsed: newTime });
+        return false;
       },
 
-      setPaused: (isPaused) => set({ isPaused })
+      setIsAutoAdvancing: (value: boolean): void => { set({ isAutoAdvancing: value }) },
+
+      hasActiveSession: (): boolean => {
+        const { config, isFinished, questions } = get();
+        return !!config && !isFinished && questions.length > 0;
+      },
     }),
     {
-      name: "quiz-electric-session",
-      partialize: (state) => ({
+      name: STORAGE_KEY,
+      partialize: (state: QuizStore) => ({
+        userId: state.userId,
         config: state.config,
         questions: state.questions,
-        userAnswers: state.userAnswers,
+        initialQuestions: state.initialQuestions,
         currentIndex: state.currentIndex,
-        userId: state.userId,
+        userAnswers: state.userAnswers,
+        timeElapsed: state.timeElapsed,
+        score: state.score,
         isFinished: state.isFinished,
-        timer: state.timer
-      })
+        isTimeOut: state.isTimeOut,
+        questionStartTime: state.questionStartTime,
+      }),
     }
   )
 );
