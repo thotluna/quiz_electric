@@ -1,5 +1,30 @@
-# Tareas
+# 🏗️ Quiz Electric - Plan de Tareas
 
+## ✅ Arquitectura "Continente e Islas" (Finalizado)
+- [x] Refactorizar `app/quiz/page.tsx` como Server Component (Continente).
+- [x] Mover componentes locales a `app/quiz/components/` (Islas).
+- [x] Implementar capa de acceso a datos (DAL) en `lib/queries/questions.ts`.
+- [x] Centralizar transformación a `ClientQuestion` para ocultar respuestas correctas.
+- [x] Configurar hidratación del store de Zustand desde el servidor.
+- [x] Implementar Server Actions para evaluación segura y guardado de stats.
+
+## ✅ Estabilidad y Build (Finalizado)
+- [x] Corregir tipos en `QuizConfigStore` (propiedad `mode`).
+- [x] Resolver errores de `JSX.Element` usando `ReactElement`.
+- [x] Corregir importaciones circulares en `types/index.ts`.
+- [x] Validar build de producción exitoso con `pnpm build`.
+- [x] Sincronizar rama `refactor/components` y resolver conflictos de `merge`.
+
+## 🛠️ Próximos Pasos
+- [ ] Auditoría de UI en dispositivos móviles.
+- [ ] Pruebas de integración del flujo completo.
+- [ ] Desplegar cambios a producción.
+
+---
+
+## 📜 Historial de Tareas Completadas
+
+### Quiz & Mecánicas
 - [x] Implementar cronómetro en el componente `Quiz`
 - [x] Mostrar cantidad de respuestas correctas en tiempo real
 - [x] Actualizar la UI con un diseño premium para las nuevas estadísticas
@@ -16,14 +41,14 @@
 - [x] Implementar filtro por ITC-BT específica o reglamento completo
 - [x] Adaptar Quiz y StatsBar para el modo infinito y navegación dinámica
 
-## Autenticación y Perfil
+### Autenticación y Perfil
 - [x] Integrar Supabase Auth con Google
 - [x] Crear página de inicio (Login) con diseño premium
 - [x] Persistir estadísticas por pregunta (global + usuario) en Supabase
 - [x] Timer por pregunta individual para métricas de tiempo
 - [x] Migrar `Question.id` de `number` a `string` (formato `ITC-BT-XX-YY`)
 
-## Estado y Persistencia
+### Estado y Persistencia
 - [x] Migrar estado del quiz de `useState` a Zustand store
 - [x] Persistir sesión de quiz en localStorage via middleware `persist`
 - [x] Refactorizar Server Action a batch (guardar al finalizar)
@@ -41,11 +66,11 @@
 - [x] Soportar preguntas de selección múltiple con lógica de puntuación proporcional (+1/-0.25)
 - [x] Migrar proyecto a repositorio de GitHub (`thotluna/quiz_electric`)
 
-## Perfil y Estadísticas
+### Perfil y Estadísticas
 - [x] Implementar perfil de usuario con dashboard de estadísticas detallado
 - [x] Visualizar historial de simulacros realizados
 
-## Arquitectura Next.js 16
+### Arquitectura Next.js 16
 - [x] Refactorizar Auth Guard a Data Access Layer (DAL)
 - [x] Migrar `middleware.ts` a `proxy.ts` (Next 16 standard)
 - [x] Implementar ruta dedicada `/login` para separación de responsabilidades

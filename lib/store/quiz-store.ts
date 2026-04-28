@@ -1,7 +1,9 @@
+"use client";
+
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { ClientQuestion, QuizConfig, UserAnswer } from '@/types';
-import { getQuizQuestionsAction, evaluateQuestionAction } from '@/lib/application/actions/quiz-actions';
+import { evaluateAnswerAction } from '@/lib/application/actions/quiz-actions';
 
 const STORAGE_KEY = 'quiz-electric-session';
 const TIMED_MODE_SECONDS = 180;
@@ -24,20 +26,19 @@ interface QuizState {
   isLoading: boolean;
   lastEvaluation: {
     isCorrect: boolean;
-    explanation: string;
-    correctIds: number[];
+    points: number;
+    explanation?: string;
+    correctIds?: number[];
   } | null;
 }
 
 interface QuizActions {
   setUserId: (id: string) => void;
-  startQuiz: (quizConfig: QuizConfig) => Promise<void>;
   initQuiz: (config: QuizConfig, questions: ClientQuestion[]) => void;
   selectOption: (id: number) => void;
   toggleOption: (id: number) => void;
   evaluateAnswer: () => Promise<void>;
-  skipQuestion: () => void;
-  advance: () => void;
+  nextQuestion: () => void;
   finishQuiz: () => void;
   resetQuiz: () => void;
   resumeQuiz: () => void;
@@ -78,29 +79,12 @@ export const useQuizStore = create<QuizStore>()(
       initQuiz: (config: QuizConfig, questions: ClientQuestion[]): void => {
         set({
           ...initialState,
-          userId: get().userId,
           config,
           questions,
-          initialQuestions: [...questions],
+          initialQuestions: questions,
+          userId: get().userId,
           questionStartTime: Date.now(),
         });
-      },
-
-      startQuiz: async (quizConfig: QuizConfig): Promise<void> => {
-        set({ isLoading: true });
-        try {
-          const questions = await getQuizQuestionsAction(
-            quizConfig.topicIds || [], 
-            quizConfig.questionCount, 
-            get().userId
-          );
-          
-          get().initQuiz(quizConfig, questions);
-        } catch (error) {
-          console.error('Failed to start quiz:', error);
-        } finally {
-          set({ isLoading: false });
-        }
       },
 
       selectOption: (id: number): void => {
@@ -121,88 +105,45 @@ export const useQuizStore = create<QuizStore>()(
         const { selectedOptionIds, questions, questionStartTime, score, userAnswers } = get();
         if (selectedOptionIds.length === 0 || questions.length === 0) return;
 
-        const currentQuestion = questions[0];
+        const currentQuestion = questions[0]; // In our queue system, we always evaluate the first one
+        const timeSpent = Math.floor((Date.now() - questionStartTime) / 1000);
+
         set({ isLoading: true });
 
         try {
-          const result = await evaluateQuestionAction(
-            currentQuestion.id,
-            currentQuestion.tipo === 'multiple' ? selectedOptionIds : selectedOptionIds[0]
-          );
+          const result = await evaluateAnswerAction(currentQuestion.id, selectedOptionIds, timeSpent);
 
-          const timeSpent = Math.round((Date.now() - questionStartTime) / 1000);
-          
-          const answer: UserAnswer = {
+          const newAnswer: UserAnswer = {
             question: currentQuestion,
             selectedOptionIds,
             isCorrect: result.isCorrect,
             points: result.points,
-            timeSpent: timeSpent,
+            timeSpent,
             explanation: result.explanation,
-            correctIds: result.correctIds
+            correctIds: result.correctIds,
           };
 
-          const newUserAnswers = [...userAnswers, answer];
-
           set({
-            isShowingResult: true,
-            isAutoAdvancing: true,
             score: score + result.points,
-            userAnswers: newUserAnswers,
+            userAnswers: [...userAnswers, newAnswer],
             lastEvaluation: {
               isCorrect: result.isCorrect,
+              points: result.points,
               explanation: result.explanation,
-              correctIds: result.correctIds
-            }
+              correctIds: result.correctIds,
+            },
+            isShowingResult: true,
+            isLoading: false,
           });
         } catch (error) {
-          console.error('Evaluation failed:', error);
-        } finally {
+          console.error('Error evaluating answer:', error);
           set({ isLoading: false });
         }
       },
 
-      skipQuestion: (): void => {
-        const { questions, userAnswers, questionStartTime, currentIndex } = get();
-        if (questions.length === 0) return;
-
-        const currentQuestion = questions[0];
-        const timeSpent = Math.round((Date.now() - questionStartTime) / 1000);
-
-        const newUserAnswers = [...userAnswers, {
-          question: currentQuestion,
-          selectedOptionIds: [],
-          isCorrect: false,
-          points: 0,
-          timeSpent,
-        }];
-
-        const remaining = questions.filter(q => q.id !== currentQuestion.id);
-        const reorderedQuestions = [...remaining, currentQuestion];
-
-        set({
-          questions: reorderedQuestions,
-          userAnswers: newUserAnswers,
-          currentIndex: currentIndex + 1,
-          selectedOptionIds: [],
-          isShowingResult: false,
-          isAutoAdvancing: false,
-          questionStartTime: Date.now(),
-          lastEvaluation: null,
-        });
-      },
-
-      advance: (): void => {
-        const { questions, userAnswers, isFinished, initialQuestions } = get();
-        if (isFinished || questions.length === 0) return;
-
-        const currentQuestion = questions[0];
-        const hasAnswered = userAnswers.some(a => a.question.id === currentQuestion.id && a.selectedOptionIds.length > 0);
-        
-        let remainingQuestions = [...questions];
-        if (hasAnswered) {
-          remainingQuestions = questions.filter(q => q.id !== currentQuestion.id);
-        }
+      nextQuestion: (): void => {
+        const { questions, initialQuestions } = get();
+        const remainingQuestions = questions.slice(1);
 
         if (remainingQuestions.length === 0) {
           set({ isFinished: true, isAutoAdvancing: false });
@@ -214,9 +155,8 @@ export const useQuizStore = create<QuizStore>()(
           currentIndex: initialQuestions.length - remainingQuestions.length,
           selectedOptionIds: [],
           isShowingResult: false,
-          isAutoAdvancing: false,
-          questionStartTime: Date.now(),
           lastEvaluation: null,
+          questionStartTime: Date.now(),
         });
       },
 
@@ -230,6 +170,8 @@ export const useQuizStore = create<QuizStore>()(
 
       tick: (): boolean => {
         const { timeElapsed, config } = get();
+        if (get().isFinished) return false;
+
         const newTime = timeElapsed + 1;
 
         if (config?.mode === 'timed' && newTime >= TIMED_MODE_SECONDS) {

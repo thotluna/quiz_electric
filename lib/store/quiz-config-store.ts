@@ -1,58 +1,44 @@
-import { create } from 'zustand';
-import { QuizMode } from '@/types';
+"use client";
+
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import { QuizMode } from "@/types";
 
 interface QuizConfigState {
   userId: string | null;
   mode: QuizMode;
   topicIds: string[];
-}
-
-interface QuizConfigActions {
-  setUserId: (userId: string) => void;
+  setUserId: (id: string) => void;
   setMode: (mode: QuizMode) => void;
-  setTopicIds: (topicIds: string[]) => void;
-  toggleTopic: (topicId: string) => void;
-  resetConfig: () => void;
+  setTopicId: (id: string) => void;
+  toggleTopic: (id: string) => void;
+  reset: () => void;
 }
 
-type QuizConfigStore = QuizConfigState & QuizConfigActions;
-
-const initialState: QuizConfigState = {
-  userId: null,
-  mode: 'standard',
-  topicIds: [],
-};
-
-export const useQuizConfigStore = create<QuizConfigStore>((set) => ({
-  ...initialState,
-
-  setUserId: (userId: string): void => {
-    set({ userId });
-  },
-
-  setMode: (mode: QuizMode): void => {
-    set({ mode });
-  },
-
-  setTopicIds: (topicIds: string[]): void => {
-    set({ topicIds });
-  },
-
-  toggleTopic: (topicId: string): void => {
-    set((state) => {
-      const isSelected = state.topicIds.includes(topicId);
-      const newTopics = isSelected
-        ? state.topicIds.filter((id) => id !== topicId)
-        : [...state.topicIds, topicId];
-
-      return { topicIds: newTopics };
-    });
-  },
-
-  resetConfig: (): void => {
-    set((state) => ({
-      ...initialState,
-      userId: state.userId, // Preserve userId during config reset
-    }));
-  },
-}));
+export const useQuizConfigStore = create<QuizConfigState>()(
+  persist(
+    (set) => ({
+      userId: null,
+      mode: "standard",
+      topicIds: [],
+      setUserId: (userId: string) => set({ userId }),
+      setMode: (mode: QuizMode) => set({ mode }),
+      setTopicId: (id: string) => set((s) => {
+        if (id === "") return { topicIds: [] };
+        const exists = s.topicIds.includes(id);
+        return {
+          topicIds: exists
+            ? s.topicIds.filter(t => t !== id)
+            : [...s.topicIds, id]
+        };
+      }),
+      toggleTopic: (topicId: string) => set((s) => ({
+        topicIds: s.topicIds.includes(topicId)
+          ? s.topicIds.filter(id => id !== topicId)
+          : [...s.topicIds, topicId]
+      })),
+      reset: () => set({ topicIds: [], mode: "standard" })
+    }),
+    { name: "quiz-config-storage" }
+  )
+);

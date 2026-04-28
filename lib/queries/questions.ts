@@ -3,8 +3,7 @@ import db from "../data/db.json";
 interface RawQuestion {
   id: string | number;
   pregunta: string;
-  opciones: any[]; // Mantengo any aquí temporalmente solo para el mapeo legacy si es necesario, 
-                   // pero intentaré evitarlo.
+  opciones: any[]; 
   tipo: string;
 }
 
@@ -15,18 +14,17 @@ interface RawTopic {
 }
 
 export const getTopics = async (): Promise<{ id: string; itc: string }[]> => {
-  const topics = db as unknown as RawTopic[];
+  const topics = (db as any).temas as RawTopic[];
   return topics.map((t) => ({ id: t.id, itc: t.itc }));
 };
 
-// Estos métodos parecen no usarse según el grep, pero los mantengo tipados mínimamente para no romper nada
 export const getQuestionsByTopic = async (topicId: string): Promise<RawQuestion[]> => {
-  const topics = db as unknown as RawTopic[];
+  const topics = (db as any).temas as RawTopic[];
   const topic = topics.find((t) => t.id === topicId);
   return topic ? topic.preguntas : [];
 };
 
 export const getAllQuestions = async (): Promise<RawQuestion[]> => {
-  const topics = db as unknown as RawTopic[];
+  const topics = (db as any).temas as RawTopic[];
   return topics.flatMap(t => t.preguntas);
 };

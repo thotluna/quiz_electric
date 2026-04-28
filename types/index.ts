@@ -16,8 +16,7 @@ export type QuizMode = 'timed' | 'standard' | 'infinite';
 
 export interface QuizConfig {
   mode: QuizMode;
-  questionCount?: number;
-  topicIds?: string[];
+  topicIds: string[];
 }
 
 export interface UserAnswer {
