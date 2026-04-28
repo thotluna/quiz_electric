@@ -7,11 +7,27 @@ export interface Question {
   tipo: QuestionType;
 }
 
+export interface QuestionCompocat extends Question {
+  itc: string;
+}
+
 export interface Option {
   id: number;
   respuesta: string;
   es_correcta: boolean;
   explicacion: string;
+}
+
+export interface ClientOption {
+  id: number;
+  respuesta: string;
+}
+
+export interface ClientQuestion {
+  id: string;
+  pregunta: string;
+  opciones: ClientOption[];
+  tipo: QuestionType;
 }
 
 export interface QuestionByTopic {
@@ -29,8 +45,19 @@ export interface QuizConfig {
 }
 
 export interface UserAnswer {
-  question: Question;
+  questionId: string;
+  questionText: string;
+  question?: Question;
   selectedOptionIds: number[];
   isCorrect: boolean;
   timeSpent: number;
+  points: number;
+  explicacion?: string;
+}
+
+export interface EvaluationResult {
+  isCorrect: boolean;
+  points: number;
+  explicacion: string;
+  fullQuestion: Question;
 }
