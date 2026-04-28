@@ -3,7 +3,7 @@
 import { useRouter } from \"next/navigation\";
 import { useQuizStore } from \"@/lib/store/quiz-store\";
 
-export const AbandonButton = () => {
+export const AbandonButton = (): JSX.Element => {
   const router = useRouter();
   const finishQuiz = useQuizStore((s) => s.finishQuiz);
   const discardSavedQuiz = useQuizStore((s) => s.discardSavedQuiz);

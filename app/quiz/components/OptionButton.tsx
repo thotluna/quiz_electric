@@ -20,7 +20,7 @@ export const OptionButton = ({
   isIncorrect,
   type,
   onClick
-}: OptionButtonProps) => {
+}: OptionButtonProps): JSX.Element => {
   return (
     <button
       disabled={isDisabled}

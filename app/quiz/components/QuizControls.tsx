@@ -3,7 +3,7 @@
 import { useQuizStore } from \"@/lib/store/quiz-store\";
 import { useState, useEffect } from \"react\";
 
-export const QuizControls = () => {
+export const QuizControls = (): JSX.Element => {
   const isShowingResult = useQuizStore((s) => s.isShowingResult);
   const isEvaluating = useQuizStore((s) => s.isEvaluating);
   const selectedOptionIds = useQuizStore((s) => s.selectedOptionIds);

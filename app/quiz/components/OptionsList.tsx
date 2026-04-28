@@ -3,7 +3,7 @@
 import { useQuizStore } from \"@/lib/store/quiz-store\";
 import { OptionButton } from \"./OptionButton\";
 
-export const OptionsList = () => {
+export const OptionsList = (): JSX.Element | null => {
   const currentIndex = useQuizStore((s) => s.currentIndex);
   const questions = useQuizStore((s) => s.questions);
   const selectedOptionIds = useQuizStore((s) => s.selectedOptionIds);

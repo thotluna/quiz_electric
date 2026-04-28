@@ -2,7 +2,7 @@
 
 import { useQuizStore } from \"@/lib/store/quiz-store\";
 
-export const QuestionCard = () => {
+export const QuestionCard = (): JSX.Element | null => {
   const currentIndex = useQuizStore((s) => s.currentIndex);
   const questions = useQuizStore((s) => s.questions);
   const isShowingResult = useQuizStore((s) => s.isShowingResult);

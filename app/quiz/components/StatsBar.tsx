@@ -2,7 +2,7 @@
 
 import { useQuizStore } from \"@/lib/store/quiz-store\";
 
-export const StatsBar = () => {
+export const StatsBar = (): JSX.Element => {
   const timer = useQuizStore((s) => s.timer);
   const userAnswers = useQuizStore((s) => s.userAnswers);
   const questionsCount = useQuizStore((s) => s.questions.length);
