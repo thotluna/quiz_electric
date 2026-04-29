@@ -27,8 +27,12 @@ interface RawTopic {
 export class JsonQuestionRepository implements IQuestionRepository {
   private topics: RawTopic[] = [];
 
-  constructor() {
-    this.loadAllData();
+  constructor(initialData?: { temas: RawTopic[] }) {
+    if (initialData?.temas) {
+      this.topics = initialData.temas;
+    } else {
+      this.loadAllData();
+    }
   }
 
   private loadAllData(): void {
