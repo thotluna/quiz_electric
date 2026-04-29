@@ -12,13 +12,13 @@ interface QuizResultsProps {
   onReset: () => void;
 }
 
-export const QuizResults = ({ 
-  userAnswers, 
-  timeElapsed, 
-  totalQuestions, 
-  score, 
-  isTimeOut, 
-  onReset 
+export const QuizResults = ({
+  userAnswers,
+  timeElapsed,
+  totalQuestions,
+  score,
+  isTimeOut,
+  onReset
 }: QuizResultsProps): React.ReactElement => {
   const answeredCount = userAnswers.filter(a => a.selectedOptionIds.length > 0).length;
   const skippedCount = totalQuestions - answeredCount;
@@ -62,8 +62,8 @@ export const QuizResults = ({
 
                 <div className="flex flex-col items-center gap-2">
                   <div className={`px-6 py-2 md:px-8 md:py-3 rounded-xl md:rounded-2xl border-2 font-black text-xl md:text-2xl tracking-tight uppercase shadow-sm transition-all duration-500 ${isPassed
-                      ? "bg-status-correct/10 border-status-correct text-status-correct shadow-status-correct/10"
-                      : "bg-status-incorrect/10 border-status-incorrect text-status-incorrect shadow-status-incorrect/10"
+                    ? "bg-status-correct/10 border-status-correct text-status-correct shadow-status-correct/10"
+                    : "bg-status-incorrect/10 border-status-incorrect text-status-incorrect shadow-status-incorrect/10"
                     }`}>
                     {isPassed ? "✓ APTO" : "✗ NO APTO"}
                   </div>
@@ -182,7 +182,7 @@ export const QuizResults = ({
                           <p className="text-[10px] font-black uppercase tracking-widest text-status-incorrect opacity-70">Tu selección</p>
                           <div className="space-y-1">
                             {selectedOptions.map(o => (
-                              <p key={o.id} className="text-sm font-bold text-status-incorrect">• {o.respuesta}</p>
+                              <p key={o.id} className="text-sm font-bold text-status-incorrect">• {o.texto}</p>
                             ))}
                           </div>
                         </div>
@@ -190,7 +190,7 @@ export const QuizResults = ({
                           <p className="text-[10px] font-black uppercase tracking-widest text-status-correct opacity-70">Respuestas correctas</p>
                           <div className="space-y-1">
                             {correctOptions.map(o => (
-                              <p key={o.id} className="text-sm font-bold text-status-correct">• {o.respuesta}</p>
+                              <p key={o.id} className="text-sm font-bold text-status-correct">• {o.texto}</p>
                             ))}
                           </div>
                         </div>

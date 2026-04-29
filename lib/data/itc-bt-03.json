@@ -1,648 +1,1552 @@
 [
   {
-    "id": "itc03-q1",
-    "pregunta": "¿Qué categoría de instalador autorizado en baja tensión es necesaria para realizar instalaciones en locales con riesgo de incendio o explosión?",
+    "id": "ITC-BT-03-01",
+    "tipo": "simple",
+    "pregunta": "¿Cuál es el objeto principal de la ITC-BT-03?",
     "opciones": [
       {
-        "id": "itc03-q1-o1",
-        "texto": "Categoría básica (IBTB)",
+        "id": 1,
+        "respuesta": "Definir las tensiones nominales de la instalación.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. La categoría básica no cubre instalaciones en locales con riesgo de incendio o explosión."
+        "explicacion": "Eso se define en el articulado del REBT y en otras ITC."
       },
       {
-        "id": "itc03-q1-o2",
-        "texto": "Categoría especialista (IBTE)",
+        "id": 2,
+        "respuesta": "Establecer las condiciones y requisitos para la habilitación como empresa instaladora en baja tensión.",
         "es_correcta": true,
-        "explicacion": "Correcto. Según la ITC-BT-03, las instalaciones en locales con riesgo de incendio o explosión requieren la categoría especialista."
+        "explicacion": "La ITC-BT-03 tiene por objeto desarrollar las condiciones para la certificación de competencia y habilitación como empresa instaladora."
       },
       {
-        "id": "itc03-q1-o3",
-        "texto": "Cualquier categoría es válida",
+        "id": 3,
+        "respuesta": "Establecer los requisitos de los cables de las redes subterráneas.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. Existe una distinción clara de competencias entre categorías básica y especialista."
+        "explicacion": "Eso corresponde a la ITC-BT-07."
       },
       {
-        "id": "itc03-q1-o4",
-        "texto": "Ninguna de las anteriores",
+        "id": 4,
+        "respuesta": "Definir los esquemas de conexión a tierra.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. La categoría especialista es la habilitación técnica específica para estos entornos."
+        "explicacion": "Eso corresponde a la ITC-BT-08."
       }
-    ],
-    "explicacion_general": "La ITC-BT-03 define dos categorías de instaladores: Básica y Especialista, siendo esta última la requerida para entornos críticos o complejos.",
-    "itc": "ITC-BT-03"
+    ]
   },
   {
-    "id": "itc03-q2",
-    "pregunta": "¿Cuál es la cuantía mínima del seguro de responsabilidad civil para un instalador de categoría básica (IBTB)?",
+    "id": "ITC-BT-03-02",
+    "tipo": "simple",
+    "pregunta": "Según la ITC-BT-03, ¿qué es una empresa instaladora en baja tensión?",
     "opciones": [
       {
-        "id": "itc03-q2-o1",
-        "texto": "300.000 euros",
+        "id": 1,
+        "respuesta": "Toda persona física que posee un título universitario en electrotecnia.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. Esta cuantía es inferior a la exigida legalmente para la categoría básica."
+        "explicacion": "Esa es una de las vías para ser instalador habilitado, no la definición de empresa."
       },
       {
-        "id": "itc03-q2-o2",
-        "texto": "600.000 euros",
+        "id": 2,
+        "respuesta": "Toda persona física o jurídica que realiza, mantiene o repara instalaciones y ha presentado una declaración responsable de inicio de actividad.",
         "es_correcta": true,
-        "explicacion": "Correcto. La normativa establece un mínimo de 600.000 euros por siniestro para la categoría básica."
+        "explicacion": "Es la definición exacta recogida en el apartado 2.1 de la ITC-BT-03."
       },
       {
-        "id": "itc03-q2-o3",
-        "texto": "900.000 euros",
+        "id": 3,
+        "respuesta": "Una entidad pública encargada de inspeccionar instalaciones.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. Aunque es una cobertura mayor, el mínimo legal es de 600.000 euros."
+        "explicacion": "Eso correspondería a un Organismo de Control (OCA)."
       },
       {
-        "id": "itc03-q2-o4",
-        "texto": "1.000.000 euros",
+        "id": 4,
+        "respuesta": "Cualquier persona jurídica que distribuya energía eléctrica.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. Esta cifra es más habitual en la categoría especialista."
+        "explicacion": "Esa es una empresa distribuidora."
       }
-    ],
-    "explicacion_general": "El seguro de responsabilidad civil es un requisito obligatorio para garantizar la cobertura de posibles daños derivados de la actividad profesional.",
-    "itc": "ITC-BT-03"
+    ]
   },
   {
-    "id": "itc03-q3",
-    "pregunta": "Para la categoría especialista (IBTE), ¿qué equipo adicional es obligatorio poseer?",
+    "id": "ITC-BT-03-03",
+    "tipo": "simple",
+    "pregunta": "¿Cómo se clasifican las Empresas instaladoras en Baja Tensión?",
     "opciones": [
       {
-        "id": "itc03-q3-o1",
-        "texto": "Telurómetro",
+        "id": 1,
+        "respuesta": "Categoría A, B y C.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. El telurómetro es obligatorio para ambas categorías (básica y especialista)."
+        "explicacion": "No existe esta clasificación en el REBT."
       },
       {
-        "id": "itc03-q3-o2",
-        "texto": "Analizador de redes",
+        "id": 2,
+        "respuesta": "Categoría Residencial y Categoría Industrial.",
+        "es_correcta": false,
+        "explicacion": "La clasificación no depende exclusivamente del tipo de edificación."
+      },
+      {
+        "id": 3,
+        "respuesta": "Categoría Básica (IBTB) y Categoría Especialista (IBTE).",
         "es_correcta": true,
-        "explicacion": "Correcto. El analizador de redes es uno de los medios técnicos específicos exigidos para la categoría especialista."
+        "explicacion": "El apartado 3 de la ITC-BT-03 establece la clasificación en IBTB e IBTE."
       },
       {
-        "id": "itc03-q3-o3",
-        "texto": "Multímetro",
+        "id": 4,
+        "respuesta": "Categoría Unifilar y Categoría Multifilar.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. El multímetro es una herramienta básica obligatoria para todos los instaladores."
-      },
-      {
-        "id": "itc03-q3-o4",
-        "texto": "Luxómetro",
-        "es_correcta": false,
-        "explicacion": "Incorrecto. El luxómetro también es obligatorio para la categoría básica."
+        "explicacion": "Esos son tipos de esquemas, no categorías de empresas."
       }
-    ],
-    "explicacion_general": "La categoría especialista requiere equipos de medida más sofisticados para verificar instalaciones de mayor complejidad técnica.",
-    "itc": "ITC-BT-03"
+    ]
   },
   {
-    "id": "itc03-q4",
-    "pregunta": "¿Qué titulación mínima habilita para obtener la cualificación de instalador en baja tensión?",
+    "id": "ITC-BT-03-04",
+    "tipo": "simple",
+    "pregunta": "La Categoría Básica (IBTB) permite realizar, mantener y reparar:",
     "opciones": [
       {
-        "id": "itc03-q4-o1",
-        "texto": "Técnico en Instalaciones Eléctricas y Automáticas",
+        "id": 1,
+        "respuesta": "Únicamente viviendas unifamiliares.",
+        "es_correcta": false,
+        "explicacion": "Permite instalaciones en edificios, industrias e infraestructuras en general."
+      },
+      {
+        "id": 2,
+        "respuesta": "Todas las instalaciones del ámbito del REBT que no se reserven a la categoría especialista.",
         "es_correcta": true,
-        "explicacion": "Correcto. El título de FP de Grado Medio en esta especialidad habilita directamente para la categoría básica."
+        "explicacion": "Según el apartado 3.1 de la ITC-BT-03, abarca todas las instalaciones no reservadas a IBTE."
       },
       {
-        "id": "itc03-q4-o2",
-        "texto": "Graduado en ESO",
+        "id": 3,
+        "respuesta": "Quirófanos y salas de intervención.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. Se requiere una formación técnica específica de grado medio, superior o universitaria."
+        "explicacion": "Los quirófanos están reservados a la categoría especialista."
       },
       {
-        "id": "itc03-q4-o3",
-        "texto": "Bachillerato Tecnológico",
+        "id": 4,
+        "respuesta": "Instalaciones generadoras de potencia superior a 10 kW.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. Aunque aporta base científica, no es una titulación profesional habilitante para la ejecución de instalaciones."
-      },
-      {
-        "id": "itc03-q4-o4",
-        "texto": "Certificado de escolaridad",
-        "es_correcta": false,
-        "explicacion": "Incorrecto. No cumple con los requisitos de capacitación técnica del REBT."
+        "explicacion": "Ese tipo de instalación generadora es competencia de la categoría especialista."
       }
-    ],
-    "explicacion_general": "La capacitación se acredita mediante títulos oficiales de formación profesional o ingeniería con competencias en electricidad.",
-    "itc": "ITC-BT-03"
+    ]
   },
   {
-    "id": "itc03-q5",
-    "pregunta": "¿Es posible realizar la actividad de instalador mediante un certificado de profesionalidad?",
+    "id": "ITC-BT-03-05",
+    "tipo": "simple",
+    "pregunta": "¿Qué tipo de instalación requiere obligatoriamente una Empresa Instaladora de Categoría Especialista (IBTE)?",
     "opciones": [
       {
-        "id": "itc03-q5-o1",
-        "texto": "No, solo con título de FP",
-        "es_correcta": false,
-        "explicacion": "Incorrecto. Los certificados de profesionalidad son una vía válida de acreditación de competencias."
-      },
-      {
-        "id": "itc03-q5-o2",
-        "texto": "Sí, siempre que esté incluido en el Catálogo Nacional de Cualificaciones",
+        "id": 1,
+        "respuesta": "Sistemas de automatización, gestión técnica de la energía y seguridad para viviendas.",
         "es_correcta": true,
-        "explicacion": "Correcto. Los certificados de profesionalidad equivalentes habilitan para el ejercicio de la profesión."
+        "explicacion": "El apartado 3.2 enumera estas instalaciones como competencia de la categoría especialista."
       },
       {
-        "id": "itc03-q5-o3",
-        "texto": "Solo para la categoría básica",
+        "id": 2,
+        "respuesta": "Sustitución de mecanismos en una vivienda.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. Existen certificados de nivel 3 que pueden habilitar para la categoría especialista."
+        "explicacion": "Esto lo puede realizar la categoría básica."
       },
       {
-        "id": "itc03-q5-o4",
-        "texto": "Solo si se tiene 10 años de experiencia",
+        "id": 3,
+        "respuesta": "Locales comerciales ordinarios.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. El certificado acredita la competencia independientemente de la antigüedad si se ha obtenido formalmente."
+        "explicacion": "Puede hacerlo la categoría básica."
+      },
+      {
+        "id": 4,
+        "respuesta": "Derivaciones individuales en edificios de viviendas.",
+        "es_correcta": false,
+        "explicacion": "Es competencia de la categoría básica."
       }
-    ],
-    "explicacion_general": "El sistema nacional de cualificaciones permite diversas vías para acreditar la competencia profesional necesaria.",
-    "itc": "ITC-BT-03"
+    ]
   },
   {
-    "id": "itc03-q6",
-    "pregunta": "¿Qué debe hacer una empresa instaladora si cambia su domicilio social?",
+    "id": "ITC-BT-03-06",
+    "tipo": "simple",
+    "pregunta": "Respecto a las instalaciones generadoras de baja tensión, ¿qué límite de potencia marca la necesidad de la Categoría Especialista?",
     "opciones": [
       {
-        "id": "itc03-q6-o1",
-        "texto": "No es necesario hacer nada",
+        "id": 1,
+        "respuesta": "Superior o igual a 5 kW.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. Cualquier variación de los datos de la declaración responsable debe ser comunicada."
+        "explicacion": "El límite no es 5 kW."
       },
       {
-        "id": "itc03-q6-o2",
-        "texto": "Comunicarlo al órgano competente en el plazo de un mes",
+        "id": 2,
+        "respuesta": "Superior o igual a 10 kW.",
         "es_correcta": true,
-        "explicacion": "Correcto. Según la normativa, los cambios de datos deben notificarse a la administración en el plazo máximo de un mes."
+        "explicacion": "El apartado 3.2 indica 'Instalaciones generadoras de baja tensión de potencia superior o igual a 10 kW'."
       },
       {
-        "id": "itc03-q6-o3",
-        "texto": "Esperar a la renovación anual del seguro",
+        "id": 3,
+        "respuesta": "Superior o igual a 20 kW.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. La comunicación industrial es independiente de la póliza del seguro."
+        "explicacion": "El límite es 10 kW."
       },
       {
-        "id": "itc03-q6-o4",
-        "texto": "Publicarlo en el BOE",
+        "id": 4,
+        "respuesta": "Cualquier potencia requiere categoría especialista.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. No es un requisito para una empresa instaladora estándar."
+        "explicacion": "Las menores de 10 kW pueden ser instaladas por la categoría básica."
       }
-    ],
-    "explicacion_general": "Mantener los datos actualizados en el registro de empresas instaladoras es una obligación administrativa fundamental.",
-    "itc": "ITC-BT-03"
+    ]
   },
   {
-    "id": "itc03-q7",
-    "pregunta": "¿Qué se entiende por 'medios humanos mínimos' para una empresa instaladora?",
+    "id": "ITC-BT-03-07",
+    "tipo": "simple",
+    "pregunta": "¿Qué afirmación define correctamente a un 'Instalador en baja tensión'?",
     "opciones": [
       {
-        "id": "itc03-q7-o1",
-        "texto": "Tener al menos 10 trabajadores",
+        "id": 1,
+        "respuesta": "Es una empresa autorizada para realizar inspecciones de baja tensión.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. No hay un número mínimo de empleados global, sino una exigencia de cualificación."
+        "explicacion": "Ese es el Organismo de Control."
       },
       {
-        "id": "itc03-q7-o2",
-        "texto": "Disponer de al menos un instalador cualificado para cada categoría",
+        "id": 2,
+        "respuesta": "Es la persona física que tiene conocimientos para desempeñar las actividades correspondientes y desarrolla su labor en el seno de una empresa instaladora habilitada.",
         "es_correcta": true,
-        "explicacion": "Correcto. La empresa debe contar con personal que acredite la cualificación profesional requerida para la actividad que desarrolla."
+        "explicacion": "Corresponde a la definición de los apartados 2.2 y 4 de la ITC-BT-03."
       },
       {
-        "id": "itc03-q7-o3",
-        "texto": "Tener un administrativo a jornada completa",
+        "id": 3,
+        "respuesta": "Es la persona jurídica encargada del diseño de las líneas de distribución.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. La normativa se centra en la capacidad técnica, no en el soporte administrativo."
+        "explicacion": "La empresa instaladora puede ser jurídica, pero el 'instalador' es una persona física."
       },
       {
-        "id": "itc03-q7-o4",
-        "texto": "Contratar a un ingeniero externo",
+        "id": 4,
+        "respuesta": "Toda persona con más de 18 años.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. La empresa debe tener medios propios o vinculados para su habilitación."
+        "explicacion": "Requiere cumplir conocimientos y requisitos formativos específicos."
       }
-    ],
-    "explicacion_general": "La solvencia técnica de la empresa se basa en la cualificación demostrable de su personal.",
-    "itc": "ITC-BT-03"
+    ]
   },
   {
-    "id": "itc03-q8",
-    "pregunta": "¿Es obligatorio disponer de un medidor de aislamiento para la categoría básica?",
+    "id": "ITC-BT-03-08",
+    "tipo": "simple",
+    "pregunta": "Para ser Instalador en baja tensión, ¿qué titulación universitaria es válida?",
     "opciones": [
       {
-        "id": "itc03-q8-o1",
-        "texto": "No, es opcional",
+        "id": 1,
+        "respuesta": "Cualquier título universitario.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. Es un equipo de medida fundamental y obligatorio para verificar la seguridad de los circuitos."
+        "explicacion": "Debe cubrir materias específicas del REBT."
       },
       {
-        "id": "itc03-q8-o2",
-        "texto": "Sí, capaz de suministrar una tensión de 500 V CC",
+        "id": 2,
+        "respuesta": "Un título universitario cuyo ámbito competencial o plan de estudios cubra las materias objeto del REBT y sus ITC.",
         "es_correcta": true,
-        "explicacion": "Correcto. El medidor de aislamiento debe poder generar al menos 500 V en corriente continua para pruebas en BT."
+        "explicacion": "Es uno de los requisitos indicados en el apartado 4 a)."
       },
       {
-        "id": "itc03-q8-o3",
-        "texto": "Solo para instalaciones industriales",
+        "id": 3,
+        "respuesta": "Exclusivamente el grado en Ingeniería Eléctrica.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. Se requiere para todas las instalaciones, incluidas viviendas."
+        "explicacion": "Se acepta cualquier título universitario si su plan de estudios cubre las materias."
       },
       {
-        "id": "itc03-q8-o4",
-        "texto": "Sí, pero solo de 100 V",
+        "id": 4,
+        "respuesta": "Un título universitario siempre que se apruebe además un examen teórico-práctico de la Comunidad Autónoma.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. La tensión de prueba estándar para circuitos de 230/400 V es de 500 V."
+        "explicacion": "El título en sí mismo es condición suficiente (vía a)."
       }
-    ],
-    "explicacion_general": "Las pruebas de aislamiento son críticas para prevenir contactos indirectos e incendios por derivaciones.",
-    "itc": "ITC-BT-03"
+    ]
   },
   {
-    "id": "itc03-q9",
-    "pregunta": "¿Qué ocurre si una empresa no mantiene las condiciones de su declaración responsable?",
+    "id": "ITC-BT-03-09",
+    "tipo": "simple",
+    "pregunta": "En lugar de título universitario o de formación profesional, ¿qué otra certificación es válida para ser instalador?",
     "opciones": [
       {
-        "id": "itc03-q9-o1",
-        "texto": "Puede seguir operando normalmente",
+        "id": 1,
+        "respuesta": "Un certificado de penales.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. La pérdida de requisitos inhabilita el ejercicio de la actividad."
+        "explicacion": "No es válido para certificar conocimientos técnicos."
       },
       {
-        "id": "itc03-q9-o2",
-        "texto": "Se le puede retirar la habilitación para ejercer",
+        "id": 2,
+        "respuesta": "Una certificación otorgada por entidad acreditada para la certificación de personas, según el Real Decreto 2200/1995.",
         "es_correcta": true,
-        "explicacion": "Correcto. El incumplimiento de los requisitos técnicos o de seguro conlleva la baja en el registro y cese de actividad."
+        "explicacion": "Aparece especificado en el apartado 4 d) de la ITC-BT-03."
       },
       {
-        "id": "itc03-q9-o3",
-        "texto": "Solo se le impone una multa leve",
+        "id": 3,
+        "respuesta": "Una carta de recomendación de otra empresa instaladora.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. Además de posibles sanciones, la consecuencia inmediata es la inhabilitación profesional."
+        "explicacion": "No es un medio válido contemplado en la ITC-BT-03."
       },
       {
-        "id": "itc03-q9-o4",
-        "texto": "Se le da un plazo de 2 años para corregirlo",
+        "id": 4,
+        "respuesta": "Un certificado médico.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. Los requisitos de seguridad deben cumplirse en todo momento."
+        "explicacion": "No acredita competencias técnicas."
       }
-    ],
-    "explicacion_general": "La declaración responsable es un compromiso continuo de cumplimiento normativo ante la administración.",
-    "itc": "ITC-BT-03"
+    ]
   },
   {
-    "id": "itc03-q10",
-    "pregunta": "¿En qué consiste la categoría especialista en sistemas de control distribuido?",
+    "id": "ITC-BT-03-10",
+    "tipo": "simple",
+    "pregunta": "¿A qué categorías son válidas las distintas titulaciones o vías de acceso (universidad, FP, experiencia, etc.) para instalador?",
     "opciones": [
       {
-        "id": "itc03-q10-o1",
-        "texto": "En poner bombillas inteligentes",
-        "es_correcta": false,
-        "explicacion": "Incorrecto. Es una definición demasiado simplista para una competencia técnica compleja."
-      },
-      {
-        "id": "itc03-q10-o2",
-        "texto": "En la instalación de sistemas de automatización y gestión técnica de energía",
+        "id": 1,
+        "respuesta": "Son válidas indistintamente para las distintas categorías de instalador, en función de los conocimientos acreditados.",
         "es_correcta": true,
-        "explicacion": "Correcto. Esta especialidad cubre la domótica, inmótica y control industrial avanzado."
+        "explicacion": "El apartado 4 indica que cualquiera de las situaciones son válidas indistintamente según los conocimientos."
       },
       {
-        "id": "itc03-q10-o3",
-        "texto": "En arreglar ordenadores",
+        "id": 2,
+        "respuesta": "El título universitario solo sirve para la categoría Básica.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. El REBT se refiere a instalaciones eléctricas de potencia y control, no a informática de consumo."
+        "explicacion": "Sirve para ambas si cubre el plan de estudios necesario."
       },
       {
-        "id": "itc03-q10-o4",
-        "texto": "En instalar antenas de televisión",
+        "id": 3,
+        "respuesta": "La Formación Profesional solo sirve para la Categoría Especialista.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. Las telecomunicaciones se rigen por su propia normativa (ICT), no por el REBT."
+        "explicacion": "Sirve para ambas."
+      },
+      {
+        "id": 4,
+        "respuesta": "La experiencia laboral solo es válida para la categoría Básica.",
+        "es_correcta": false,
+        "explicacion": "Es válida para cualquiera en función de lo que acredite."
       }
-    ],
-    "explicacion_general": "La categoría especialista abarca tecnologías avanzadas que requieren conocimientos específicos de protocolos y sistemas de control.",
-    "itc": "ITC-BT-03"
+    ]
   },
   {
-    "id": "itc03-q11",
-    "pregunta": "¿Qué equipo de medida es necesario para comprobar el disparo de los interruptores diferenciales?",
+    "id": "ITC-BT-03-11",
+    "tipo": "simple",
+    "pregunta": "¿Qué documento debe presentar una empresa para poder iniciar la actividad como instaladora en baja tensión?",
     "opciones": [
       {
-        "id": "itc03-q11-o1",
-        "texto": "Un comprobador de diferenciales",
+        "id": 1,
+        "respuesta": "Un proyecto técnico firmado por un ingeniero.",
+        "es_correcta": false,
+        "explicacion": "Ese es un documento de la instalación, no para el inicio de actividad de la empresa."
+      },
+      {
+        "id": 2,
+        "respuesta": "Una declaración responsable de inicio de actividad ante el órgano competente de la comunidad autónoma.",
         "es_correcta": true,
-        "explicacion": "Correcto. Es obligatorio para medir el tiempo de disparo y la corriente de fuga real."
+        "explicacion": "El apartado 5 establece que se debe presentar una declaración responsable previo al inicio."
       },
       {
-        "id": "itc03-q11-o2",
-        "texto": "Pulsar el botón 'Test' del diferencial",
+        "id": 3,
+        "respuesta": "El certificado de instalación.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. El botón de test solo comprueba la mecánica, no los parámetros técnicos de seguridad."
+        "explicacion": "Es el documento que avala una instalación ya realizada."
       },
       {
-        "id": "itc03-q11-o3",
-        "texto": "Hacer un cortocircuito a tierra",
+        "id": 4,
+        "respuesta": "Una licencia de obras del Ayuntamiento.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. Es una práctica extremadamente peligrosa y no cuantifica la sensibilidad del dispositivo."
-      },
-      {
-        "id": "itc03-q11-o4",
-        "texto": "Un medidor de frecuencia",
-        "es_correcta": false,
-        "explicacion": "Incorrecto. La frecuencia no indica si un diferencial dispara correctamente ante una fuga."
+        "explicacion": "Es un requisito municipal, no la habilitación de industria."
       }
-    ],
-    "explicacion_general": "La verificación de los diferenciales es vital para garantizar la protección de las personas contra contactos directos e indirectos.",
-    "itc": "ITC-BT-03"
+    ]
   },
   {
-    "id": "itc03-q12",
-    "pregunta": "¿Cómo debe ser el registro de las intervenciones de mantenimiento en instalaciones críticas?",
+    "id": "ITC-BT-03-12",
+    "tipo": "simple",
+    "pregunta": "Según la ITC-BT-03, ¿se exige aportar la documentación acreditativa físicamente JUNTO con la declaración responsable?",
     "opciones": [
       {
-        "id": "itc03-q12-o1",
-        "texto": "En un libro de mantenimiento diligenciado",
+        "id": 1,
+        "respuesta": "Sí, es obligatorio entregar todos los títulos compulsados el mismo día.",
+        "es_correcta": false,
+        "explicacion": "La norma indica expresamente lo contrario."
+      },
+      {
+        "id": 2,
+        "respuesta": "No, no se podrá exigir la presentación de documentación acreditativa junto con la declaración responsable, aunque deberá estar disponible para inspección.",
         "es_correcta": true,
-        "explicacion": "Correcto. Las instalaciones de cierta complejidad deben llevar un registro formal de sus revisiones."
+        "explicacion": "Según el apartado 5.3, no se exigirá junto con la declaración, pero se debe tener disponible."
       },
       {
-        "id": "itc03-q12-o2",
-        "texto": "En una servilleta",
+        "id": 3,
+        "respuesta": "Depende exclusivamente del ayuntamiento.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. Carece de validez legal y técnica."
+        "explicacion": "Está regulado por el Reglamento Estatal y la Comunidad Autónoma."
       },
       {
-        "id": "itc03-q12-o3",
-        "texto": "No es necesario registrar nada",
+        "id": 4,
+        "respuesta": "Solo para la categoría especialista.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. El mantenimiento sin registro impide la trazabilidad de la seguridad."
-      },
-      {
-        "id": "itc03-q12-o4",
-        "texto": "Solo si el cliente lo pide",
-        "es_correcta": false,
-        "explicacion": "Incorrecto. Es una obligación reglamentaria para el instalador y el titular."
+        "explicacion": "Aplica a cualquier categoría."
       }
-    ],
-    "explicacion_general": "La documentación del mantenimiento asegura que la instalación sigue cumpliendo las condiciones de seguridad iniciales.",
-    "itc": "ITC-BT-03"
+    ]
   },
   {
-    "id": "itc03-q13",
-    "pregunta": "¿Qué responsabilidad tiene el instalador sobre las instalaciones que firma?",
+    "id": "ITC-BT-03-13",
+    "tipo": "simple",
+    "pregunta": "Las empresas instaladoras de otros Estados miembros de la UE que deseen operar en régimen de libre prestación en España:",
     "opciones": [
       {
-        "id": "itc03-q13-o1",
-        "texto": "Ninguna tras el cobro de la factura",
-        "es_correcta": false,
-        "explicacion": "Incorrecto. El instalador es responsable legal de la ejecución técnica de la obra."
-      },
-      {
-        "id": "itc03-q13-o2",
-        "texto": "Responsabilidad civil y, en su caso, penal",
+        "id": 1,
+        "respuesta": "Deben presentar una declaración responsable previo al inicio de su actividad ante el órgano competente.",
         "es_correcta": true,
-        "explicacion": "Correcto. El instalador responde de los daños que una mala ejecución pueda causar en el tiempo."
+        "explicacion": "Así lo establece el apartado 5.2 de la ITC-BT-03."
       },
       {
-        "id": "itc03-q13-o3",
-        "texto": "Solo si la instalación tiene menos de un mes",
+        "id": 2,
+        "respuesta": "Tienen prohibido ejercer la actividad en territorio español.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. Los plazos de responsabilidad son mucho más extensos."
+        "explicacion": "Está permitido si cumplen los requisitos."
       },
       {
-        "id": "itc03-q13-o4",
-        "texto": "La responsabilidad es del dueño de la casa",
+        "id": 3,
+        "respuesta": "Solo pueden operar si se asocian con una empresa local.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. El dueño es responsable del uso, pero el instalador lo es de la correcta ejecución según reglamento."
+        "explicacion": "No es un requisito de la ITC."
+      },
+      {
+        "id": 4,
+        "respuesta": "Están exentas de cumplir el REBT.",
+        "es_correcta": false,
+        "explicacion": "Deben responsabilizarse de que la ejecución se ajusta al REBT."
       }
-    ],
-    "explicacion_general": "La firma de un boletín o certificado de instalación conlleva una asunción de responsabilidad técnica y legal.",
-    "itc": "ITC-BT-03"
+    ]
   },
   {
-    "id": "itc03-q14",
-    "pregunta": "¿Qué debe hacer un instalador en caso de accidente eléctrico grave en una de sus obras?",
+    "id": "ITC-BT-03-14",
+    "tipo": "simple",
+    "pregunta": "¿Qué debe hacer el órgano competente tras recibir la declaración responsable?",
     "opciones": [
       {
-        "id": "itc03-q14-o1",
-        "texto": "Ocultar las pruebas",
+        "id": 1,
+        "respuesta": "Realizar un examen al instalador en un plazo de 15 días.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. Es una práctica ilegal y peligrosa."
+        "explicacion": "El modelo está basado en declaración responsable, no en examen previo del órgano."
       },
       {
-        "id": "itc03-q14-o2",
-        "texto": "Informar inmediatamente al organismo competente de la comunidad autónoma",
+        "id": 2,
+        "respuesta": "Asignar, de oficio, un número de identificación a la empresa y remitir los datos al Registro Integrado Industrial.",
         "es_correcta": true,
-        "explicacion": "Correcto. Existe una obligación de reporte ante incidentes de seguridad industrial graves."
+        "explicacion": "Indicado textualmente en el apartado 5.4."
       },
       {
-        "id": "itc03-q14-o3",
-        "texto": "Desmontar la instalación inmediatamente",
+        "id": 3,
+        "respuesta": "Inspeccionar las instalaciones de la empresa obligatoriamente antes de 3 días.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. No se debe alterar la escena de un accidente antes de la investigación oficial."
+        "explicacion": "Las facultades de inspección existen, pero sin ese plazo vinculante para la habilitación."
       },
       {
-        "id": "itc03-q14-o4",
-        "texto": "Solo informar si hay víctimas mortales",
+        "id": 4,
+        "respuesta": "Emitir un carné físico en formato tarjeta de crédito.",
         "es_correcta": false,
-        "explicacion": "Incorrecto. Cualquier accidente o incidente grave debe ser reportado."
+        "explicacion": "Se emite un número de identificación y registro, el formato carné ya no se exige de esa manera oficial exclusiva."
       }
-    ],
-    "explicacion_general": "La seguridad industrial exige transparencia y comunicación de incidentes para mejorar la normativa y prevenir futuros riesgos.",
-    "itc": "ITC-BT-03"
+    ]
   },
   {
     "id": "ITC-BT-03-15",
-    "pregunta": "¿Qué equipo de medida es obligatorio para un instalador de categoría básica (IBTB) según la ITC-BT-03?",
+    "tipo": "simple",
+    "pregunta": "¿Cuál de las siguientes es una obligación de la Empresa Instaladora según el apartado 7?",
     "opciones": [
       {
-        "id": "ITC-BT-03-15-o1",
-        "texto": "Analizador de redes.",
+        "id": 1,
+        "respuesta": "Vender energía al cliente final.",
         "es_correcta": false,
-        "explicacion": "El analizador de redes es obligatorio para la categoría especialista (IBTE)."
+        "explicacion": "Esto es actividad de comercializadora."
       },
       {
-        "id": "ITC-BT-03-15-o2",
-        "texto": "Telurómetro.",
+        "id": 2,
+        "respuesta": "Coordinarse con la empresa suministradora y facilitar a ésta copia del correspondiente Certificado de Instalación.",
         "es_correcta": true,
-        "explicacion": "El telurómetro es un equipo básico para medir la resistencia de tierra."
+        "explicacion": "Obligación listada en el apartado 7. h)."
       },
       {
-        "id": "ITC-BT-03-15-o3",
-        "texto": "Cámara termográfica.",
+        "id": 3,
+        "respuesta": "Mantener exclusivamente las instalaciones generadoras.",
         "es_correcta": false,
-        "explicacion": "No es un requisito mínimo de la categoría básica."
+        "explicacion": "Deben mantener las instalaciones que les sean encomendadas según su categoría."
       },
       {
-        "id": "ITC-BT-03-15-o4",
-        "texto": "Localizador de cables.",
+        "id": 4,
+        "respuesta": "Fabricar los tubos protectores.",
         "es_correcta": false,
-        "explicacion": "Es una herramienta útil pero no obligatoria por reglamento."
+        "explicacion": "La empresa instaladora ejecuta la obra, no es fabricante de materiales."
       }
-    ],
-    "tipo": "seleccion-simple",
-    "explicacion_general": "La ITC-BT-03 especifica los medios técnicos mínimos por categoría.",
-    "itc": "ITC-BT-03"
+    ]
   },
   {
     "id": "ITC-BT-03-16",
-    "pregunta": "¿Cuál es la cuantía mínima del seguro de responsabilidad civil para categoría básica?",
+    "tipo": "simple",
+    "pregunta": "¿A quién debe notificar la empresa instaladora los accidentes causados por las instalaciones que a su cargo?",
     "opciones": [
       {
-        "id": "ITC-BT-03-16-o1",
-        "texto": "300.000 euros.",
+        "id": 1,
+        "respuesta": "Solo a la empresa suministradora.",
         "es_correcta": false,
-        "explicacion": "Cuantía insuficiente según la normativa vigente."
+        "explicacion": "También debe notificar al órgano competente."
       },
       {
-        "id": "ITC-BT-03-16-o2",
-        "texto": "600.000 euros.",
+        "id": 2,
+        "respuesta": "Al órgano competente de la Comunidad Autónoma.",
         "es_correcta": true,
-        "explicacion": "Es la cuantía mínima general para categoría básica."
+        "explicacion": "Obligación j) del apartado 7: 'Notificar a la Administración competente los accidentes que se produzcan...'."
       },
       {
-        "id": "ITC-BT-03-16-o3",
-        "texto": "900.000 euros.",
+        "id": 3,
+        "respuesta": "Al Ministerio de Industria directamente.",
         "es_correcta": false,
-        "explicacion": "Es superior al mínimo legal exigido para básica."
+        "explicacion": "Se notifica al órgano competente de la Comunidad Autónoma."
       },
       {
-        "id": "ITC-BT-03-16-o4",
-        "texto": "1.200.000 euros.",
+        "id": 4,
+        "respuesta": "A ningún organismo si no hay víctimas.",
         "es_correcta": false,
-        "explicacion": "Cuantía típica de categoría especialista."
+        "explicacion": "La obligación incluye los accidentes causados por las instalaciones."
       }
-    ],
-    "tipo": "seleccion-simple",
-    "explicacion_general": "El seguro garantiza la cobertura de daños a terceros.",
-    "itc": "ITC-BT-03"
+    ]
   },
   {
     "id": "ITC-BT-03-17",
-    "pregunta": "¿Qué titulación mínima habilita para ser instalador de categoría básica?",
+    "tipo": "simple",
+    "pregunta": "¿Qué requisito de personal debe cumplir la empresa instaladora?",
     "opciones": [
       {
-        "id": "ITC-BT-03-17-o1",
-        "texto": "Técnico en Instalaciones Eléctricas.",
+        "id": 1,
+        "respuesta": "Tener al menos diez trabajadores.",
+        "es_correcta": false,
+        "explicacion": "No hay un mínimo de 10 trabajadores exigido."
+      },
+      {
+        "id": 2,
+        "respuesta": "Contar con el personal cualificado en plantilla, al menos un instalador en baja tensión para la respectiva categoría, a jornada completa.",
         "es_correcta": true,
-        "explicacion": "El título de FP de Grado Medio es la base habilitante."
+        "explicacion": "Aparece como requisito c) del apartado 5.1 (o tiempo parcial equivalente al horario de actividad)."
       },
       {
-        "id": "ITC-BT-03-17-o2",
-        "texto": "ESO.",
+        "id": 3,
+        "respuesta": "Todos los empleados deben ser ingenieros.",
         "es_correcta": false,
-        "explicacion": "Se requiere formación técnica específica."
+        "explicacion": "Sólo se exige al menos uno cualificado según las vías previstas."
       },
       {
-        "id": "ITC-BT-03-17-o3",
-        "texto": "Bachillerato.",
+        "id": 4,
+        "respuesta": "Subcontratar obligatoriamente a otro instalador.",
         "es_correcta": false,
-        "explicacion": "No es una titulación técnica habilitante."
-      },
-      {
-        "id": "ITC-BT-03-17-o4",
-        "texto": "Ingeniería Superior.",
-        "es_correcta": false,
-        "explicacion": "Aunque habilita, no es la 'mínima'."
+        "explicacion": "Debe tener personal propio cualificado en plantilla."
       }
-    ],
-    "tipo": "seleccion-simple",
-    "explicacion_general": "La cualificación se basa en la formación profesional reglada.",
-    "itc": "ITC-BT-03"
+    ]
   },
   {
     "id": "ITC-BT-03-18",
-    "pregunta": "¿Es obligatorio el luxómetro para la categoría básica?",
+    "tipo": "simple",
+    "pregunta": "¿Es válido que el instalador cualificado en plantilla preste servicios a tiempo parcial?",
     "opciones": [
       {
-        "id": "ITC-BT-03-18-o1",
-        "texto": "Sí.",
+        "id": 1,
+        "respuesta": "No, está terminantemente prohibido.",
+        "es_correcta": false,
+        "explicacion": "Sí se permite bajo ciertas condiciones."
+      },
+      {
+        "id": 2,
+        "respuesta": "Sí, siempre que el número de horas sea equivalente al horario durante el que la empresa desarrolle su actividad.",
         "es_correcta": true,
-        "explicacion": "Necesario para verificar alumbrado de emergencia."
+        "explicacion": "Especificado en el apartado 7: 'o a tiempo parcial para prestar servicios durante un número de horas equivalente al horario durante el que la empresa desarrolle su actividad'."
       },
       {
-        "id": "ITC-BT-03-18-o2",
-        "texto": "No.",
+        "id": 3,
+        "respuesta": "Sí, con un mínimo de 2 horas a la semana.",
         "es_correcta": false,
-        "explicacion": "Es un equipo obligatorio según la lista de medios técnicos."
+        "explicacion": "Debe cubrir el horario de actividad de la empresa."
       },
       {
-        "id": "ITC-BT-03-18-o3",
-        "texto": "Solo para especialistas.",
+        "id": 4,
+        "respuesta": "Sólo en la categoría especialista.",
         "es_correcta": false,
-        "explicacion": "Ambas categorías lo requieren."
-      },
-      {
-        "id": "ITC-BT-03-18-o4",
-        "texto": "Opcional.",
-        "es_correcta": false,
-        "explicacion": "Es un requisito técnico mínimo."
+        "explicacion": "Aplica a cualquier categoría."
       }
-    ],
-    "tipo": "seleccion-simple",
-    "explicacion_general": "El luxómetro asegura los niveles de iluminación mínimos legales.",
-    "itc": "ITC-BT-03"
+    ]
   },
   {
     "id": "ITC-BT-03-19",
-    "pregunta": "¿Cuánto tiempo debe conservarse copia de los certificados emitidos?",
+    "tipo": "simple",
+    "pregunta": "En caso de que la empresa sea persona jurídica, ¿es válido que la cualificación individual la ostente uno de los socios?",
     "opciones": [
       {
-        "id": "ITC-BT-03-19-o1",
-        "texto": "1 año.",
-        "es_correcta": false,
-        "explicacion": "Plazo demasiado corto."
-      },
-      {
-        "id": "ITC-BT-03-19-o2",
-        "texto": "3 años.",
-        "es_correcta": false,
-        "explicacion": "Plazo insuficiente."
-      },
-      {
-        "id": "ITC-BT-03-19-o3",
-        "texto": "5 años.",
+        "id": 1,
+        "respuesta": "Sí, siempre que trabaje para la empresa a jornada completa o durante el horario de apertura.",
         "es_correcta": true,
-        "explicacion": "Es el plazo legal estándar de conservación."
+        "explicacion": "Condición 1.ª establecida en el apartado 7 para satisfacer el requisito de profesional en plantilla."
       },
       {
-        "id": "ITC-BT-03-19-o4",
-        "texto": "10 años.",
+        "id": 2,
+        "respuesta": "No, debe ser un empleado contratado por cuenta ajena estrictamente.",
         "es_correcta": false,
-        "explicacion": "Superior al mínimo reglamentario."
+        "explicacion": "El reglamento admite expresamente que sea un socio."
+      },
+      {
+        "id": 3,
+        "respuesta": "Sí, sin importar su horario ni dedicación.",
+        "es_correcta": false,
+        "explicacion": "Exige jornada completa o durante el horario de apertura."
+      },
+      {
+        "id": 4,
+        "respuesta": "Solo si hay más de 3 socios.",
+        "es_correcta": false,
+        "explicacion": "El número de socios no es condicionante."
       }
-    ],
-    "tipo": "seleccion-simple",
-    "explicacion_general": "La documentación asegura la trazabilidad de las instalaciones.",
-    "itc": "ITC-BT-03"
+    ]
   },
   {
     "id": "ITC-BT-03-20",
-    "pregunta": "¿Qué figura es responsable técnica en la empresa instaladora?",
+    "tipo": "simple",
+    "pregunta": "Según el Apéndice II, en la Unidad temática 2 de Conocimientos teóricos Básicos, ¿qué materia se incluye?",
     "opciones": [
       {
-        "id": "ITC-BT-03-20-o1",
-        "texto": "El Gerente.",
+        "id": 1,
+        "respuesta": "Instalaciones en locales con riesgo de incendio o explosión.",
         "es_correcta": false,
-        "explicacion": "Es un rol administrativo."
+        "explicacion": "Esta pertenece a la Categoría Especialista."
       },
       {
-        "id": "ITC-BT-03-20-o2",
-        "texto": "El Representante Técnico.",
+        "id": 2,
+        "respuesta": "Previsión de cargas para suministros y partes de las instalaciones de enlace.",
         "es_correcta": true,
-        "explicacion": "Es la persona cualificada que asume la responsabilidad técnica."
+        "explicacion": "La Unidad temática 2 de la Categoría Básica se titula 'Instalaciones de Enlace'."
       },
       {
-        "id": "ITC-BT-03-20-o3",
-        "texto": "El Administrativo.",
+        "id": 3,
+        "respuesta": "Líneas aéreas para distribución de energía.",
         "es_correcta": false,
-        "explicacion": "No tiene funciones técnicas asignadas."
+        "explicacion": "Esto es la Unidad 1 de Especialista."
       },
       {
-        "id": "ITC-BT-03-20-o4",
-        "texto": "El Cliente.",
+        "id": 4,
+        "respuesta": "Manejo de aparatos de medida de magnitudes eléctricas.",
         "es_correcta": false,
-        "explicacion": "El cliente es el titular, no el responsable técnico."
+        "explicacion": "Esto forma parte de los conocimientos prácticos."
       }
-    ],
-    "tipo": "seleccion-simple",
-    "explicacion_general": "Toda empresa habilitada debe contar con personal cualificado responsable.",
-    "itc": "ITC-BT-03"
+    ]
+  },
+  {
+    "id": "ITC-BT-03-21",
+    "tipo": "simple",
+    "pregunta": "Dentro de la Categoría Básica, el cálculo del criterio de corriente de cortocircuito en líneas se enmarca en:",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Unidad temática 1: Fundamentos de las Instalaciones Eléctricas.",
+        "es_correcta": true,
+        "explicacion": "Aparece dentro del punto '2. Calculo eléctrico de las líneas de BT' de la Unidad 1 del Apéndice II."
+      },
+      {
+        "id": 2,
+        "respuesta": "Unidad temática 3: Instalaciones Interiores o Receptoras.",
+        "es_correcta": false,
+        "explicacion": "En la unidad 3 se dan prescripciones de interiores, no los fundamentos generales de cálculo de cortocircuito."
+      },
+      {
+        "id": 3,
+        "respuesta": "Categoría Especialista exclusivamente.",
+        "es_correcta": false,
+        "explicacion": "Se requiere en la categoría Básica."
+      },
+      {
+        "id": 4,
+        "respuesta": "Unidad temática 7: Generadoras.",
+        "es_correcta": false,
+        "explicacion": "La unidad 7 trata de instalaciones generadoras menores de 10 kW."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-22",
+    "tipo": "simple",
+    "pregunta": "Para la Categoría Especialista, la Unidad temática 5 se refiere a:",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Instalaciones en quirófanos.",
+        "es_correcta": false,
+        "explicacion": "Es la unidad 4 de Especialista."
+      },
+      {
+        "id": 2,
+        "respuesta": "Instalaciones generadoras de baja tensión de potencia superior o igual a 10 kW.",
+        "es_correcta": true,
+        "explicacion": "Ver Apéndice II, Parte II: Instalador Categoría Especialista, Unidad temática 5."
+      },
+      {
+        "id": 3,
+        "respuesta": "Sistemas de automatización.",
+        "es_correcta": false,
+        "explicacion": "Es la unidad 2 de Especialista."
+      },
+      {
+        "id": 4,
+        "respuesta": "Instalaciones de lámparas de descarga en alta tensión.",
+        "es_correcta": false,
+        "explicacion": "Es la unidad 6 de Especialista."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-23",
+    "tipo": "simple",
+    "pregunta": "Según la ITC-BT-03, ¿qué locales se consideran en la Unidad temática 3 de la Categoría Especialista?",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Locales húmedos y mojados.",
+        "es_correcta": false,
+        "explicacion": "Estos pertenecen a la categoría básica (Unidad 5)."
+      },
+      {
+        "id": 2,
+        "respuesta": "Locales con riesgo de incendio o explosión (ITC-BT-29).",
+        "es_correcta": true,
+        "explicacion": "Especificado en la Unidad temática 3 (Especialista) del Apéndice II."
+      },
+      {
+        "id": 3,
+        "respuesta": "Locales de pública concurrencia.",
+        "es_correcta": false,
+        "explicacion": "Se incluyen en la categoría básica (Unidad 5)."
+      },
+      {
+        "id": 4,
+        "respuesta": "Piscinas y fuentes.",
+        "es_correcta": false,
+        "explicacion": "Se incluyen en la categoría básica (Unidad 5)."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-24",
+    "tipo": "simple",
+    "pregunta": "¿Qué tema abarca la Unidad temática 4 de la Categoría Especialista?",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Sistemas de automatización y gestión de la energía.",
+        "es_correcta": false,
+        "explicacion": "Es la Unidad 2."
+      },
+      {
+        "id": 2,
+        "respuesta": "Líneas subterráneas para distribución de energía.",
+        "es_correcta": false,
+        "explicacion": "Aparece en la Unidad 1."
+      },
+      {
+        "id": 3,
+        "respuesta": "Instalaciones en quirófanos y salas de intervención (ITC-BT-38).",
+        "es_correcta": true,
+        "explicacion": "Indicado textualmente en el Apéndice II, Unidad temática 4 (Especialista)."
+      },
+      {
+        "id": 4,
+        "respuesta": "Receptores para alumbrado.",
+        "es_correcta": false,
+        "explicacion": "Corresponde a Categoría Básica."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-25",
+    "tipo": "simple",
+    "pregunta": "Dentro de los conocimientos prácticos de la Categoría Básica, el instalador debe saber montar y mantener:",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Instalaciones de quirófanos.",
+        "es_correcta": false,
+        "explicacion": "Eso es Categoría Especialista."
+      },
+      {
+        "id": 2,
+        "respuesta": "Aparamenta, líneas y cables, y tubos y canalizaciones correspondientes a su categoría.",
+        "es_correcta": true,
+        "explicacion": "Estipulado en los conocimientos prácticos de la Categoría Básica (puntos 1.1 y 1.2)."
+      },
+      {
+        "id": 3,
+        "respuesta": "Líneas de distribución de media tensión.",
+        "es_correcta": false,
+        "explicacion": "Están fuera del ámbito del REBT."
+      },
+      {
+        "id": 4,
+        "respuesta": "Sistemas de control de procesos SCADA.",
+        "es_correcta": false,
+        "explicacion": "Corresponden a la Categoría Especialista."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-26",
+    "tipo": "multiple",
+    "pregunta": "¿Cuáles de las siguientes instalaciones están reservadas a una empresa instaladora de categoría Especialista (IBTE)?",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Locales con riesgo de incendio o explosión.",
+        "es_correcta": true,
+        "explicacion": "El apartado 3.2 de la ITC-BT-03 lo enumera como competencia IBTE."
+      },
+      {
+        "id": 2,
+        "respuesta": "Quirófanos y salas de intervención.",
+        "es_correcta": true,
+        "explicacion": "El apartado 3.2 de la ITC-BT-03 lo enumera como competencia IBTE."
+      },
+      {
+        "id": 3,
+        "respuesta": "Líneas aéreas o subterráneas para distribución de energía.",
+        "es_correcta": true,
+        "explicacion": "El apartado 3.2 de la ITC-BT-03 lo enumera como competencia IBTE."
+      },
+      {
+        "id": 4,
+        "respuesta": "Edificios destinados a viviendas unifamiliares con electrificación elevada.",
+        "es_correcta": false,
+        "explicacion": "Estas instalaciones pueden ser realizadas por la categoría Básica."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-27",
+    "tipo": "multiple",
+    "pregunta": "Según la ITC-BT-03, ¿qué modalidades quedan agrupadas en una única subcategoría especialista?",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Sistemas de automatización, gestión técnica de la energía y seguridad para viviendas y edificios.",
+        "es_correcta": true,
+        "explicacion": "El apartado 3.2 indica que esta modalidad, junto con otras tres, forma una categoría especialista única."
+      },
+      {
+        "id": 2,
+        "respuesta": "Sistemas de control distribuido.",
+        "es_correcta": true,
+        "explicacion": "El apartado 3.2 la agrupa en esa categoría especialista única."
+      },
+      {
+        "id": 3,
+        "respuesta": "Sistemas de supervisión, control y adquisición de datos.",
+        "es_correcta": true,
+        "explicacion": "El apartado 3.2 la agrupa en esa categoría especialista única."
+      },
+      {
+        "id": 4,
+        "respuesta": "Líneas aéreas para distribución de energía.",
+        "es_correcta": false,
+        "explicacion": "Las líneas de distribución no están agrupadas dentro de esa modalidad de automatización/control, son una especialidad independiente."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-28",
+    "tipo": "multiple",
+    "pregunta": "¿Qué formas son válidas para acreditar las competencias como Instalador en Baja Tensión?",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Disponer de un título universitario con plan de estudios que cubra el REBT.",
+        "es_correcta": true,
+        "explicacion": "Es el punto 'a)' del apartado 4."
+      },
+      {
+        "id": 2,
+        "respuesta": "Disponer de un título de formación profesional o certificado de profesionalidad equivalente.",
+        "es_correcta": true,
+        "explicacion": "Es el punto 'b)' del apartado 4."
+      },
+      {
+        "id": 3,
+        "respuesta": "Poseer una certificación otorgada por una entidad acreditada para la certificación de personas.",
+        "es_correcta": true,
+        "explicacion": "Es el punto 'd)' del apartado 4."
+      },
+      {
+        "id": 4,
+        "respuesta": "Tener un certificado de penales limpio sin experiencia técnica previa.",
+        "es_correcta": false,
+        "explicacion": "No demuestra conocimientos técnicos en materia de baja tensión."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-29",
+    "tipo": "multiple",
+    "pregunta": "¿Qué requisitos debe incluir la Declaración Responsable presentada por la empresa instaladora?",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "La categoría y modalidad en la que va a desempeñar la actividad.",
+        "es_correcta": true,
+        "explicacion": "Mencionado en el apartado 5 de la ITC-BT-03."
+      },
+      {
+        "id": 2,
+        "respuesta": "Declarar que cumple los requisitos exigidos, y dispone de la documentación que lo acredita.",
+        "es_correcta": true,
+        "explicacion": "Mencionado en el apartado 5 de la ITC-BT-03."
+      },
+      {
+        "id": 3,
+        "respuesta": "Un listado con los NIF de todos los clientes de la empresa.",
+        "es_correcta": false,
+        "explicacion": "No es un requisito exigido para la habilitación."
+      },
+      {
+        "id": 4,
+        "respuesta": "El compromiso de mantener los requisitos durante la vigencia de la actividad.",
+        "es_correcta": true,
+        "explicacion": "Mencionado expresamente en el apartado 5."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-30",
+    "tipo": "multiple",
+    "pregunta": "Las empresas instaladoras de otros Estados miembros de la UE en régimen de libre prestación en España:",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Deben presentar una declaración responsable previa al inicio de actividad.",
+        "es_correcta": true,
+        "explicacion": "Requisito estipulado en el apartado 5.2 de la ITC-BT-03."
+      },
+      {
+        "id": 2,
+        "respuesta": "Se responsabilizan de que la ejecución se ajusta a las normas del REBT español.",
+        "es_correcta": true,
+        "explicacion": "Deben comprometerse a seguir el Reglamento electrotécnico para baja tensión de España (apartado 5.2)."
+      },
+      {
+        "id": 3,
+        "respuesta": "Pueden operar sin declaración responsable en comunidades autónomas fronterizas.",
+        "es_correcta": false,
+        "explicacion": "Siempre deben presentarla ante el órgano competente."
+      },
+      {
+        "id": 4,
+        "respuesta": "Su seguro de responsabilidad civil suscrito en su Estado puede considerarse válido si es equivalente.",
+        "es_correcta": true,
+        "explicacion": "La Disposición adicional primera del RD 842/2002 permite aceptar garantías equivalentes de otro Estado."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-31",
+    "tipo": "multiple",
+    "pregunta": "¿Qué obligaciones recaen sobre la Empresa Instaladora según el apartado 7?",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Efectuar las pruebas y ensayos reglamentarios que les sean atribuidos.",
+        "es_correcta": true,
+        "explicacion": "Punto b) de las Obligaciones (Apartado 7)."
+      },
+      {
+        "id": 2,
+        "respuesta": "Emitir los certificados de instalación eléctrica.",
+        "es_correcta": true,
+        "explicacion": "Punto d) de las Obligaciones (Apartado 7)."
+      },
+      {
+        "id": 3,
+        "respuesta": "Coordinarse con la empresa suministradora.",
+        "es_correcta": true,
+        "explicacion": "Punto h) de las Obligaciones (Apartado 7)."
+      },
+      {
+        "id": 4,
+        "respuesta": "Ejercer labores de Organismo de Control.",
+        "es_correcta": false,
+        "explicacion": "Una empresa instaladora ejecuta y certifica su trabajo, pero el Organismo de Control es una entidad tercera diferente."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-32",
+    "tipo": "multiple",
+    "pregunta": "Para cumplir con el requisito de tener personal cualificado en plantilla, es válido si:",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "La cualificación la ostenta uno de los socios a jornada completa.",
+        "es_correcta": true,
+        "explicacion": "Es la 1.ª condición válida explicada en el apartado 7."
+      },
+      {
+        "id": 2,
+        "respuesta": "Se contrata un instalador a tiempo parcial equivalente al horario de actividad de la empresa.",
+        "es_correcta": true,
+        "explicacion": "Permitido según el apartado 7 (en plantilla)."
+      },
+      {
+        "id": 3,
+        "respuesta": "Se subcontrata mensualmente a una ingeniería externa que no figura en la empresa.",
+        "es_correcta": false,
+        "explicacion": "Debe pertenecer a la empresa."
+      },
+      {
+        "id": 4,
+        "respuesta": "La ostenta un trabajador contratado por cuenta ajena a jornada completa.",
+        "es_correcta": true,
+        "explicacion": "Es el requisito base descrito en el apartado 5.1 y 7."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-33",
+    "tipo": "multiple",
+    "pregunta": "Entre los conocimientos teóricos de la Categoría Básica (Unidad temática 2: Instalaciones de enlace), el instalador debe dominar:",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Previsión de cargas para suministros de BT (ITC-BT-10).",
+        "es_correcta": true,
+        "explicacion": "Aparece en el punto 1 de la Unidad 2."
+      },
+      {
+        "id": 2,
+        "respuesta": "Tipos y emplazamiento de los cuadros eléctricos.",
+        "es_correcta": true,
+        "explicacion": "Aparece en el punto 4.3 de la Unidad 2."
+      },
+      {
+        "id": 3,
+        "respuesta": "Simbología, planos y esquemas eléctricos de las instalaciones.",
+        "es_correcta": true,
+        "explicacion": "Aparece en el punto 4.4 de la Unidad 2."
+      },
+      {
+        "id": 4,
+        "respuesta": "Instalaciones en quirófanos y salas de intervención.",
+        "es_correcta": false,
+        "explicacion": "Esto pertenece a Especialista."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-34",
+    "tipo": "multiple",
+    "pregunta": "La Unidad Temática 3 de la Categoría Básica aborda las 'Instalaciones Interiores o Receptoras', e incluye:",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Instalaciones en viviendas y edificios de viviendas.",
+        "es_correcta": true,
+        "explicacion": "Punto 2 de la Unidad 3 (Apéndice II)."
+      },
+      {
+        "id": 2,
+        "respuesta": "Grados de electrificación, número de circuitos y características.",
+        "es_correcta": true,
+        "explicacion": "Punto 2.1 de la Unidad 3 (Apéndice II)."
+      },
+      {
+        "id": 3,
+        "respuesta": "Instalaciones en locales que contienen una bañera o ducha.",
+        "es_correcta": true,
+        "explicacion": "Punto 2.3 de la Unidad 3 (Apéndice II)."
+      },
+      {
+        "id": 4,
+        "respuesta": "Ejecución de líneas subterráneas para distribución de energía.",
+        "es_correcta": false,
+        "explicacion": "Esto es Categoría Especialista."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-35",
+    "tipo": "multiple",
+    "pregunta": "Dentro de la Unidad temática 5 (Categoría Básica) se estudian instalaciones con características especiales como:",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Instalaciones de alumbrado exterior.",
+        "es_correcta": true,
+        "explicacion": "Punto 1 de la Unidad 5."
+      },
+      {
+        "id": 2,
+        "respuesta": "Instalaciones en locales de pública concurrencia.",
+        "es_correcta": true,
+        "explicacion": "Punto 2 de la Unidad 5."
+      },
+      {
+        "id": 3,
+        "respuesta": "Instalaciones de infraestructura para la recarga del vehículo eléctrico.",
+        "es_correcta": true,
+        "explicacion": "Punto 3 de la Unidad 5."
+      },
+      {
+        "id": 4,
+        "respuesta": "Clasificación de emplazamientos con riesgo de explosión.",
+        "es_correcta": false,
+        "explicacion": "Esta es la Unidad 3 de la Categoría Especialista."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-36",
+    "tipo": "multiple",
+    "pregunta": "Según la Unidad temática 4 de Categoría Básica (Protecciones), el temario incluye:",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Sistemas de conexión del neutro y de las masas (ITC-BT-08).",
+        "es_correcta": true,
+        "explicacion": "Punto 1 de la Unidad 4."
+      },
+      {
+        "id": 2,
+        "respuesta": "Protección contra los choques eléctricos (contactos directos e indirectos).",
+        "es_correcta": true,
+        "explicacion": "Punto 3 de la Unidad 4."
+      },
+      {
+        "id": 3,
+        "respuesta": "Protección contra sobretensiones (ITC-BT-22).",
+        "es_correcta": true,
+        "explicacion": "Punto 5 de la Unidad 4."
+      },
+      {
+        "id": 4,
+        "respuesta": "Modos de protección en locales ATEX.",
+        "es_correcta": false,
+        "explicacion": "Corresponde a la Categoría Especialista."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-37",
+    "tipo": "multiple",
+    "pregunta": "¿Qué conceptos prácticos debe dominar un Instalador de Categoría Básica?",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Montaje y puesta en servicio de instalaciones en viviendas y locales de pública concurrencia.",
+        "es_correcta": true,
+        "explicacion": "Parte de las instalaciones comprendidas en su categoría."
+      },
+      {
+        "id": 2,
+        "respuesta": "Manejo de herramientas utilizadas en instalaciones eléctricas de baja tensión.",
+        "es_correcta": true,
+        "explicacion": "Punto 3.1 de Conocimientos prácticos."
+      },
+      {
+        "id": 3,
+        "respuesta": "Manejo de aparatos de medida de magnitudes eléctricas.",
+        "es_correcta": true,
+        "explicacion": "Punto 3.2 de Conocimientos prácticos."
+      },
+      {
+        "id": 4,
+        "respuesta": "Conexión en paralelo de instalaciones generadoras interconectadas de 25 kW.",
+        "es_correcta": false,
+        "explicacion": "Es una función práctica de la Categoría Especialista."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-38",
+    "tipo": "multiple",
+    "pregunta": "Para la Categoría Especialista, la Unidad temática 1 (Líneas de distribución en B.T.) exige conocimientos de:",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Tipos de redes de distribución: radiales, en anillo.",
+        "es_correcta": true,
+        "explicacion": "Punto 1 de la Unidad temática 1 (Especialista)."
+      },
+      {
+        "id": 2,
+        "respuesta": "Líneas aéreas y su cálculo mecánico.",
+        "es_correcta": true,
+        "explicacion": "Punto 2.2 de la Unidad temática 1 (Especialista)."
+      },
+      {
+        "id": 3,
+        "respuesta": "Acometidas (ITC-BT-11).",
+        "es_correcta": true,
+        "explicacion": "Punto 4 de la Unidad temática 1 (Especialista)."
+      },
+      {
+        "id": 4,
+        "respuesta": "Diseño de la CPU de un autómata programable.",
+        "es_correcta": false,
+        "explicacion": "No es un requerimiento técnico eléctrico exigido en esta unidad."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-39",
+    "tipo": "multiple",
+    "pregunta": "En la Categoría Especialista, la Unidad temática 3 sobre 'Instalaciones en locales con riesgo de incendio o explosión' incluye:",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Clasificación de emplazamientos y Modos de protección.",
+        "es_correcta": true,
+        "explicacion": "Punto 1 de la Unidad temática 3 (Especialista)."
+      },
+      {
+        "id": 2,
+        "respuesta": "Condiciones de la instalación para todas las zonas peligrosas.",
+        "es_correcta": true,
+        "explicacion": "Punto 2 de la Unidad temática 3 (Especialista)."
+      },
+      {
+        "id": 3,
+        "respuesta": "Criterios de selección de material.",
+        "es_correcta": true,
+        "explicacion": "Punto 3 de la Unidad temática 3 (Especialista)."
+      },
+      {
+        "id": 4,
+        "respuesta": "Sistemas antivertido para generadores sin excedentes.",
+        "es_correcta": false,
+        "explicacion": "Esto pertenece a la Unidad temática 5 (Instalaciones generadoras) de la Categoría Especialista o Unidad 7 de la Básica."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-40",
+    "tipo": "multiple",
+    "pregunta": "¿Qué conceptos teóricos debe dominar un instalador Especialista en la Unidad 4 (Quirófanos y salas de intervención)?",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Alimentación con transformador de aislamiento.",
+        "es_correcta": true,
+        "explicacion": "Punto 3 de la Unidad temática 4 (Especialista)."
+      },
+      {
+        "id": 2,
+        "respuesta": "Suministros complementarios.",
+        "es_correcta": true,
+        "explicacion": "Punto 5 de la Unidad temática 4 (Especialista)."
+      },
+      {
+        "id": 3,
+        "respuesta": "Puesta a tierra y equipotencialidad.",
+        "es_correcta": true,
+        "explicacion": "Punto 2 de la Unidad temática 4 (Especialista)."
+      },
+      {
+        "id": 4,
+        "respuesta": "Lámparas de descarga en alta tensión.",
+        "es_correcta": false,
+        "explicacion": "Corresponde a la Unidad temática 6 (Especialista)."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-41",
+    "tipo": "multiple",
+    "pregunta": "Las entidades acreditadas para la certificación de personas que evalúan a los instaladores:",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Deben ser acreditadas según el Real Decreto 2200/1995 (o normativa que lo sustituya).",
+        "es_correcta": true,
+        "explicacion": "El apartado 4 indica que la entidad debe estar acreditada conforme a este Real Decreto."
+      },
+      {
+        "id": 2,
+        "respuesta": "Deben incluir en su esquema de certificación un sistema de evaluación con los contenidos mínimos del Apéndice II.",
+        "es_correcta": true,
+        "explicacion": "Obligación de la entidad según el apartado 4 de la ITC-BT-03."
+      },
+      {
+        "id": 3,
+        "respuesta": "Deben emitir certificaciones válidas para el ejercicio en toda España.",
+        "es_correcta": true,
+        "explicacion": "La certificación por esta vía es válida a nivel nacional."
+      },
+      {
+        "id": 4,
+        "respuesta": "Eximen a la empresa de presentar la declaración responsable.",
+        "es_correcta": false,
+        "explicacion": "El certificado acredita al profesional; la empresa siempre debe presentar la declaración responsable."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-42",
+    "tipo": "multiple",
+    "pregunta": "¿Qué conocimientos prácticos adicionales se exigen al Instalador Especialista respecto al Básico?",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Ejecución de empalmes y derivaciones en cables subterráneos y aéreos.",
+        "es_correcta": true,
+        "explicacion": "Incluido en la Unidad 1 de las pruebas prácticas de la Categoría Especialista."
+      },
+      {
+        "id": 2,
+        "respuesta": "Montaje de sistemas de automatización, SCADA o redes de control.",
+        "es_correcta": true,
+        "explicacion": "Incluido en la Unidad 2 de las pruebas prácticas de la Categoría Especialista."
+      },
+      {
+        "id": 3,
+        "respuesta": "Montaje de cuadros de aislamiento de quirófanos y redes equipotenciales.",
+        "es_correcta": true,
+        "explicacion": "Incluido en la Unidad 4 de las pruebas prácticas de la Categoría Especialista."
+      },
+      {
+        "id": 4,
+        "respuesta": "Instalación de antenas de TV de gran ganancia.",
+        "es_correcta": false,
+        "explicacion": "Las antenas pertenecen a la normativa de telecomunicaciones (ICT), no es materia específica de la IBTE."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-43",
+    "tipo": "multiple",
+    "pregunta": "¿Qué puntos incluye la obligación de comunicar cambios al órgano de la comunidad autónoma?",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "La variación de cualquiera de los datos o requisitos de la declaración responsable.",
+        "es_correcta": true,
+        "explicacion": "Apartado 5: cualquier modificación debe comunicarse en un plazo de un mes."
+      },
+      {
+        "id": 2,
+        "respuesta": "El cese de las actividades.",
+        "es_correcta": true,
+        "explicacion": "Apartado 5: el cese de actividad debe comunicarse en el plazo de un mes."
+      },
+      {
+        "id": 3,
+        "respuesta": "El cambio de titularidad de la empresa.",
+        "es_correcta": true,
+        "explicacion": "Es un dato clave de la declaración responsable, por tanto su variación debe comunicarse."
+      },
+      {
+        "id": 4,
+        "respuesta": "Cada vez que se compra una nueva herramienta.",
+        "es_correcta": false,
+        "explicacion": "No es necesario comunicar cada compra, sino mantener el cumplimiento global de medios técnicos."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-44",
+    "tipo": "multiple",
+    "pregunta": "¿Qué conocimientos debe tener la Categoría Básica en la Unidad 7 (Instalaciones generadoras < 10 kW)?",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Tipos y clasificación.",
+        "es_correcta": true,
+        "explicacion": "Punto 1 de la Unidad temática 7 (Básica)."
+      },
+      {
+        "id": 2,
+        "respuesta": "Sistemas antivertido para instalaciones sin excedentes.",
+        "es_correcta": true,
+        "explicacion": "Punto 3 de la Unidad temática 7 (Básica)."
+      },
+      {
+        "id": 3,
+        "respuesta": "Protecciones e instalaciones de puesta a tierra.",
+        "es_correcta": true,
+        "explicacion": "Punto 5 de la Unidad temática 7 (Básica)."
+      },
+      {
+        "id": 4,
+        "respuesta": "Sistemas de supervisión SCADA de gran escala.",
+        "es_correcta": false,
+        "explicacion": "Esos sistemas pertenecen a la Categoría Especialista."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-45",
+    "tipo": "multiple",
+    "pregunta": "¿Qué ocurre si una empresa que quiere operar en España tiene un seguro equivalente en otro país pero con una suma asegurada menor?",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "La equivalencia con los requisitos se considerará parcial.",
+        "es_correcta": true,
+        "explicacion": "Disposición adicional primera del RD 842/2002."
+      },
+      {
+        "id": 2,
+        "respuesta": "La empresa instaladora deberá ampliar el seguro o garantía hasta completar las condiciones exigidas en España.",
+        "es_correcta": true,
+        "explicacion": "Disposición adicional primera del RD 842/2002."
+      },
+      {
+        "id": 3,
+        "respuesta": "Se rechaza completamente el seguro original.",
+        "es_correcta": false,
+        "explicacion": "No se rechaza, se pide la ampliación de la parte restante."
+      },
+      {
+        "id": 4,
+        "respuesta": "Puede operar sin ampliar el seguro.",
+        "es_correcta": false,
+        "explicacion": "Debe completarlo para alcanzar el mínimo exigido en España."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-46",
+    "tipo": "multiple",
+    "pregunta": "¿Quién es el responsable de elaborar y mantener disponibles los modelos de declaración responsable?",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Las Comunidades Autónomas en sus respectivos territorios.",
+        "es_correcta": true,
+        "explicacion": "Disposición adicional tercera del RD: 'Corresponderá a las comunidades autónomas elaborar y mantener disponibles los modelos...'."
+      },
+      {
+        "id": 2,
+        "respuesta": "El Ministerio de Industria, elaborando una propuesta de modelos a efectos de facilitar la introducción de datos en el Registro Integrado.",
+        "es_correcta": true,
+        "explicacion": "Disposición adicional tercera del RD."
+      },
+      {
+        "id": 3,
+        "respuesta": "Las entidades acreditadas para la certificación de personas.",
+        "es_correcta": false,
+        "explicacion": "Ellas certifican personas, no elaboran los modelos de declaración de empresa."
+      },
+      {
+        "id": 4,
+        "respuesta": "Las empresas instaladoras.",
+        "es_correcta": false,
+        "explicacion": "Las empresas lo rellenan, no lo elaboran institucionalmente."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-47",
+    "tipo": "multiple",
+    "pregunta": "¿En qué se diferencia el instalador habilitado de la empresa instaladora?",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "El instalador es siempre una persona física.",
+        "es_correcta": true,
+        "explicacion": "La ITC lo define así (apartado 2.2)."
+      },
+      {
+        "id": 2,
+        "respuesta": "La empresa instaladora puede ser una persona física o jurídica.",
+        "es_correcta": true,
+        "explicacion": "La ITC lo define así (apartado 2.1)."
+      },
+      {
+        "id": 3,
+        "respuesta": "El instalador debe desarrollar su actividad en el seno de una empresa instaladora habilitada.",
+        "es_correcta": true,
+        "explicacion": "Un instalador por sí solo, si no figura como empresa o autónomo habilitado como tal, trabaja dentro del marco de la empresa (apartado 4)."
+      },
+      {
+        "id": 4,
+        "respuesta": "Solo las personas jurídicas pueden firmar un Certificado de Instalación.",
+        "es_correcta": false,
+        "explicacion": "El certificado es suscrito por un instalador (persona física) en nombre de la empresa instaladora."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-48",
+    "tipo": "multiple",
+    "pregunta": "¿Qué conceptos pertenecen a la Unidad temática 6 (Especialista) sobre instalaciones de lámparas de descarga y rótulos?",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Rótulos y tubos luminosos alimentados entre 1 kV y 10 kV.",
+        "es_correcta": true,
+        "explicacion": "Punto 1 de la Unidad temática 6 (Especialista)."
+      },
+      {
+        "id": 2,
+        "respuesta": "Reglas de instalación, envolventes y soportes para estos rótulos.",
+        "es_correcta": true,
+        "explicacion": "Punto 1 de la Unidad temática 6 (Especialista)."
+      },
+      {
+        "id": 3,
+        "respuesta": "Protección contra fugas y apertura de circuitos.",
+        "es_correcta": true,
+        "explicacion": "Punto 2 de la Unidad temática 6 (Especialista)."
+      },
+      {
+        "id": 4,
+        "respuesta": "Instalaciones de luminarias LED residenciales.",
+        "es_correcta": false,
+        "explicacion": "El alumbrado ordinario pertenece a la Categoría Básica."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-49",
+    "tipo": "multiple",
+    "pregunta": "¿Qué tareas comprende el control y mantenimiento que debe realizar una empresa instaladora según el apartado 7?",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Mantener al día un registro de las instalaciones ejecutadas.",
+        "es_correcta": true,
+        "explicacion": "Obligación c) y d) relacionadas con el control documental de lo que reparan o ejecutan y llevar un registro."
+      },
+      {
+        "id": 2,
+        "respuesta": "Asistir a las inspecciones que realicen los Organismos de Control.",
+        "es_correcta": true,
+        "explicacion": "Obligación i) del apartado 7."
+      },
+      {
+        "id": 3,
+        "respuesta": "Conservar copias de los certificados de instalación que emitan por un plazo legal.",
+        "es_correcta": true,
+        "explicacion": "Obligación d) del apartado 7 (aunque el extracto no dice la cantidad de años en este bloque, es parte de la conservación del registro)."
+      },
+      {
+        "id": 4,
+        "respuesta": "Redactar normativas de productos para fabricantes.",
+        "es_correcta": false,
+        "explicacion": "Esta es la función de entidades de normalización, no de empresas instaladoras."
+      }
+    ]
+  },
+  {
+    "id": "ITC-BT-03-50",
+    "tipo": "multiple",
+    "pregunta": "Respecto a la cualificación y habilitación cruzada en la Unión Europea:",
+    "opciones": [
+      {
+        "id": 1,
+        "respuesta": "Cualquier requisito impuesto a nivel de seguro de responsabilidad puede ser satisfecho por un seguro comparable de otro Estado miembro.",
+        "es_correcta": true,
+        "explicacion": "Disposición adicional primera del RD 842/2002."
+      },
+      {
+        "id": 2,
+        "respuesta": "Las empresas de la UE no necesitan contar con personal cualificado.",
+        "es_correcta": false,
+        "explicacion": "Sí lo necesitan, declarando que cumplen los requisitos exigidos en España."
+      },
+      {
+        "id": 3,
+        "respuesta": "Se aceptarán a efectos de acreditación los certificados emitidos por entidades aseguradoras autorizadas en otro Estado miembro.",
+        "es_correcta": true,
+        "explicacion": "Textual en la Disposición adicional primera del RD 842/2002."
+      },
+      {
+        "id": 4,
+        "respuesta": "Las empresas de la UE deben inscribirse forzosamente en España abriendo una nueva sociedad mercantil nacional.",
+        "es_correcta": false,
+        "explicacion": "Pueden hacerlo en régimen de libre prestación de servicios presentando la declaración responsable."
+      }
+    ]
   }
 ]
