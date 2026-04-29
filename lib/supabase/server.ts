@@ -38,7 +38,6 @@ export const createClient = cache(async () => {
   const isTestMode = process.env.ENABLE_SUPABASE_MOCK === 'true' || testCookie === 'true'
 
   if (isTestMode) {
-    console.log(' [SUPABASE MOCK] Active for request')
     const mockUser = {
       id: 'test-user-123',
       email: 'test@example.com',

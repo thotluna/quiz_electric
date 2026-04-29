@@ -2,7 +2,8 @@
 
 import { JsonQuestionRepository } from "@/lib/infrastructure/repositories/JsonQuestionRepository";
 import { SupabaseUserStatsRepository } from "@/lib/infrastructure/repositories/SupabaseUserStatsRepository";
-import { QuizService, EvaluationResult } from "../services/QuizService";
+import { QuizService } from "../services/QuizService";
+import { EvaluationResult } from "@/lib/domain/types";
 import { ClientQuestion } from "@/lib/domain/entities/Question";
 
 // Instancias lazy para evitar problemas en tests y asegurar que se crean en el server

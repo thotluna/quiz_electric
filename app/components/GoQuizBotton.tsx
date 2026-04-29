@@ -11,12 +11,12 @@ export function GoQuizBotton() {
   function handleStart(): void {
     const params = new URLSearchParams();
     params.set('mode', mode);
-    
+
     if (topicIds.length > 0) {
       params.set('topics', topicIds.join(','));
     }
 
-    router.push(`/quiz?${params.toString()}`);
+    router.push(`/quiz2?${params.toString()}`);
   }
 
   return (

@@ -8,7 +8,8 @@ interface RawQuestion {
   pregunta: string;
   opciones: Array<{
     id: string | number;
-    texto: string;
+    texto?: string;
+    respuesta?: string;
     es_correcta: boolean;
     explicacion?: string;
   }>;
@@ -37,13 +38,12 @@ export class JsonQuestionRepository implements IQuestionRepository {
 
   private loadAllData(): void {
     const dataPath = path.join(process.cwd(), "lib/data");
-    
+
     if (!fs.existsSync(dataPath)) {
       return;
     }
 
     const files = fs.readdirSync(dataPath).filter(f => f.endsWith(".json"));
-    console.log(`[JsonQuestionRepository] Found ${files.length} JSON files:`, files);
 
     for (const file of files) {
       const filePath = path.join(dataPath, file);
@@ -52,21 +52,18 @@ export class JsonQuestionRepository implements IQuestionRepository {
 
       // Caso 1: Formato legacy (Objeto con propiedad 'temas')
       if (json.temas && Array.isArray(json.temas)) {
-        console.log(`[JsonQuestionRepository] Loading legacy object format from ${file}`);
         this.topics.push(...(json.temas as RawTopic[]));
-      } 
+      }
       // Caso 2: Array de objetos
       else if (Array.isArray(json)) {
         // ¿Es un array de Temas (objetos con 'preguntas') o un array de Preguntas?
         const isTopicArray = json.length > 0 && json[0].preguntas && Array.isArray(json[0].preguntas);
 
         if (isTopicArray) {
-          console.log(`[JsonQuestionRepository] Loading topic array format from ${file}`);
           this.topics.push(...(json as RawTopic[]));
         } else {
           // Es un array de preguntas (formato nuevo como itc-bt-03.json)
           const itcName = file.replace(".json", "").toUpperCase();
-          console.log(`[JsonQuestionRepository] Loading question array format from ${file} as ${itcName}`);
           this.topics.push({
             id: itcName.toLowerCase(),
             itc: itcName,
@@ -75,7 +72,6 @@ export class JsonQuestionRepository implements IQuestionRepository {
         }
       }
     }
-    console.log(`[JsonQuestionRepository] Total topics loaded: ${this.topics.length}`);
   }
 
   async getById(id: string): Promise<Question | null> {
@@ -126,7 +122,7 @@ export class JsonQuestionRepository implements IQuestionRepository {
       articulo: raw.articulo,
       opciones: (raw.opciones || []).map(opt => ({
         id: opt.id.toString(),
-        texto: opt.texto,
+        texto: opt.texto || opt.respuesta || "",
         es_correcta: opt.es_correcta,
         explicacion: opt.explicacion
       }))

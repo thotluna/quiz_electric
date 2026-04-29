@@ -3,7 +3,7 @@ export type QuestionType = 'simple' | 'multiple';
 export interface EvaluationResult {
   questionId: string;
   isCorrect: boolean;
-  points: number;
+  score: number;
   explanation: string;
-  correctIds: number[];
+  correctIds: string[];
 }

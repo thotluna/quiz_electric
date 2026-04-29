@@ -9,7 +9,6 @@ async function globalTeardown() {
   if (fs.existsSync(backupPath)) {
     fs.copyFileSync(backupPath, dbPath);
     fs.unlinkSync(backupPath); // Delete backup
-    console.log('🔄 Production db.json restored.');
   }
 }
 

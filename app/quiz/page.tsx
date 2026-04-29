@@ -12,11 +12,11 @@ interface PageProps {
 export default async function QuizPage({ searchParams }: PageProps) {
   const user = await verifySession();
   const data = await searchParams;
-  
+
   const topics = data.topics
     ? (data.topics as string).split(',')
     : [];
-    
+
   const mode = (data.mode as QuizMode) || 'standard';
 
   const questions = await getQuizQuestionsAction(topics, mode === 'timed' ? 10 : 50, user.id);
@@ -26,14 +26,14 @@ export default async function QuizPage({ searchParams }: PageProps) {
   }
 
   return (
-    <main className="flex flex-col w-full h-full items-center justify-center relative z-10 p-4">
+    <main className="flex flex-col w-full h-full items-center justify-center p-4">
       <Suspense fallback={<QuizLoading />}>
-         <QuizManager 
-            userId={user.id} 
-            initialQuestions={questions} 
-            mode={mode} 
-            topicIds={topics} 
-          />
+        <QuizManager
+          userId={user.id}
+          initialQuestions={questions}
+          mode={mode}
+          topicIds={topics}
+        />
       </Suspense>
     </main>
   );

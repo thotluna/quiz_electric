@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useQuizStore } from "@/lib/store/quiz-store";
 import { Quiz } from "./Quiz";
 import { ResumeModal } from "./ResumeModal";
@@ -64,41 +65,32 @@ export const QuizManager = ({ userId, initialQuestions, mode, topicIds }: QuizMa
     setIsReady(true);
   }, [userId, setUserId, initialQuestions, mode, topicIds, initQuiz]);
 
-  const handleResume = (): void => {
-    resumeQuiz();
-    setResumeResolved(true);
-    setShouldShowResume(false);
-  };
+  const router = useRouter();
 
-  const handleDiscard = (): void => {
-    discardSavedQuiz();
-    if (initialQuestions && mode) {
-      initQuiz({ mode, topicIds: topicIds || [] }, initialQuestions);
+  useEffect(() => {
+    if (isReady && !config && !shouldShowResume) {
+      router.push("/");
     }
-    setResumeResolved(true);
-    setShouldShowResume(false);
-  };
+  }, [isReady, config, shouldShowResume, router]);
 
-  if (shouldShowResume && !resumeResolved) {
-    return <ResumeModal onResume={handleResume} onDiscard={handleDiscard} />;
-  }
+  // const handleResume = (): void => {
+  //   resumeQuiz();
+  //   setResumeResolved(true);
+  //   setShouldShowResume(false);
+  // };
 
-  if (isLoading || !isReady) {
-    return (
-      <div className="flex flex-col items-center justify-center p-20">
-        <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-        <p className="text-foreground/50 font-medium animate-pulse">Preparando simulacro...</p>
-      </div>
-    );
-  }
+  // const handleDiscard = (): void => {
+  //   discardSavedQuiz();
+  //   if (initialQuestions && mode) {
+  //     initQuiz({ mode, topicIds: topicIds || [] }, initialQuestions);
+  //   }
+  //   setResumeResolved(true);
+  //   setShouldShowResume(false);
+  // };
 
-  if (!config) {
-    return (
-      <div className="text-center p-10">
-        <p className="text-foreground/50">No hay una configuración activa.</p>
-      </div>
-    );
-  }
+  // if (shouldShowResume && !resumeResolved) {
+  //   return <ResumeModal onResume={handleResume} onDiscard={handleDiscard} />;
+  // }
 
-  return <Quiz questions={questions} config={config} userId={userId} />;
+  return <Quiz questions={questions} config={config!} userId={userId} />;
 };

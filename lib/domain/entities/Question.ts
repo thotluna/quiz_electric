@@ -10,7 +10,6 @@ export interface Option {
 export interface ClientOption {
   readonly id: string;
   readonly texto: string;
-  readonly respuesta: string;
 }
 
 export interface Question {

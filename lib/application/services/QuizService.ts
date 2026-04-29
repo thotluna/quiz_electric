@@ -1,14 +1,8 @@
 import { IQuestionRepository } from "@/lib/domain/repositories/IQuestionRepository";
 import { IUserStatsRepository } from "@/lib/domain/repositories/IUserStatsRepository";
 import { Question, ClientQuestion } from "@/lib/domain/entities/Question";
+import { EvaluationResult } from "@/lib/domain/types";
 
-export interface EvaluationResult {
-  questionId: string;
-  isCorrect: boolean;
-  score: number;
-  explanation: string;
-  correctIds: string[];
-}
 
 export class QuizService {
   constructor(
@@ -77,8 +71,7 @@ export class QuizService {
       ...question,
       opciones: question.opciones.map(opt => ({
         id: opt.id,
-        texto: opt.texto,
-        respuesta: opt.texto
+        texto: opt.texto
       }))
     };
   }
