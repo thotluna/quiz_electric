@@ -1,141 +1,161 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import { useQuizStore } from "@/lib/store/quiz-store";
-import { QuestionCard } from "./QuestionCard";
+import React, { useState, useEffect, useCallback } from "react";
+import { ClientQuestion } from "@/lib/domain/entities/Question";
+import { UserAnswer, QuizConfig } from "@/types";
 import { OptionButton } from "./OptionButton";
-import { QuizControls } from "./QuizControls";
-import { StatsBar } from "./StatsBar";
 import { QuizResults } from "./QuizResults";
-import { saveQuizStatsAction } from "@/lib/actions/stats";
+import { saveQuizSessionAction } from "@/lib/actions/stats";
+import { evaluateAnswerAction } from "@/lib/application/actions/quiz-actions";
+import { StatsBar } from "./StatsBar";
+import { QuizControls } from "./QuizControls";
 
 const TIMED_MODE_SECONDS = 180;
 
-export const Quiz = (): React.ReactElement => {
-  const config = useQuizStore((s) => s.config);
-  const questions = useQuizStore((s) => s.questions);
-  const userId = useQuizStore((s) => s.userId);
-  const selectedOptionIds = useQuizStore((s) => s.selectedOptionIds);
-  const isShowingResult = useQuizStore((s) => s.isShowingResult);
-  const isFinished = useQuizStore((s) => s.isFinished);
-  const score = useQuizStore((s) => s.score);
-  const timeElapsed = useQuizStore((s) => s.timeElapsed);
-  const isTimeOut = useQuizStore((s) => s.isTimeOut);
-  const userAnswers = useQuizStore((s) => s.userAnswers);
-  const lastEvaluation = useQuizStore((s) => s.lastEvaluation);
+interface QuizProps {
+  questions: ClientQuestion[];
+  config: QuizConfig;
+  userId: string | null;
+}
 
-  const selectOption = useQuizStore((s) => s.selectOption);
-  const toggleOption = useQuizStore((s) => s.toggleOption);
-  const evaluateAnswer = useQuizStore((s) => s.evaluateAnswer);
-  const nextQuestion = useQuizStore((s) => s.nextQuestion);
-  const resetQuiz = useQuizStore((s) => s.resetQuiz);
-  const tick = useQuizStore((s) => s.tick);
+export const Quiz: React.FC<QuizProps> = ({ questions, config, userId }) => {
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [selectedOptionIds, setSelectedOptionIds] = useState<string[]>([]);
+  const [isShowingResult, setIsShowingResult] = useState(false);
+  const [userAnswers, setUserAnswers] = useState<UserAnswer[]>([]);
+  const [isFinished, setIsFinished] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(config.mode === 'timed' ? TIMED_MODE_SECONDS : 0);
+  const [score, setScore] = useState(0);
+  const [timeElapsed, setTimeElapsed] = useState(0);
+  const [currentEvaluation, setCurrentEvaluation] = useState<{ isCorrect: boolean, explanation?: string } | null>(null);
 
-  const autoAdvanceTimerRef = useRef<NodeJS.Timeout | null>(null);
-
-  const isInfinite = config?.mode === "infinite";
-  const timeLeft = config?.mode === "timed" ? TIMED_MODE_SECONDS - timeElapsed : 0;
+  const currentQuestion = questions[currentQuestionIndex];
 
   useEffect(() => {
-    if (isFinished) return;
-
-    const interval = setInterval(() => {
-      tick();
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [isFinished, tick]);
-
-  useEffect(() => {
-    if (isFinished && userAnswers.length > 0 && userId && config) {
-      saveQuizStatsAction(userId, userAnswers, config, score, timeElapsed).catch(console.error);
+    let timer: NodeJS.Timeout;
+    if (config.mode === 'timed' && !isFinished) {
+      timer = setInterval(() => {
+        setTimeLeft(prev => Math.max(0, prev - 1));
+        setTimeElapsed(prev => prev + 1);
+      }, 1000);
+    } else if (config.mode !== 'timed' && !isFinished) {
+      timer = setInterval(() => {
+        setTimeElapsed(prev => prev + 1);
+      }, 1000);
     }
-  }, [isFinished, userAnswers, userId, config, score, timeElapsed]);
 
-  if (!questions || questions.length === 0) {
-    if (isFinished) {
-       return (
-        <QuizResults
-          userAnswers={userAnswers}
-          timeElapsed={timeElapsed}
-          totalQuestions={useQuizStore.getState().initialQuestions.length}
-          score={score}
-          isTimeOut={isTimeOut}
-          onReset={resetQuiz}
-        />
+    if (config.mode === 'timed' && timeLeft === 0 && !isFinished) {
+      setIsFinished(true);
+    }
+
+    return () => clearInterval(timer);
+  }, [timeLeft, isFinished, config.mode]);
+
+  useEffect(() => {
+    if (isFinished && userAnswers.length > 0 && config) {
+      saveQuizSessionAction(config, userAnswers).catch(console.error);
+    }
+  }, [isFinished, userAnswers, config]);
+
+  const handleOptionClick = (optionId: string) => {
+    if (isShowingResult) return;
+
+    if (currentQuestion.tipo === 'multiple') {
+      setSelectedOptionIds(prev => 
+        prev.includes(optionId) 
+          ? prev.filter(id => id !== optionId)
+          : [...prev, optionId]
       );
-    }
-    return (
-      <div className="text-center p-12 bg-surface-card rounded-2xl border-2 border-foreground/5 space-y-6">
-        <p className="text-foreground/50">No hay preguntas disponibles.</p>
-        <button onClick={resetQuiz} className="px-6 py-2 rounded-xl bg-accent-primary text-white font-bold">
-          Volver al inicio
-        </button>
-      </div>
-    );
-  }
-
-  const currentQuestion = questions[0];
-  const isMultiple = currentQuestion.tipo === "multiple";
-
-  const handleNext = async (): Promise<void> => {
-    if (autoAdvanceTimerRef.current) {
-      clearTimeout(autoAdvanceTimerRef.current);
-    }
-
-    if (!isShowingResult) {
-      await evaluateAnswer();
-
-      autoAdvanceTimerRef.current = setTimeout(() => {
-        nextQuestion();
-      }, 3000);
     } else {
-      nextQuestion();
+      setSelectedOptionIds([optionId]);
     }
   };
 
-  const answeredCount = userAnswers.length;
-  const total = useQuizStore.getState().initialQuestions.length;
-  const displayIndex = Math.min(answeredCount + 1, total);
+  const handleEvaluate = async () => {
+    if (selectedOptionIds.length === 0) return;
+    
+    const result = await evaluateAnswerAction(currentQuestion.id, selectedOptionIds);
+    
+    setCurrentEvaluation({
+      isCorrect: result.isCorrect,
+      explanation: result.explanation
+    });
+
+    const newAnswer: UserAnswer = {
+      question: currentQuestion,
+      selectedOptionIds,
+      isCorrect: result.isCorrect,
+      points: result.score,
+      timeSpent: 0,
+      correctIds: result.correctIds,
+      explanation: result.explanation
+    };
+
+    setUserAnswers(prev => [...prev, newAnswer]);
+    setScore(prev => prev + result.score);
+    setIsShowingResult(true);
+  };
+
+  const handleNext = () => {
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(prev => prev + 1);
+      setSelectedOptionIds([]);
+      setIsShowingResult(false);
+      setCurrentEvaluation(null);
+    } else {
+      setIsFinished(true);
+    }
+  };
+
+  const handleSkip = () => {
+    const skippedAnswer: UserAnswer = {
+      question: currentQuestion,
+      selectedOptionIds: [],
+      isCorrect: false,
+      points: 0,
+      timeSpent: 0
+    };
+    setUserAnswers(prev => [...prev, skippedAnswer]);
+    handleNext();
+  };
+
+  if (isFinished) {
+    return (
+      <QuizResults 
+        userAnswers={userAnswers} 
+        timeElapsed={timeElapsed}
+        totalQuestions={questions.length}
+        score={score}
+        onReset={() => window.location.reload()} 
+      />
+    );
+  }
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <div className="bg-surface-card rounded-2xl p-4 md:p-6 shadow-xl border border-foreground/5 backdrop-blur-sm">
-        <div className="flex justify-between items-center mb-4">
-          <button
-            onClick={resetQuiz}
-            className="text-[10px] font-bold text-foreground/30 uppercase tracking-widest hover:text-accent-primary transition-colors"
-          >
-            ← Abandonar
-          </button>
-          <div className="flex items-center gap-2">
-            {isInfinite && (
-              <span className="px-2 py-1 rounded-md bg-accent-primary/10 text-accent-primary text-[10px] font-black uppercase tracking-tighter">
-                Modo Infinito
-              </span>
-            )}
-          </div>
+    <div className="flex flex-col w-full max-w-3xl mx-auto gap-6 p-4">
+      <StatsBar 
+        timeElapsed={config.mode === 'timed' ? timeLeft : timeElapsed}
+        correctAnswers={userAnswers.filter(a => a.isCorrect).length}
+        currentQuestion={currentQuestionIndex + 1}
+        totalQuestions={questions.length}
+        isCountdown={config.mode === 'timed'}
+      />
+
+      <div className="bg-surface-card rounded-2xl shadow-sm border border-slate-200 p-6 flex flex-col gap-6">
+        <div className="flex flex-col gap-2">
+          <span className="text-xs font-bold tracking-wider text-indigo-600 uppercase">
+            Pregunta {currentQuestionIndex + 1}
+          </span>
+          <h2 className="text-xl font-semibold text-slate-900 leading-tight">
+            {currentQuestion.pregunta}
+          </h2>
         </div>
 
-        <StatsBar
-          timeElapsed={config?.mode === "timed" ? timeLeft : timeElapsed}
-          correctAnswers={score}
-          currentQuestion={displayIndex}
-          totalQuestions={total}
-          isCountdown={config?.mode === "timed"}
-        />
-
-        <QuestionCard
-          question={currentQuestion}
-          questionNumber={displayIndex}
-          totalQuestions={total}
-        />
-
-        <div className="space-y-2 mt-4">
+        <div className="grid grid-cols-1 gap-3">
           {currentQuestion.opciones.map((option) => {
             const isSelected = selectedOptionIds.includes(option.id);
-            const isCorrect = isShowingResult && lastEvaluation?.correctIds?.includes(option.id);
-            const isIncorrect = isShowingResult && isSelected && !lastEvaluation?.correctIds?.includes(option.id);
+            const isCorrect = isShowingResult && currentEvaluation?.isCorrect && isSelected;
+            const isIncorrect = isShowingResult && !currentEvaluation?.isCorrect && isSelected;
 
             return (
               <OptionButton
@@ -143,30 +163,27 @@ export const Quiz = (): React.ReactElement => {
                 option={option}
                 isSelected={isSelected}
                 isDisabled={isShowingResult}
-                isCorrect={!!isCorrect}
-                isIncorrect={!!isIncorrect}
-                type={currentQuestion.tipo}
-                onClick={isMultiple ? toggleOption : selectOption}
+                isCorrect={isCorrect}
+                isIncorrect={isIncorrect}
+                onClick={() => handleOptionClick(option.id)}
               />
             );
           })}
         </div>
-
-        <QuizControls
-          onNext={handleNext}
-          onSkip={nextQuestion}
-          onFinish={(): void => {
-            useQuizStore.getState().finishQuiz();
-          }}
-          showFinish={userAnswers.length >= total}
-          hasSelected={selectedOptionIds.length > 0}
-          isShowingResult={isShowingResult}
-          isAutoAdvancing={false}
-          isCorrect={lastEvaluation?.isCorrect}
-          isLastQuestion={!isInfinite && questions.length === 1}
-          explanation={lastEvaluation?.explanation}
-        />
       </div>
+
+      <QuizControls 
+        onNext={isShowingResult ? handleNext : handleEvaluate}
+        onSkip={handleSkip}
+        onFinish={() => setIsFinished(true)}
+        showFinish={currentQuestionIndex === questions.length - 1}
+        hasSelected={selectedOptionIds.length > 0}
+        isShowingResult={isShowingResult}
+        isAutoAdvancing={false}
+        isCorrect={currentEvaluation?.isCorrect}
+        isLastQuestion={currentQuestionIndex === questions.length - 1}
+        explanation={currentEvaluation?.explanation}
+      />
     </div>
   );
 };

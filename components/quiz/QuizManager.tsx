@@ -41,6 +41,7 @@ export const QuizManager = ({ userId, initialQuestions, mode, topicIds }: QuizMa
   const [isReady, setIsReady] = useState<boolean>(false);
   
   const config = useQuizStore((s) => s.config);
+  const questions = useQuizStore((s) => s.questions);
   const initQuiz = useQuizStore((s) => s.initQuiz);
   const resumeQuiz = useQuizStore((s) => s.resumeQuiz);
   const discardSavedQuiz = useQuizStore((s) => s.discardSavedQuiz);
@@ -99,5 +100,5 @@ export const QuizManager = ({ userId, initialQuestions, mode, topicIds }: QuizMa
     );
   }
 
-  return <Quiz />;
+  return <Quiz questions={questions} config={config} userId={userId} />;
 };

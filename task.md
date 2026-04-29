@@ -91,6 +91,14 @@
 - [x] Definir contrato `IUserStatsRepository` y modelo `QuestionStat`
 - [x] Implementar `QuestionSelectorService` (Lógica de dominio para filtrado)
 - [x] Implementar `SupabaseUserStatsRepository` (Infraestructura)
+- [x] Refactorización de `stats.ts` a patrón Repositorio
+- [x] Implementación de `SupabaseUserStatsRepository`
+- [x] Implementación de `JsonQuestionRepository`
+- [x] Creación de `QuizService` para lógica de negocio
+- [x] Suite de tests unitarios completa (Mappers, Repositorios, Servicios)
+- [x] Resolución de conflictos en UI y Store
+- [/] Dashboard de Temas: Implementar lógica de progreso real
+- [ ] Documentación de arquitectura en `README.md`
 - [x] Refactorizar `getQuizQuestionsAction` para integrar ambos mundos
 
 ## Calidad y Testing

@@ -1,87 +1,29 @@
-'use server';
+"use server";
 
-import { QuestionRepository } from '@/lib/infrastructure/repositories/question-repository';
-import { JsonQuestionDataSource } from '@/lib/infrastructure/datasources/json-datasource';
-import { SupabaseUserStatsRepository } from '@/lib/infrastructure/repositories/supabase-stats-repository';
-import { AnyQuestionEntity } from '@/lib/domain/repositories';
-import { EvaluationResult } from '@/lib/domain/types';
-import { SimpleQuestion, MultipleQuestion } from '@/lib/domain/entities';
-import { ClientQuestion } from '@/types';
+import { JsonQuestionRepository } from "@/lib/infrastructure/repositories/JsonQuestionRepository";
+import { SupabaseUserStatsRepository } from "@/lib/infrastructure/repositories/SupabaseUserStatsRepository";
+import { QuizService, EvaluationResult } from "../services/QuizService";
+import { ClientQuestion } from "@/lib/domain/entities/Question";
 
-const questionRepo = new QuestionRepository(new JsonQuestionDataSource());
-const statsRepo = new SupabaseUserStatsRepository();
-
-function mapToClientQuestion(question: AnyQuestionEntity): ClientQuestion {
-  return {
-    id: question.id,
-    pregunta: question.text,
-    tipo: question instanceof SimpleQuestion ? 'simple' : 'multiple',
-    opciones: question.options.map(o => ({
-      id: o.id,
-      respuesta: o.text
-    }))
-  };
-}
+// Instancias lazy para evitar problemas en tests y asegurar que se crean en el server
+const getService = () => {
+  const questionRepo = new JsonQuestionRepository();
+  const statsRepo = new SupabaseUserStatsRepository();
+  return new QuizService(questionRepo, statsRepo);
+};
 
 export async function getQuizQuestionsAction(
   topicIds: string[],
-  limit: number = 10,
-  userId: string | null = null
+  limit: number = 20,
+  userId: string | null = null,
+  offset: number = 0
 ): Promise<ClientQuestion[]> {
-  let excludeIds: string[] = [];
-
-  if (userId) {
-    excludeIds = await statsRepo.getFastCorrectIds(userId, 2);
-  }
-
-  const questions = await questionRepo.getAll({
-    topicIds,
-    excludeIds,
-    limit
-  });
-
-  return questions.map(mapToClientQuestion);
+  return getService().getQuestions(topicIds, limit, userId, offset);
 }
 
 export async function evaluateAnswerAction(
   questionId: string,
-  selection: number | number[],
-  _timeSpent?: number // Mantenemos el parámetro por compatibilidad con el store aunque no lo usemos aquí
+  selectedOptionIds: string[]
 ): Promise<EvaluationResult> {
-  const question = await questionRepo.getById(questionId);
-
-  if (!question) {
-    throw new Error(`Question with ID ${questionId} not found`);
-  }
-
-  let points = 0;
-
-  if (question instanceof SimpleQuestion && typeof selection === 'number') {
-    points = question.evaluate(selection);
-  } else if (question instanceof SimpleQuestion && Array.isArray(selection)) {
-     // Fallback para selección única enviada como array
-     points = question.evaluate(selection[0]);
-  } else if (question instanceof MultipleQuestion && Array.isArray(selection)) {
-    points = question.evaluate(selection);
-  } else {
-    throw new Error('Type mismatch: The selection format does not match the question type');
-  }
-
-  const isCorrect = points > 0;
-  const selectedOptions = Array.isArray(selection) ? selection : [selection];
-  
-  const explanation = question.options
-    .filter(opt => selectedOptions.includes(opt.id))
-    .map(opt => opt.explanation)
-    .join(' ');
-
-  const correctIds = question.getCorrectOptions().map(o => o.id);
-
-  return {
-    questionId,
-    isCorrect,
-    points,
-    explanation,
-    correctIds
-  };
+  return getService().evaluateAnswer(questionId, selectedOptionIds);
 }
