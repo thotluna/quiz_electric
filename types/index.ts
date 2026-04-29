@@ -1,16 +1,6 @@
-export type QuestionType = 'simple' | 'multiple';
+import { ClientQuestion, ClientOption, QuestionType } from "@/lib/domain/entities/Question";
 
-export interface ClientOption {
-  id: number;
-  respuesta: string;
-}
-
-export interface ClientQuestion {
-  id: string;
-  pregunta: string;
-  opciones: ClientOption[];
-  tipo: QuestionType;
-}
+export type { ClientQuestion, ClientOption, QuestionType };
 
 export type QuizMode = 'timed' | 'standard' | 'infinite';
 
@@ -21,10 +11,10 @@ export interface QuizConfig {
 
 export interface UserAnswer {
   question: ClientQuestion;
-  selectedOptionIds: number[];
+  selectedOptionIds: string[];
   isCorrect: boolean;
   points: number;
   timeSpent: number;
   explanation?: string;
-  correctIds?: number[];
+  correctIds?: string[];
 }

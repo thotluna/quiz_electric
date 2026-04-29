@@ -52,7 +52,7 @@ export const QuizControls = ({
             <button
               disabled={!hasSelected}
               onClick={onNext}
-              className="flex-[2] group relative flex items-center justify-center gap-3 py-4 bg-accent-primary text-white rounded-2xl font-black text-lg transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:grayscale shadow-xl shadow-accent-primary/25 overflow-hidden"
+              className="flex-2 group relative flex items-center justify-center gap-3 py-4 bg-accent-primary text-white rounded-2xl font-black text-lg transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:grayscale shadow-xl shadow-accent-primary/25 overflow-hidden"
             >
               <span className="relative">RESPONDER</span>
               <svg className="w-5 h-5 relative group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -64,8 +64,8 @@ export const QuizControls = ({
           <button
             onClick={isLastQuestion ? onFinish : onNext}
             className={`w-full py-4 font-black rounded-2xl transition-all active:scale-95 shadow-xl text-lg uppercase tracking-tight
-              ${isLastQuestion 
-                ? 'bg-status-correct text-white shadow-status-correct/25' 
+              ${isLastQuestion
+                ? 'bg-status-correct text-white shadow-status-correct/25'
                 : 'bg-foreground text-background shadow-foreground/10'
               }
             `}

@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { getTopics } from "@/lib/queries/questions";
+import { JsonQuestionRepository } from "@/lib/infrastructure/repositories/JsonQuestionRepository";
 import { verifySession } from "@/lib/auth/getUser";
 import { SectionSetup } from "@/app/components/SectionSetup";
 import { QuizTopics } from "@/app/components/QuizTopics";
@@ -9,7 +9,8 @@ import { QuizModes } from "@/app/components/QuizModes";
 
 export default async function Home() {
   const user = await verifySession();
-  const topics = await getTopics();
+  const repo = new JsonQuestionRepository();
+  const topics = await repo.getAllTopics();
 
   return (
     <main className="flex flex-col w-full h-full justify-start gap-6 py-4 p-4 animate-in fade-in duration-500">

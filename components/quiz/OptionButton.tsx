@@ -8,7 +8,7 @@ interface OptionButtonProps {
   isDisabled: boolean;
   isCorrect?: boolean;
   isIncorrect?: boolean;
-  onClick: (id: number) => void;
+  onClick: (id: string) => void;
   type?: 'simple' | 'multiple';
 }
 

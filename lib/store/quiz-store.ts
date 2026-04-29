@@ -20,7 +20,7 @@ interface QuizState {
   isFinished: boolean;
   isTimeOut: boolean;
   questionStartTime: number;
-  selectedOptionIds: number[];
+  selectedOptionIds: string[];
   isShowingResult: boolean;
   isAutoAdvancing: boolean;
   isLoading: boolean;
@@ -28,15 +28,15 @@ interface QuizState {
     isCorrect: boolean;
     points: number;
     explanation?: string;
-    correctIds?: number[];
+    correctIds?: string[];
   } | null;
 }
 
 interface QuizActions {
   setUserId: (id: string) => void;
   initQuiz: (config: QuizConfig, questions: ClientQuestion[]) => void;
-  selectOption: (id: number) => void;
-  toggleOption: (id: number) => void;
+  selectOption: (id: string) => void;
+  toggleOption: (id: string) => void;
   evaluateAnswer: () => Promise<void>;
   nextQuestion: () => void;
   finishQuiz: () => void;
@@ -87,12 +87,12 @@ export const useQuizStore = create<QuizStore>()(
         });
       },
 
-      selectOption: (id: number): void => {
+      selectOption: (id: string): void => {
         if (get().isShowingResult) return;
         set({ selectedOptionIds: [id] });
       },
 
-      toggleOption: (id: number): void => {
+      toggleOption: (id: string): void => {
         if (get().isShowingResult) return;
         const { selectedOptionIds } = get();
         const newIds = selectedOptionIds.includes(id)
@@ -111,24 +111,24 @@ export const useQuizStore = create<QuizStore>()(
         set({ isLoading: true });
 
         try {
-          const result = await evaluateAnswerAction(currentQuestion.id, selectedOptionIds, timeSpent);
+          const result = await evaluateAnswerAction(currentQuestion.id, selectedOptionIds);
 
           const newAnswer: UserAnswer = {
             question: currentQuestion,
             selectedOptionIds,
             isCorrect: result.isCorrect,
-            points: result.points,
+            points: result.score,
             timeSpent,
             explanation: result.explanation,
             correctIds: result.correctIds,
           };
 
           set({
-            score: score + result.points,
+            score: score + result.score,
             userAnswers: [...userAnswers, newAnswer],
             lastEvaluation: {
               isCorrect: result.isCorrect,
-              points: result.points,
+              points: result.score,
               explanation: result.explanation,
               correctIds: result.correctIds,
             },
