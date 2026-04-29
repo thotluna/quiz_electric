@@ -1,0 +1,648 @@
+[
+  {
+    "id": "itc03-q1",
+    "pregunta": "¿Qué categoría de instalador autorizado en baja tensión es necesaria para realizar instalaciones en locales con riesgo de incendio o explosión?",
+    "opciones": [
+      {
+        "id": "itc03-q1-o1",
+        "texto": "Categoría básica (IBTB)",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. La categoría básica no cubre instalaciones en locales con riesgo de incendio o explosión."
+      },
+      {
+        "id": "itc03-q1-o2",
+        "texto": "Categoría especialista (IBTE)",
+        "es_correcta": true,
+        "explicacion": "Correcto. Según la ITC-BT-03, las instalaciones en locales con riesgo de incendio o explosión requieren la categoría especialista."
+      },
+      {
+        "id": "itc03-q1-o3",
+        "texto": "Cualquier categoría es válida",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. Existe una distinción clara de competencias entre categorías básica y especialista."
+      },
+      {
+        "id": "itc03-q1-o4",
+        "texto": "Ninguna de las anteriores",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. La categoría especialista es la habilitación técnica específica para estos entornos."
+      }
+    ],
+    "explicacion_general": "La ITC-BT-03 define dos categorías de instaladores: Básica y Especialista, siendo esta última la requerida para entornos críticos o complejos.",
+    "itc": "ITC-BT-03"
+  },
+  {
+    "id": "itc03-q2",
+    "pregunta": "¿Cuál es la cuantía mínima del seguro de responsabilidad civil para un instalador de categoría básica (IBTB)?",
+    "opciones": [
+      {
+        "id": "itc03-q2-o1",
+        "texto": "300.000 euros",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. Esta cuantía es inferior a la exigida legalmente para la categoría básica."
+      },
+      {
+        "id": "itc03-q2-o2",
+        "texto": "600.000 euros",
+        "es_correcta": true,
+        "explicacion": "Correcto. La normativa establece un mínimo de 600.000 euros por siniestro para la categoría básica."
+      },
+      {
+        "id": "itc03-q2-o3",
+        "texto": "900.000 euros",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. Aunque es una cobertura mayor, el mínimo legal es de 600.000 euros."
+      },
+      {
+        "id": "itc03-q2-o4",
+        "texto": "1.000.000 euros",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. Esta cifra es más habitual en la categoría especialista."
+      }
+    ],
+    "explicacion_general": "El seguro de responsabilidad civil es un requisito obligatorio para garantizar la cobertura de posibles daños derivados de la actividad profesional.",
+    "itc": "ITC-BT-03"
+  },
+  {
+    "id": "itc03-q3",
+    "pregunta": "Para la categoría especialista (IBTE), ¿qué equipo adicional es obligatorio poseer?",
+    "opciones": [
+      {
+        "id": "itc03-q3-o1",
+        "texto": "Telurómetro",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. El telurómetro es obligatorio para ambas categorías (básica y especialista)."
+      },
+      {
+        "id": "itc03-q3-o2",
+        "texto": "Analizador de redes",
+        "es_correcta": true,
+        "explicacion": "Correcto. El analizador de redes es uno de los medios técnicos específicos exigidos para la categoría especialista."
+      },
+      {
+        "id": "itc03-q3-o3",
+        "texto": "Multímetro",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. El multímetro es una herramienta básica obligatoria para todos los instaladores."
+      },
+      {
+        "id": "itc03-q3-o4",
+        "texto": "Luxómetro",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. El luxómetro también es obligatorio para la categoría básica."
+      }
+    ],
+    "explicacion_general": "La categoría especialista requiere equipos de medida más sofisticados para verificar instalaciones de mayor complejidad técnica.",
+    "itc": "ITC-BT-03"
+  },
+  {
+    "id": "itc03-q4",
+    "pregunta": "¿Qué titulación mínima habilita para obtener la cualificación de instalador en baja tensión?",
+    "opciones": [
+      {
+        "id": "itc03-q4-o1",
+        "texto": "Técnico en Instalaciones Eléctricas y Automáticas",
+        "es_correcta": true,
+        "explicacion": "Correcto. El título de FP de Grado Medio en esta especialidad habilita directamente para la categoría básica."
+      },
+      {
+        "id": "itc03-q4-o2",
+        "texto": "Graduado en ESO",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. Se requiere una formación técnica específica de grado medio, superior o universitaria."
+      },
+      {
+        "id": "itc03-q4-o3",
+        "texto": "Bachillerato Tecnológico",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. Aunque aporta base científica, no es una titulación profesional habilitante para la ejecución de instalaciones."
+      },
+      {
+        "id": "itc03-q4-o4",
+        "texto": "Certificado de escolaridad",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. No cumple con los requisitos de capacitación técnica del REBT."
+      }
+    ],
+    "explicacion_general": "La capacitación se acredita mediante títulos oficiales de formación profesional o ingeniería con competencias en electricidad.",
+    "itc": "ITC-BT-03"
+  },
+  {
+    "id": "itc03-q5",
+    "pregunta": "¿Es posible realizar la actividad de instalador mediante un certificado de profesionalidad?",
+    "opciones": [
+      {
+        "id": "itc03-q5-o1",
+        "texto": "No, solo con título de FP",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. Los certificados de profesionalidad son una vía válida de acreditación de competencias."
+      },
+      {
+        "id": "itc03-q5-o2",
+        "texto": "Sí, siempre que esté incluido en el Catálogo Nacional de Cualificaciones",
+        "es_correcta": true,
+        "explicacion": "Correcto. Los certificados de profesionalidad equivalentes habilitan para el ejercicio de la profesión."
+      },
+      {
+        "id": "itc03-q5-o3",
+        "texto": "Solo para la categoría básica",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. Existen certificados de nivel 3 que pueden habilitar para la categoría especialista."
+      },
+      {
+        "id": "itc03-q5-o4",
+        "texto": "Solo si se tiene 10 años de experiencia",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. El certificado acredita la competencia independientemente de la antigüedad si se ha obtenido formalmente."
+      }
+    ],
+    "explicacion_general": "El sistema nacional de cualificaciones permite diversas vías para acreditar la competencia profesional necesaria.",
+    "itc": "ITC-BT-03"
+  },
+  {
+    "id": "itc03-q6",
+    "pregunta": "¿Qué debe hacer una empresa instaladora si cambia su domicilio social?",
+    "opciones": [
+      {
+        "id": "itc03-q6-o1",
+        "texto": "No es necesario hacer nada",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. Cualquier variación de los datos de la declaración responsable debe ser comunicada."
+      },
+      {
+        "id": "itc03-q6-o2",
+        "texto": "Comunicarlo al órgano competente en el plazo de un mes",
+        "es_correcta": true,
+        "explicacion": "Correcto. Según la normativa, los cambios de datos deben notificarse a la administración en el plazo máximo de un mes."
+      },
+      {
+        "id": "itc03-q6-o3",
+        "texto": "Esperar a la renovación anual del seguro",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. La comunicación industrial es independiente de la póliza del seguro."
+      },
+      {
+        "id": "itc03-q6-o4",
+        "texto": "Publicarlo en el BOE",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. No es un requisito para una empresa instaladora estándar."
+      }
+    ],
+    "explicacion_general": "Mantener los datos actualizados en el registro de empresas instaladoras es una obligación administrativa fundamental.",
+    "itc": "ITC-BT-03"
+  },
+  {
+    "id": "itc03-q7",
+    "pregunta": "¿Qué se entiende por 'medios humanos mínimos' para una empresa instaladora?",
+    "opciones": [
+      {
+        "id": "itc03-q7-o1",
+        "texto": "Tener al menos 10 trabajadores",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. No hay un número mínimo de empleados global, sino una exigencia de cualificación."
+      },
+      {
+        "id": "itc03-q7-o2",
+        "texto": "Disponer de al menos un instalador cualificado para cada categoría",
+        "es_correcta": true,
+        "explicacion": "Correcto. La empresa debe contar con personal que acredite la cualificación profesional requerida para la actividad que desarrolla."
+      },
+      {
+        "id": "itc03-q7-o3",
+        "texto": "Tener un administrativo a jornada completa",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. La normativa se centra en la capacidad técnica, no en el soporte administrativo."
+      },
+      {
+        "id": "itc03-q7-o4",
+        "texto": "Contratar a un ingeniero externo",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. La empresa debe tener medios propios o vinculados para su habilitación."
+      }
+    ],
+    "explicacion_general": "La solvencia técnica de la empresa se basa en la cualificación demostrable de su personal.",
+    "itc": "ITC-BT-03"
+  },
+  {
+    "id": "itc03-q8",
+    "pregunta": "¿Es obligatorio disponer de un medidor de aislamiento para la categoría básica?",
+    "opciones": [
+      {
+        "id": "itc03-q8-o1",
+        "texto": "No, es opcional",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. Es un equipo de medida fundamental y obligatorio para verificar la seguridad de los circuitos."
+      },
+      {
+        "id": "itc03-q8-o2",
+        "texto": "Sí, capaz de suministrar una tensión de 500 V CC",
+        "es_correcta": true,
+        "explicacion": "Correcto. El medidor de aislamiento debe poder generar al menos 500 V en corriente continua para pruebas en BT."
+      },
+      {
+        "id": "itc03-q8-o3",
+        "texto": "Solo para instalaciones industriales",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. Se requiere para todas las instalaciones, incluidas viviendas."
+      },
+      {
+        "id": "itc03-q8-o4",
+        "texto": "Sí, pero solo de 100 V",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. La tensión de prueba estándar para circuitos de 230/400 V es de 500 V."
+      }
+    ],
+    "explicacion_general": "Las pruebas de aislamiento son críticas para prevenir contactos indirectos e incendios por derivaciones.",
+    "itc": "ITC-BT-03"
+  },
+  {
+    "id": "itc03-q9",
+    "pregunta": "¿Qué ocurre si una empresa no mantiene las condiciones de su declaración responsable?",
+    "opciones": [
+      {
+        "id": "itc03-q9-o1",
+        "texto": "Puede seguir operando normalmente",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. La pérdida de requisitos inhabilita el ejercicio de la actividad."
+      },
+      {
+        "id": "itc03-q9-o2",
+        "texto": "Se le puede retirar la habilitación para ejercer",
+        "es_correcta": true,
+        "explicacion": "Correcto. El incumplimiento de los requisitos técnicos o de seguro conlleva la baja en el registro y cese de actividad."
+      },
+      {
+        "id": "itc03-q9-o3",
+        "texto": "Solo se le impone una multa leve",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. Además de posibles sanciones, la consecuencia inmediata es la inhabilitación profesional."
+      },
+      {
+        "id": "itc03-q9-o4",
+        "texto": "Se le da un plazo de 2 años para corregirlo",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. Los requisitos de seguridad deben cumplirse en todo momento."
+      }
+    ],
+    "explicacion_general": "La declaración responsable es un compromiso continuo de cumplimiento normativo ante la administración.",
+    "itc": "ITC-BT-03"
+  },
+  {
+    "id": "itc03-q10",
+    "pregunta": "¿En qué consiste la categoría especialista en sistemas de control distribuido?",
+    "opciones": [
+      {
+        "id": "itc03-q10-o1",
+        "texto": "En poner bombillas inteligentes",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. Es una definición demasiado simplista para una competencia técnica compleja."
+      },
+      {
+        "id": "itc03-q10-o2",
+        "texto": "En la instalación de sistemas de automatización y gestión técnica de energía",
+        "es_correcta": true,
+        "explicacion": "Correcto. Esta especialidad cubre la domótica, inmótica y control industrial avanzado."
+      },
+      {
+        "id": "itc03-q10-o3",
+        "texto": "En arreglar ordenadores",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. El REBT se refiere a instalaciones eléctricas de potencia y control, no a informática de consumo."
+      },
+      {
+        "id": "itc03-q10-o4",
+        "texto": "En instalar antenas de televisión",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. Las telecomunicaciones se rigen por su propia normativa (ICT), no por el REBT."
+      }
+    ],
+    "explicacion_general": "La categoría especialista abarca tecnologías avanzadas que requieren conocimientos específicos de protocolos y sistemas de control.",
+    "itc": "ITC-BT-03"
+  },
+  {
+    "id": "itc03-q11",
+    "pregunta": "¿Qué equipo de medida es necesario para comprobar el disparo de los interruptores diferenciales?",
+    "opciones": [
+      {
+        "id": "itc03-q11-o1",
+        "texto": "Un comprobador de diferenciales",
+        "es_correcta": true,
+        "explicacion": "Correcto. Es obligatorio para medir el tiempo de disparo y la corriente de fuga real."
+      },
+      {
+        "id": "itc03-q11-o2",
+        "texto": "Pulsar el botón 'Test' del diferencial",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. El botón de test solo comprueba la mecánica, no los parámetros técnicos de seguridad."
+      },
+      {
+        "id": "itc03-q11-o3",
+        "texto": "Hacer un cortocircuito a tierra",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. Es una práctica extremadamente peligrosa y no cuantifica la sensibilidad del dispositivo."
+      },
+      {
+        "id": "itc03-q11-o4",
+        "texto": "Un medidor de frecuencia",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. La frecuencia no indica si un diferencial dispara correctamente ante una fuga."
+      }
+    ],
+    "explicacion_general": "La verificación de los diferenciales es vital para garantizar la protección de las personas contra contactos directos e indirectos.",
+    "itc": "ITC-BT-03"
+  },
+  {
+    "id": "itc03-q12",
+    "pregunta": "¿Cómo debe ser el registro de las intervenciones de mantenimiento en instalaciones críticas?",
+    "opciones": [
+      {
+        "id": "itc03-q12-o1",
+        "texto": "En un libro de mantenimiento diligenciado",
+        "es_correcta": true,
+        "explicacion": "Correcto. Las instalaciones de cierta complejidad deben llevar un registro formal de sus revisiones."
+      },
+      {
+        "id": "itc03-q12-o2",
+        "texto": "En una servilleta",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. Carece de validez legal y técnica."
+      },
+      {
+        "id": "itc03-q12-o3",
+        "texto": "No es necesario registrar nada",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. El mantenimiento sin registro impide la trazabilidad de la seguridad."
+      },
+      {
+        "id": "itc03-q12-o4",
+        "texto": "Solo si el cliente lo pide",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. Es una obligación reglamentaria para el instalador y el titular."
+      }
+    ],
+    "explicacion_general": "La documentación del mantenimiento asegura que la instalación sigue cumpliendo las condiciones de seguridad iniciales.",
+    "itc": "ITC-BT-03"
+  },
+  {
+    "id": "itc03-q13",
+    "pregunta": "¿Qué responsabilidad tiene el instalador sobre las instalaciones que firma?",
+    "opciones": [
+      {
+        "id": "itc03-q13-o1",
+        "texto": "Ninguna tras el cobro de la factura",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. El instalador es responsable legal de la ejecución técnica de la obra."
+      },
+      {
+        "id": "itc03-q13-o2",
+        "texto": "Responsabilidad civil y, en su caso, penal",
+        "es_correcta": true,
+        "explicacion": "Correcto. El instalador responde de los daños que una mala ejecución pueda causar en el tiempo."
+      },
+      {
+        "id": "itc03-q13-o3",
+        "texto": "Solo si la instalación tiene menos de un mes",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. Los plazos de responsabilidad son mucho más extensos."
+      },
+      {
+        "id": "itc03-q13-o4",
+        "texto": "La responsabilidad es del dueño de la casa",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. El dueño es responsable del uso, pero el instalador lo es de la correcta ejecución según reglamento."
+      }
+    ],
+    "explicacion_general": "La firma de un boletín o certificado de instalación conlleva una asunción de responsabilidad técnica y legal.",
+    "itc": "ITC-BT-03"
+  },
+  {
+    "id": "itc03-q14",
+    "pregunta": "¿Qué debe hacer un instalador en caso de accidente eléctrico grave en una de sus obras?",
+    "opciones": [
+      {
+        "id": "itc03-q14-o1",
+        "texto": "Ocultar las pruebas",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. Es una práctica ilegal y peligrosa."
+      },
+      {
+        "id": "itc03-q14-o2",
+        "texto": "Informar inmediatamente al organismo competente de la comunidad autónoma",
+        "es_correcta": true,
+        "explicacion": "Correcto. Existe una obligación de reporte ante incidentes de seguridad industrial graves."
+      },
+      {
+        "id": "itc03-q14-o3",
+        "texto": "Desmontar la instalación inmediatamente",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. No se debe alterar la escena de un accidente antes de la investigación oficial."
+      },
+      {
+        "id": "itc03-q14-o4",
+        "texto": "Solo informar si hay víctimas mortales",
+        "es_correcta": false,
+        "explicacion": "Incorrecto. Cualquier accidente o incidente grave debe ser reportado."
+      }
+    ],
+    "explicacion_general": "La seguridad industrial exige transparencia y comunicación de incidentes para mejorar la normativa y prevenir futuros riesgos.",
+    "itc": "ITC-BT-03"
+  },
+  {
+    "id": "ITC-BT-03-15",
+    "pregunta": "¿Qué equipo de medida es obligatorio para un instalador de categoría básica (IBTB) según la ITC-BT-03?",
+    "opciones": [
+      {
+        "id": "ITC-BT-03-15-o1",
+        "texto": "Analizador de redes.",
+        "es_correcta": false,
+        "explicacion": "El analizador de redes es obligatorio para la categoría especialista (IBTE)."
+      },
+      {
+        "id": "ITC-BT-03-15-o2",
+        "texto": "Telurómetro.",
+        "es_correcta": true,
+        "explicacion": "El telurómetro es un equipo básico para medir la resistencia de tierra."
+      },
+      {
+        "id": "ITC-BT-03-15-o3",
+        "texto": "Cámara termográfica.",
+        "es_correcta": false,
+        "explicacion": "No es un requisito mínimo de la categoría básica."
+      },
+      {
+        "id": "ITC-BT-03-15-o4",
+        "texto": "Localizador de cables.",
+        "es_correcta": false,
+        "explicacion": "Es una herramienta útil pero no obligatoria por reglamento."
+      }
+    ],
+    "tipo": "seleccion-simple",
+    "explicacion_general": "La ITC-BT-03 especifica los medios técnicos mínimos por categoría.",
+    "itc": "ITC-BT-03"
+  },
+  {
+    "id": "ITC-BT-03-16",
+    "pregunta": "¿Cuál es la cuantía mínima del seguro de responsabilidad civil para categoría básica?",
+    "opciones": [
+      {
+        "id": "ITC-BT-03-16-o1",
+        "texto": "300.000 euros.",
+        "es_correcta": false,
+        "explicacion": "Cuantía insuficiente según la normativa vigente."
+      },
+      {
+        "id": "ITC-BT-03-16-o2",
+        "texto": "600.000 euros.",
+        "es_correcta": true,
+        "explicacion": "Es la cuantía mínima general para categoría básica."
+      },
+      {
+        "id": "ITC-BT-03-16-o3",
+        "texto": "900.000 euros.",
+        "es_correcta": false,
+        "explicacion": "Es superior al mínimo legal exigido para básica."
+      },
+      {
+        "id": "ITC-BT-03-16-o4",
+        "texto": "1.200.000 euros.",
+        "es_correcta": false,
+        "explicacion": "Cuantía típica de categoría especialista."
+      }
+    ],
+    "tipo": "seleccion-simple",
+    "explicacion_general": "El seguro garantiza la cobertura de daños a terceros.",
+    "itc": "ITC-BT-03"
+  },
+  {
+    "id": "ITC-BT-03-17",
+    "pregunta": "¿Qué titulación mínima habilita para ser instalador de categoría básica?",
+    "opciones": [
+      {
+        "id": "ITC-BT-03-17-o1",
+        "texto": "Técnico en Instalaciones Eléctricas.",
+        "es_correcta": true,
+        "explicacion": "El título de FP de Grado Medio es la base habilitante."
+      },
+      {
+        "id": "ITC-BT-03-17-o2",
+        "texto": "ESO.",
+        "es_correcta": false,
+        "explicacion": "Se requiere formación técnica específica."
+      },
+      {
+        "id": "ITC-BT-03-17-o3",
+        "texto": "Bachillerato.",
+        "es_correcta": false,
+        "explicacion": "No es una titulación técnica habilitante."
+      },
+      {
+        "id": "ITC-BT-03-17-o4",
+        "texto": "Ingeniería Superior.",
+        "es_correcta": false,
+        "explicacion": "Aunque habilita, no es la 'mínima'."
+      }
+    ],
+    "tipo": "seleccion-simple",
+    "explicacion_general": "La cualificación se basa en la formación profesional reglada.",
+    "itc": "ITC-BT-03"
+  },
+  {
+    "id": "ITC-BT-03-18",
+    "pregunta": "¿Es obligatorio el luxómetro para la categoría básica?",
+    "opciones": [
+      {
+        "id": "ITC-BT-03-18-o1",
+        "texto": "Sí.",
+        "es_correcta": true,
+        "explicacion": "Necesario para verificar alumbrado de emergencia."
+      },
+      {
+        "id": "ITC-BT-03-18-o2",
+        "texto": "No.",
+        "es_correcta": false,
+        "explicacion": "Es un equipo obligatorio según la lista de medios técnicos."
+      },
+      {
+        "id": "ITC-BT-03-18-o3",
+        "texto": "Solo para especialistas.",
+        "es_correcta": false,
+        "explicacion": "Ambas categorías lo requieren."
+      },
+      {
+        "id": "ITC-BT-03-18-o4",
+        "texto": "Opcional.",
+        "es_correcta": false,
+        "explicacion": "Es un requisito técnico mínimo."
+      }
+    ],
+    "tipo": "seleccion-simple",
+    "explicacion_general": "El luxómetro asegura los niveles de iluminación mínimos legales.",
+    "itc": "ITC-BT-03"
+  },
+  {
+    "id": "ITC-BT-03-19",
+    "pregunta": "¿Cuánto tiempo debe conservarse copia de los certificados emitidos?",
+    "opciones": [
+      {
+        "id": "ITC-BT-03-19-o1",
+        "texto": "1 año.",
+        "es_correcta": false,
+        "explicacion": "Plazo demasiado corto."
+      },
+      {
+        "id": "ITC-BT-03-19-o2",
+        "texto": "3 años.",
+        "es_correcta": false,
+        "explicacion": "Plazo insuficiente."
+      },
+      {
+        "id": "ITC-BT-03-19-o3",
+        "texto": "5 años.",
+        "es_correcta": true,
+        "explicacion": "Es el plazo legal estándar de conservación."
+      },
+      {
+        "id": "ITC-BT-03-19-o4",
+        "texto": "10 años.",
+        "es_correcta": false,
+        "explicacion": "Superior al mínimo reglamentario."
+      }
+    ],
+    "tipo": "seleccion-simple",
+    "explicacion_general": "La documentación asegura la trazabilidad de las instalaciones.",
+    "itc": "ITC-BT-03"
+  },
+  {
+    "id": "ITC-BT-03-20",
+    "pregunta": "¿Qué figura es responsable técnica en la empresa instaladora?",
+    "opciones": [
+      {
+        "id": "ITC-BT-03-20-o1",
+        "texto": "El Gerente.",
+        "es_correcta": false,
+        "explicacion": "Es un rol administrativo."
+      },
+      {
+        "id": "ITC-BT-03-20-o2",
+        "texto": "El Representante Técnico.",
+        "es_correcta": true,
+        "explicacion": "Es la persona cualificada que asume la responsabilidad técnica."
+      },
+      {
+        "id": "ITC-BT-03-20-o3",
+        "texto": "El Administrativo.",
+        "es_correcta": false,
+        "explicacion": "No tiene funciones técnicas asignadas."
+      },
+      {
+        "id": "ITC-BT-03-20-o4",
+        "texto": "El Cliente.",
+        "es_correcta": false,
+        "explicacion": "El cliente es el titular, no el responsable técnico."
+      }
+    ],
+    "tipo": "seleccion-simple",
+    "explicacion_general": "Toda empresa habilitada debe contar con personal cualificado responsable.",
+    "itc": "ITC-BT-03"
+  }
+]

@@ -25,7 +25,7 @@ export const StatsBar = ({
 
   return (
     <div className="grid grid-cols-3 gap-3 mb-6">
-      <div className="bg-surface-card border border-foreground/5 p-3 rounded-xl flex flex-col items-center justify-center space-y-1">
+      <div className="bg-surface-card border border-foreground/5 py-1 px-3 rounded-xl flex flex-col items-center justify-center space-y-1">
         <span className="text-[10px] font-black uppercase tracking-widest text-foreground/30">
           {isCountdown ? 'Restante' : 'Tiempo'}
         </span>

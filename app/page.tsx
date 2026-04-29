@@ -7,6 +7,8 @@ import { QuizConfigSync } from "@/app/components/QuizConfigSync";
 import { GoQuizBotton } from "@/app/components/GoQuizBotton";
 import { QuizModes } from "@/app/components/QuizModes";
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
   const user = await verifySession();
   const repo = new JsonQuestionRepository();
