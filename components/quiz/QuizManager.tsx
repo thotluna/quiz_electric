@@ -39,7 +39,7 @@ export const QuizManager = ({ userId, initialQuestions, mode, topicIds }: QuizMa
   const [resumeResolved, setResumeResolved] = useState<boolean>(false);
   const [shouldShowResume, setShouldShowResume] = useState<boolean>(false);
   const [isReady, setIsReady] = useState<boolean>(false);
-  
+
   const config = useQuizStore((s) => s.config);
   const questions = useQuizStore((s) => s.questions);
   const initQuiz = useQuizStore((s) => s.initQuiz);
@@ -52,10 +52,10 @@ export const QuizManager = ({ userId, initialQuestions, mode, topicIds }: QuizMa
     setUserId(userId);
 
     const persisted = readPersistedSession();
-    const hasSession = persisted !== null 
-      && !persisted.isFinished 
+    const hasSession = persisted !== null
+      && !persisted.isFinished
       && persisted.questions.length > 0;
-    
+
     if (initialQuestions && mode && !hasSession) {
       initQuiz({ mode, topicIds: topicIds || [] }, initialQuestions);
     }
@@ -85,7 +85,7 @@ export const QuizManager = ({ userId, initialQuestions, mode, topicIds }: QuizMa
 
   if (isLoading || !isReady) {
     return (
-      <div className="flex flex-col items-center justify-center p-20 space-y-4">
+      <div className="flex flex-col items-center justify-center p-20">
         <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin" />
         <p className="text-foreground/50 font-medium animate-pulse">Preparando simulacro...</p>
       </div>

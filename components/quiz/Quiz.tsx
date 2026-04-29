@@ -61,8 +61,8 @@ export const Quiz: React.FC<QuizProps> = ({ questions, config, userId }) => {
     if (isShowingResult) return;
 
     if (currentQuestion.tipo === 'multiple') {
-      setSelectedOptionIds(prev => 
-        prev.includes(optionId) 
+      setSelectedOptionIds(prev =>
+        prev.includes(optionId)
           ? prev.filter(id => id !== optionId)
           : [...prev, optionId]
       );
@@ -73,9 +73,9 @@ export const Quiz: React.FC<QuizProps> = ({ questions, config, userId }) => {
 
   const handleEvaluate = async () => {
     if (selectedOptionIds.length === 0) return;
-    
+
     const result = await evaluateAnswerAction(currentQuestion.id, selectedOptionIds);
-    
+
     setCurrentEvaluation({
       isCorrect: result.isCorrect,
       explanation: result.explanation
@@ -121,19 +121,19 @@ export const Quiz: React.FC<QuizProps> = ({ questions, config, userId }) => {
 
   if (isFinished) {
     return (
-      <QuizResults 
-        userAnswers={userAnswers} 
+      <QuizResults
+        userAnswers={userAnswers}
         timeElapsed={timeElapsed}
         totalQuestions={questions.length}
         score={score}
-        onReset={() => window.location.reload()} 
+        onReset={() => window.location.reload()}
       />
     );
   }
 
   return (
-    <div className="flex flex-col w-full max-w-3xl mx-auto gap-6 p-4">
-      <StatsBar 
+    <div className="flex flex-col w-full max-w-3xl mx-auto gap-1 p-4">
+      <StatsBar
         timeElapsed={config.mode === 'timed' ? timeLeft : timeElapsed}
         correctAnswers={userAnswers.filter(a => a.isCorrect).length}
         currentQuestion={currentQuestionIndex + 1}
@@ -172,7 +172,7 @@ export const Quiz: React.FC<QuizProps> = ({ questions, config, userId }) => {
         </div>
       </div>
 
-      <QuizControls 
+      <QuizControls
         onNext={isShowingResult ? handleNext : handleEvaluate}
         onSkip={handleSkip}
         onFinish={() => setIsFinished(true)}
